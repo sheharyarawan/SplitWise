@@ -4,9 +4,12 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.groupFragment.DetailGroupFragment">
+    tools:context=".fragments.groupFragment.DetailGroupFragment"
+    android:background="@color/gray"
+    >
 
     <FrameLayout
+        android:id="@+id/frameLayout"
         android:layout_width="0dp"
         android:layout_height="200dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -17,40 +20,139 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/gray">
+            android:background="@color/green">
+
         </ImageView>
 
         <ImageView
             android:id="@+id/groupDetailBackBtn"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/ic_back"
             android:layout_gravity="start"
             android:layout_margin="15dp"
-            >
+            android:background="@drawable/detail_group_bg"
+            android:padding="5dp"
+            android:src="@drawable/ic_back">
+
         </ImageView>
 
         <ImageView
+            android:id="@+id/detailGroupSettings"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/settings_24dp_e3e3e3_fill0_wght400_grad0_opsz24"
             android:layout_gravity="end"
-            android:layout_margin="15dp">
+            android:layout_margin="15dp"
+            android:background="@drawable/detail_group_bg"
+            android:padding="5dp"
+            android:src="@drawable/settings_24dp_e3e3e3_fill0_wght400_grad0_opsz24">
+
+
         </ImageView>
 
         <TextView
             android:id="@+id/detailGroupName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Group Name"
-            android:textSize="30sp"
-            android:fontFamily="@font/poppins_medium"
             android:layout_gravity="bottom|start"
+            android:fontFamily="@font/poppins_medium"
+            android:padding="10dp"
+            android:text="Group Name"
             android:textColor="@color/white"
-            android:padding="10dp">
+            android:textSize="30sp">
 
         </TextView>
 
     </FrameLayout>
+
+    <com.google.android.material.chip.ChipGroup
+        android:id="@+id/detailGroupChips"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginTop="12dp"
+        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+
+
+        <com.google.android.material.chip.Chip
+            android:id="@+id/grpDetailSettleUpChip"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Settle up"
+            android:backgroundTint="@color/gray"
+            android:textColor="@color/white"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="21sp"
+            app:chipStrokeWidth="2dp"
+            app:chipStrokeColor="#A5A5A5"
+            app:chipCornerRadius="30dp"
+            android:padding="10dp"
+            app:chipStartPadding="8dp"
+            app:chipEndPadding="8dp"
+            />
+
+        <com.google.android.material.chip.Chip
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@color/gray"
+            android:textColor="@color/white"
+            android:text="Balances"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="21sp"
+            app:chipStrokeWidth="2dp"
+            app:chipStrokeColor="#A5A5A5"
+            app:chipCornerRadius="30dp"
+            android:padding="10dp"
+            app:chipStartPadding="8dp"
+            app:chipEndPadding="8dp">
+
+    </com.google.android.material.chip.Chip>
+
+    </com.google.android.material.chip.ChipGroup>
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/detailGroupChips"
+        android:layout_margin="15dp"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="@color/light_gray"
+            android:orientation="vertical"
+            android:padding="20dp">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="You're the only one here!"
+                android:layout_gravity="center_horizontal"
+                android:textSize="18sp"
+                android:fontFamily="@font/poppins_medium"
+                android:textColor="@color/white">
+            </TextView>
+
+            <com.google.android.material.button.MaterialButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:backgroundTint="@color/green"
+                android:text="Add group members"
+                app:icon="@drawable/ic_friend"
+                android:layout_gravity="center_horizontal"
+                android:textSize="20sp"
+                android:paddingStart="30dp"
+                android:paddingEnd="30dp"
+                android:layout_marginTop="5dp"
+                app:iconSize="25dp">
+            </com.google.android.material.button.MaterialButton>
+
+        </LinearLayout>
+
+    </com.google.android.material.card.MaterialCardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
