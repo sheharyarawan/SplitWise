@@ -13,6 +13,4 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
     }
-
-
 }
