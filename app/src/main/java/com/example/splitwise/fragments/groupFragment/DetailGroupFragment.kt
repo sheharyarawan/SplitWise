@@ -8,6 +8,6 @@ import android.view.ViewGroup
 import com.example.splitwise.R
 
 
-class DetailGroupFragment : Fragment() {
+class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
 
 }

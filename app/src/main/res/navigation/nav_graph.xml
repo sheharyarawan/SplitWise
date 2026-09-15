@@ -9,7 +9,11 @@
         android:id="@+id/groupsFragment"
         android:name="com.example.splitwise.fragments.groupFragment.GroupsFragment"
         android:label="fragment_groups"
-        tools:layout="@layout/fragment_groups" />
+        tools:layout="@layout/fragment_groups" >
+        <action
+            android:id="@+id/action_groupsFragment_to_detailGroupFragment"
+            app:destination="@id/detailGroupFragment" />
+    </fragment>
     <fragment
         android:id="@+id/friendsFragment"
         android:name="com.example.splitwise.fragments.friendFragment.FriendsFragment"
@@ -25,4 +29,9 @@
         android:name="com.example.splitwise.fragments.accountFragment.AccountFragment"
         android:label="fragment_account"
         tools:layout="@layout/fragment_account" />
+    <fragment
+        android:id="@+id/detailGroupFragment"
+        android:name="com.example.splitwise.fragments.groupFragment.DetailGroupFragment"
+        android:label="fragment_detail_group"
+        tools:layout="@layout/fragment_detail_group" />
 </navigation>
