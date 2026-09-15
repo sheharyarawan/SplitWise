@@ -3,9 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <item
-        android:id="@+id/addFriendToolbarCheck"
-        android:icon="@drawable/ic_check"
+        android:id="@+id/deleteIcon"
+        android:icon="@drawable/ic_delete"
         android:title=""
         app:showAsAction="always">
+
+    </item>
+
+    <item
+        android:id="@+id/editIcon"
+        android:icon="@drawable/ic_edit"
+        android:title=""
+        app:showAsAction="always">
+
     </item>
 </menu>
