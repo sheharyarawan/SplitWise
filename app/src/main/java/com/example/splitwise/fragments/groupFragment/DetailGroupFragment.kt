@@ -18,6 +18,9 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
         binding.detailGroupSettings.setOnClickListener {
             findNavController().navigate(R.id.action_detailGroupFragment_to_groupSettingsFragment)
         }
+        binding.detailGroupPeopleCountChip.setOnClickListener {
+            findNavController().navigate(R.id.action_detailGroupFragment_to_groupSettingsFragment)
+        }
     }
 
 }

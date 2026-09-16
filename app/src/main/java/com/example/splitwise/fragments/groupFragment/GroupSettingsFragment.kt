@@ -2,12 +2,21 @@ package com.example.splitwise.fragments.groupFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.splitwise.R
-
+import com.example.splitwise.databinding.FragmentGroupSettingsBinding
 
 class GroupSettingsFragment : Fragment(R.layout.fragment_group_settings) {
 
+    private lateinit var binding: FragmentGroupSettingsBinding
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        binding = FragmentGroupSettingsBinding.bind(view)
+        binding.addPeopleToGroup.setOnClickListener {
+
+        }
+    }
 }
