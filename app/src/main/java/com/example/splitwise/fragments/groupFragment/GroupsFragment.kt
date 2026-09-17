@@ -18,5 +18,11 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
         binding.nonGroupExpensesCL.setOnClickListener {
             findNavController().navigate(R.id.action_groupsFragment_to_detailGroupFragment)
         }
+        binding.startAGroupBtn.setOnClickListener {
+            AddMemberBottomSheet().show(
+                parentFragmentManager,"AddBottomSheet"
+            )
+
+        }
     }
 }

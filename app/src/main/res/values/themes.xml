@@ -1,9 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-    <!-- Base application theme. -->
+
     <style name="Base.Theme.SplitWise" parent="Theme.Material3.DayNight.NoActionBar">
-        <!-- Customize your light theme here. -->
-        <!-- <item name="colorPrimary">@color/my_light_primary</item> -->
     </style>
 
-    <style name="Theme.SplitWise" parent="Base.Theme.SplitWise" />
+    <style name="ToolbarMenuText" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textColor">@color/white</item>
+    </style>
+
+    <style name="CreateGroupToolbarTheme" parent="ThemeOverlay.Material3.ActionBar">
+        <item name="actionMenuTextAppearance">@style/ToolbarMenuText</item>
+    </style>
+
+    <style name="DatePickerTheme" parent="ThemeOverlay.Material3.MaterialCalendar">
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorOnPrimary">@color/white</item>
+        <item name="android:colorBackground">@color/black</item>
+    </style>
+
+    <style name="Theme.SplitWise" parent="Base.Theme.SplitWise">
+    </style>
+
 </resources>
