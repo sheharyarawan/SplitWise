@@ -10,7 +10,6 @@
     android:padding="16dp"
     tools:context=".fragments.groupFragment.GroupsFragment">
 
-    ```
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/groupsToolbar"
         android:layout_width="0dp"
@@ -129,24 +128,5 @@
         </androidx.constraintlayout.widget.ConstraintLayout>
 
     </androidx.core.widget.NestedScrollView>
-
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/addExpenseBtn"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Add expense"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:icon="@drawable/ic_add_expense"
-        android:backgroundTint="@color/green"
-        android:textSize="20sp"
-        android:paddingStart="15dp"
-        android:paddingEnd="15dp"
-        android:paddingTop="10dp"
-        android:paddingBottom="10dp"
-        app:iconSize="30dp"
-        android:fontFamily="@font/poppins_medium">
-
-    </com.google.android.material.button.MaterialButton>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

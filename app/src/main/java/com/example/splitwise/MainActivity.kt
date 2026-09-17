@@ -1,6 +1,7 @@
 package com.example.splitwise
 
 import android.os.Bundle
+import android.view.View
 import androidx.activity.enableEdgeToEdge
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
@@ -30,5 +31,22 @@ class MainActivity : AppCompatActivity() {
         val navController = navHostFragment.navController
         binding.bottomNav.setupWithNavController(navController)
     }
+
+    fun showAddExpenseButton() {
+        binding.addExpenseBtn.visibility = View.VISIBLE
+    }
+
+    fun hideAddExpenseButton() {
+        binding.addExpenseBtn.visibility = View.GONE
+    }
+
+    fun shrinkAddExpenseButton() {
+        binding.addExpenseBtn.shrink()
+    }
+
+    fun extendAddExpenseButton() {
+        binding.addExpenseBtn.extend()
+    }
+
 
 }

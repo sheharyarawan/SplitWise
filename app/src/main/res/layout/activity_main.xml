@@ -22,17 +22,34 @@
 
     </androidx.fragment.app.FragmentContainerView>
 
+    <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton
+        android:id="@+id/addExpenseBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="16dp"
+        android:layout_marginBottom="152dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Add expense"
+        android:textSize="20sp"
+        android:textColor="@color/white"
+        app:backgroundTint="@color/green"
+        app:icon="@drawable/ic_add_expense"
+        app:iconSize="30dp"
+        app:iconTint="@color/white"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNav"
+        app:layout_constraintEnd_toEndOf="parent" />
+
     <com.google.android.material.bottomnavigation.BottomNavigationView
         android:id="@+id/bottomNav"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:background="@color/gray"
+        app:itemTextColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/bottom_nav"
-        android:background="@color/gray"
-        app:itemTextColor="@color/white">
+        app:menu="@menu/bottom_nav">
 
     </com.google.android.material.bottomnavigation.BottomNavigationView>
 
