@@ -31,6 +31,9 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
         binding.groupDetailBackBtn.setOnClickListener {
             findNavController().navigateUp()
         }
+        binding.addFriendGroupButton.setOnClickListener {
+            findNavController().navigate(R.id.action_detailGroupFragment_to_addFriendFragment)
+        }
     }
 
 }

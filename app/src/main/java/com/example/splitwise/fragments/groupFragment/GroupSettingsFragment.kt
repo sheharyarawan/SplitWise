@@ -22,11 +22,19 @@ class GroupSettingsFragment : Fragment(R.layout.fragment_group_settings) {
 
         binding = FragmentGroupSettingsBinding.bind(view)
         binding.addPeopleToGroup.setOnClickListener {
-
+            findNavController().navigate(R.id.action_groupSettingsFragment_to_addFriendFragment)
         }
         binding.toolbarGroupSettings.setNavigationOnClickListener {
             findNavController().navigateUp()
         }
+        binding.customizeGroupCL.setOnClickListener {
+            openBottomSheet()
+        }
+    }
+    fun openBottomSheet(){
 
+        AddMemberBottomSheet().show(
+            parentFragmentManager,"AddBottomSheet"
+        )
     }
 }

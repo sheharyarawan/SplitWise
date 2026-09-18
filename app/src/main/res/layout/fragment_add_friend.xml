@@ -32,7 +32,7 @@
         android:hint="Name"
         android:padding="16dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColorHint="#60FFFFFF"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,7 @@
         android:hint="Phone number or email address"
         android:padding="16dp"
         android:textColor="@color/white"
-        android:textColorHint="@color/white"
+        android:textColorHint="#60FFFFFF"
         android:background="@drawable/edit_text_bg"
         app:layout_constraintHorizontal_bias="0.0"
         android:layout_marginTop="35dp"
@@ -58,7 +58,7 @@
     </EditText>
 
     <com.google.android.material.button.MaterialButton
-       android:id="@+id/addFriendNextButton"
+        android:id="@+id/addFriendNextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"

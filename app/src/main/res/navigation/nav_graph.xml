@@ -18,7 +18,11 @@
         android:id="@+id/friendsFragment"
         android:name="com.example.splitwise.fragments.friendFragment.FriendsFragment"
         android:label="fragment_friends"
-        tools:layout="@layout/fragment_friends" />
+        tools:layout="@layout/fragment_friends" >
+        <action
+            android:id="@+id/action_friendsFragment_to_addFriendFragment"
+            app:destination="@id/addFriendFragment" />
+    </fragment>
     <fragment
         android:id="@+id/activityFragment"
         android:name="com.example.splitwise.fragments.activityFragment.ActivityFragment"
@@ -37,10 +41,21 @@
         <action
             android:id="@+id/action_detailGroupFragment_to_groupSettingsFragment"
             app:destination="@id/groupSettingsFragment" />
+        <action
+            android:id="@+id/action_detailGroupFragment_to_addFriendFragment"
+            app:destination="@id/addFriendFragment" />
     </fragment>
     <fragment
         android:id="@+id/groupSettingsFragment"
         android:name="com.example.splitwise.fragments.groupFragment.GroupSettingsFragment"
         android:label="fragment_group_settings"
-        tools:layout="@layout/fragment_group_settings" />
+        tools:layout="@layout/fragment_group_settings" >
+        <action
+            android:id="@+id/action_groupSettingsFragment_to_addFriendFragment"
+            app:destination="@id/addFriendFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/addFriendFragment"
+        android:name="com.example.splitwise.fragments.friendFragment.AddFriendFragment"
+        android:label="AddFriendFragment" />
 </navigation>
