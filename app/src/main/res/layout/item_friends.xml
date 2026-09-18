@@ -3,9 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/gray"
-    android:padding="16dp">
+    android:layout_height="wrap_content"
+    android:background="@color/gray">
 
     <ImageView
         android:id="@+id/imageView3"
@@ -14,10 +13,9 @@
         android:background="@drawable/circle_white"
         android:padding="10dp"
         android:src="@drawable/ic_mail"
-        android:tint="@color/black"
-
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:tint="#737373">
 
     </ImageView>
 
@@ -61,10 +59,10 @@
 
         <View
             android:id="@+id/view"
-            android:layout_width="1dp"
-            android:layout_height="60dp"
+            android:layout_width="2dp"
+            android:layout_height="64dp"
             android:layout_marginStart="30dp"
-            android:background="@color/white"
+            android:background="#E3E3E3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -73,8 +71,8 @@
         <View
             android:id="@+id/view2"
             android:layout_width="40dp"
-            android:layout_height="1dp"
-            android:background="@color/white"
+            android:layout_height="2dp"
+            android:background="#E3E3E3"
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toEndOf="@+id/view"
             app:layout_constraintTop_toTopOf="parent">
@@ -84,8 +82,8 @@
         <View
             android:id="@+id/view3"
             android:layout_width="40dp"
-            android:layout_height="1dp"
-            android:background="@color/white"
+            android:layout_height="2dp"
+            android:background="#E3E3E3"
             android:layout_marginTop="40dp"
             app:layout_constraintStart_toEndOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/view2">
@@ -94,14 +92,16 @@
 
         <TextView
             android:id="@+id/friendChild1"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:ellipsize="end"
             android:fontFamily="@font/poppins_medium"
             android:maxLines="1"
-            android:layout_marginStart="10dp"
-            android:text="sheharyar owes you 1000 "
+            android:text="sheharyar owes you 1000 for trip to murree"
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/view2"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/view2"
             app:layout_constraintTop_toTopOf="@+id/view2">
 
@@ -109,15 +109,17 @@
 
         <TextView
             android:id="@+id/friendChild2"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
+            android:layout_marginStart="10dp"
+            android:ellipsize="end"
             android:fontFamily="@font/poppins_medium"
             android:maxLines="1"
-            android:layout_marginStart="10dp"
             android:text="sheharyar owes you 1000 "
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/view3"
 
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/view3"
             app:layout_constraintTop_toBottomOf="@+id/view3">
 
