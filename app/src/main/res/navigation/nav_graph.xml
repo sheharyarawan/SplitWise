@@ -22,6 +22,9 @@
         <action
             android:id="@+id/action_friendsFragment_to_addFriendFragment"
             app:destination="@id/addFriendFragment" />
+        <action
+            android:id="@+id/action_friendsFragment_to_friendDetailFragment"
+            app:destination="@id/friendDetailFragment" />
     </fragment>
     <fragment
         android:id="@+id/activityFragment"
@@ -58,4 +61,9 @@
         android:id="@+id/addFriendFragment"
         android:name="com.example.splitwise.fragments.friendFragment.AddFriendFragment"
         android:label="AddFriendFragment" />
+    <fragment
+        android:id="@+id/friendDetailFragment"
+        android:name="com.example.splitwise.fragments.friendFragment.FriendDetailFragment"
+        android:label="fragment_friend_detail"
+        tools:layout="@layout/fragment_friend_detail" />
 </navigation>

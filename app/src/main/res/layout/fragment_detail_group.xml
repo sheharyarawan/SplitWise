@@ -100,7 +100,7 @@
     </LinearLayout>
 
     <com.google.android.material.chip.ChipGroup
-        android:id="@+id/detailGroupChips"
+        android:id="@+id/detailFriendChipsGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:padding="10dp"
@@ -111,7 +111,7 @@
 
 
         <com.google.android.material.chip.Chip
-            android:id="@+id/grpDetailSettleUpChip"
+            android:id="@+id/friendDetailSettleUpChip"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:backgroundTint="@color/gray"
@@ -152,7 +152,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailGroupChips"
+        app:layout_constraintTop_toBottomOf="@+id/detailFriendChipsGroup"
         android:layout_margin="15dp"
         android:visibility="visible"
         >
@@ -201,7 +201,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailGroupChips"
+        app:layout_constraintTop_toBottomOf="@+id/detailFriendChipsGroup"
         android:visibility="gone">
 
         <TextView
@@ -236,7 +236,7 @@
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailGroupChips"
+        app:layout_constraintTop_toBottomOf="@+id/detailFriendChipsGroup"
         tools:listitem="@layout/item_view_expense_detail_group"
         tools:itemCount="4"
         android:visibility="gone"

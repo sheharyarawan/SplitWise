@@ -16,7 +16,8 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding= FragmentFriendsBinding.bind(view)
         binding.addMoreFriendButton.setOnClickListener {
-            findNavController().navigate(R.id.action_friendsFragment_to_addFriendFragment)
+           // findNavController().navigate(R.id.action_friendsFragment_to_addFriendFragment)
+             findNavController().navigate(R.id.action_friendsFragment_to_friendDetailFragment)
         }
         setUpToolbarClicks()
     }

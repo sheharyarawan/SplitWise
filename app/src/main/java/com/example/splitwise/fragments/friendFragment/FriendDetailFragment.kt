@@ -1,0 +1,19 @@
+package com.example.splitwise.fragments.friendFragment
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import com.example.splitwise.R
+import com.example.splitwise.databinding.FragmentFriendDetailBinding
+
+
+class FriendDetailFragment : Fragment(R.layout.fragment_friend_detail) {
+
+    lateinit var binding: FragmentFriendDetailBinding
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding= FragmentFriendDetailBinding.bind(view)
+    }
+}
