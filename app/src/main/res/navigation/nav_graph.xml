@@ -65,5 +65,14 @@
         android:id="@+id/friendDetailFragment"
         android:name="com.example.splitwise.fragments.friendFragment.FriendDetailFragment"
         android:label="fragment_friend_detail"
-        tools:layout="@layout/fragment_friend_detail" />
+        tools:layout="@layout/fragment_friend_detail" >
+        <action
+            android:id="@+id/action_friendDetailFragment_to_friendSettingsFragment"
+            app:destination="@id/friendSettingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/friendSettingsFragment"
+        android:name="com.example.splitwise.fragments.friendFragment.FriendSettingsFragment"
+        android:label="fragment_friend_settings"
+        tools:layout="@layout/fragment_friend_settings" />
 </navigation>
