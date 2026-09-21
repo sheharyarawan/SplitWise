@@ -89,7 +89,7 @@
         tools:layout="@layout/fragment_account_settings" />
     <fragment
         android:id="@+id/paidByFragment"
-        android:name="com.example.splitwise.fragments.groupFragment.PaidByFragment"
+        android:name="com.example.splitwise.fragments.expenses.PaidByFragment"
         android:label="fragment_paid_by"
         tools:layout="@layout/fragment_paid_by" />
 </navigation>

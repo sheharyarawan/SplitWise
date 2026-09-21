@@ -1,14 +1,11 @@
-package com.example.splitwise.fragments.groupFragment
+package com.example.splitwise.fragments.expenses
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.viewpager2.widget.ViewPager2
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentAddExpenseBinding
-
 
 class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
 

@@ -1,15 +1,12 @@
-package com.example.splitwise.fragments.groupFragment
+package com.example.splitwise.fragments.expenses
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import androidx.navigation.fragment.findNavController
-import androidx.room.util.query
-import com.example.splitwise.R
 import com.example.splitwise.adapters.AddExpenseViewPager
 import com.example.splitwise.databinding.AddExpenseBottomLayoutBinding
-import com.example.splitwise.databinding.CreateAGroupBottomSheetBinding
+import com.google.android.material.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
@@ -33,7 +30,7 @@ class AddExpenseIGSheet: BottomSheetDialogFragment() {
         super.onStart()
 
         val bottomSheet = dialog?.findViewById<View>(
-            com.google.android.material.R.id.design_bottom_sheet
+            R.id.design_bottom_sheet
         )
 
         bottomSheet?.layoutParams?.height = ViewGroup.LayoutParams.MATCH_PARENT

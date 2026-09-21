@@ -2,9 +2,9 @@ package com.example.splitwise.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.splitwise.fragments.groupFragment.AddExpenseFragment
-import com.example.splitwise.fragments.groupFragment.PaidAmountFragment
-import com.example.splitwise.fragments.groupFragment.PaidByFragment
+import com.example.splitwise.fragments.expenses.AddExpenseFragment
+import com.example.splitwise.fragments.expenses.PaidAmountFragment
+import com.example.splitwise.fragments.expenses.PaidByFragment
 
 class AddExpenseViewPager(fragment: Fragment): FragmentStateAdapter(fragment) {
     override fun createFragment(position: Int): Fragment {
