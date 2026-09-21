@@ -10,20 +10,25 @@ import com.example.splitwise.databinding.FragmentAddExpenseBinding
 class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
 
     lateinit var binding: FragmentAddExpenseBinding
+    lateinit var viewPager: ViewPager2
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding= FragmentAddExpenseBinding.bind(view)
         handleViewPagerClick()
+
+        viewPager = requireParentFragment()
+            .requireView()
+            .findViewById(R.id.addExpenseVp)
     }
 
     fun handleViewPagerClick(){
         binding.expensePaidBy.setOnClickListener {
 
-            val viewPager = requireParentFragment()
-                .requireView()
-                .findViewById<ViewPager2>(R.id.addExpenseVp)
-
             viewPager.currentItem = 1
+        }
+
+        binding.expenseSplit.setOnClickListener {
+            viewPager.currentItem=3
         }
     }
 
