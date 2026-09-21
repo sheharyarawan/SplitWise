@@ -48,5 +48,11 @@ class MainActivity : AppCompatActivity() {
         binding.addExpenseBtn.extend()
     }
 
+    fun setAddExpenseClickListener(action: () -> Unit) {
+        binding.addExpenseBtn.setOnClickListener {
+            action()
+        }
+    }
+
 
 }

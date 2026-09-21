@@ -51,6 +51,9 @@
         <action
             android:id="@+id/action_detailGroupFragment_to_addFriendFragment"
             app:destination="@id/addFriendFragment" />
+        <action
+            android:id="@+id/action_detailGroupFragment_to_paidByFragment"
+            app:destination="@id/paidByFragment" />
     </fragment>
     <fragment
         android:id="@+id/groupSettingsFragment"
@@ -84,4 +87,9 @@
         android:name="com.example.splitwise.fragments.accountFragment.AccountSettingsFragment"
         android:label="fragment_account_settings"
         tools:layout="@layout/fragment_account_settings" />
+    <fragment
+        android:id="@+id/paidByFragment"
+        android:name="com.example.splitwise.fragments.groupFragment.PaidByFragment"
+        android:label="fragment_paid_by"
+        tools:layout="@layout/fragment_paid_by" />
 </navigation>

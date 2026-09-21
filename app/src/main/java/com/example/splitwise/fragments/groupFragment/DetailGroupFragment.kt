@@ -17,7 +17,13 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
 
     override fun onResume() {
         super.onResume()
-        (requireActivity() as MainActivity).showAddExpenseButton()
+        val mainActivity = requireActivity() as MainActivity
+
+        mainActivity.showAddExpenseButton()
+
+        mainActivity.setAddExpenseClickListener {
+            openBottomSheet()
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -36,4 +42,10 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
         }
     }
 
+    fun openBottomSheet(){
+
+        AddExpenseIGSheet().show(
+            parentFragmentManager,"AddExpenseBottomSheet"
+        )
+    }
 }
