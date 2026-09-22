@@ -9,13 +9,21 @@ import androidx.navigation.fragment.findNavController
 import com.example.splitwise.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentFriendsBinding
+import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
 
 
 class FriendsFragment : Fragment(R.layout.fragment_friends) {
 
     override fun onResume() {
         super.onResume()
-        (requireActivity() as MainActivity).showAddExpenseButton()
+        val mainActivity = requireActivity() as MainActivity
+        mainActivity.showAddExpenseButton()
+        mainActivity.showBottomNav()
+        mainActivity.setAddExpenseClickListener {
+            if (isAdded) {
+                openBottomSheetExpense()
+            }
+        }
     }
     lateinit var binding: FragmentFriendsBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -40,5 +48,12 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
                 else -> false
             }
         }
+    }
+
+    fun openBottomSheetExpense(){
+
+        AddExpenseIGSheet().show(
+            parentFragmentManager,"AddExpenseBottomSheet"
+        )
     }
 }

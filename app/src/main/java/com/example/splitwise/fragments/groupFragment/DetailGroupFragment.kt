@@ -18,7 +18,7 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
         super.onResume()
 
         val mainActivity = requireActivity() as MainActivity
-
+        mainActivity.showBottomNav()
         mainActivity.showAddExpenseButton()
 
         mainActivity.setAddExpenseClickListener {

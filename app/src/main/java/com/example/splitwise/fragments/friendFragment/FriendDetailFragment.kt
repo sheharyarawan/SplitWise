@@ -18,8 +18,8 @@ class FriendDetailFragment : Fragment(R.layout.fragment_friend_detail) {
         super.onResume()
 
         val mainActivity = requireActivity() as MainActivity
-
         mainActivity.showAddExpenseButton()
+        mainActivity.showBottomNav()
 
         mainActivity.setAddExpenseClickListener {
             if (isAdded) {

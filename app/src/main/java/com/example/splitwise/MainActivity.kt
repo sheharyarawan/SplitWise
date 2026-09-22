@@ -73,4 +73,13 @@ class MainActivity : AppCompatActivity() {
     fun clearAddExpenseClickListener() {
         binding.addExpenseBtn.setOnClickListener(null)
     }
+
+
+    fun showBottomNav() {
+        binding.bottomNav.visibility = View.VISIBLE
+    }
+
+    fun hideBottomNav() {
+        binding.bottomNav.visibility = View.GONE
+    }
 }

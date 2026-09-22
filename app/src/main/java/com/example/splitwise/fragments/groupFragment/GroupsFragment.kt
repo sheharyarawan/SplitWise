@@ -10,13 +10,21 @@ import com.example.splitwise.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.ActivityMainBinding
 import com.example.splitwise.databinding.FragmentGroupsBinding
+import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
 
 class GroupsFragment : Fragment(R.layout.fragment_groups) {
     lateinit var binding: FragmentGroupsBinding
 
     override fun onResume() {
         super.onResume()
-        (requireActivity() as MainActivity).showAddExpenseButton()
+        val mainActivity = requireActivity() as MainActivity
+        mainActivity.showBottomNav()
+        mainActivity.showAddExpenseButton()
+        mainActivity.setAddExpenseClickListener {
+            if (isAdded) {
+                openBottomSheetExpense()
+            }
+        }
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -40,7 +48,6 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
             openBottomSheet()
         }
         handleToolbar()
-
     }
 
     fun openBottomSheet(){
@@ -48,6 +55,12 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
             AddMemberBottomSheet().show(
                 parentFragmentManager,"AddBottomSheet"
             )
+    }
+    fun openBottomSheetExpense(){
+
+        AddExpenseIGSheet().show(
+            parentFragmentManager,"AddExpenseBottomSheet"
+        )
     }
 
     fun handleToolbar(){

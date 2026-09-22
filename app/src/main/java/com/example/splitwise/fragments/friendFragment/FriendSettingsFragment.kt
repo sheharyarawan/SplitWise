@@ -13,11 +13,12 @@ import com.example.splitwise.databinding.FragmentFriendSettingsBinding
 
 class FriendSettingsFragment : Fragment(R.layout.fragment_friend_settings) {
 
-
     override fun onResume() {
         super.onResume()
 
-        (requireActivity() as MainActivity).hideAddExpenseButton()
+        val mainActivity = requireActivity() as MainActivity
+        mainActivity.hideAddExpenseButton()
+        mainActivity.hideBottomNav()
     }
     lateinit var binding: FragmentFriendSettingsBinding
 

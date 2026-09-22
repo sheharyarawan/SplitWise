@@ -13,8 +13,10 @@ class GroupSettingsFragment : Fragment(R.layout.fragment_group_settings) {
     private lateinit var binding: FragmentGroupSettingsBinding
     override fun onResume() {
         super.onResume()
+        val mainActivity = requireActivity() as MainActivity
+        mainActivity.hideAddExpenseButton()
+        mainActivity.hideBottomNav()
 
-        (requireActivity() as MainActivity).hideAddExpenseButton()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

@@ -8,6 +8,7 @@ import android.view.ViewGroup
 import com.example.splitwise.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentActivityBinding
+import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
 
 class ActivityFragment : Fragment(R.layout.fragment_activity) {
 
@@ -15,10 +16,24 @@ class ActivityFragment : Fragment(R.layout.fragment_activity) {
 
     override fun onResume() {
         super.onResume()
-        (activity as MainActivity).showAddExpenseButton()
+        val mainActivity = requireActivity() as MainActivity
+        mainActivity.showAddExpenseButton()
+        mainActivity.showBottomNav()
+        mainActivity.setAddExpenseClickListener {
+            if (isAdded) {
+                openBottomSheetExpense()
+            }
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding= FragmentActivityBinding.bind(view)
+    }
+
+    fun openBottomSheetExpense(){
+
+        AddExpenseIGSheet().show(
+            parentFragmentManager,"AddExpenseBottomSheet"
+        )
     }
 }
