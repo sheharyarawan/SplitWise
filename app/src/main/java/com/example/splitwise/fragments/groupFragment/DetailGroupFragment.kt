@@ -37,6 +37,18 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding= FragmentDetailGroupBinding.bind(view)
+
+        handleClicks()
+
+    }
+
+    fun openBottomSheet(){
+
+        AddExpenseIGSheet().show(
+            parentFragmentManager,"AddExpenseBottomSheet"
+        )
+    }
+    fun handleClicks(){
         binding.detailGroupSettings.setOnClickListener {
             findNavController().navigate(R.id.action_detailGroupFragment_to_groupSettingsFragment)
         }
@@ -49,12 +61,8 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
         binding.addFriendGroupButton.setOnClickListener {
             findNavController().navigate(R.id.action_detailGroupFragment_to_addFriendFragment)
         }
-    }
-
-    fun openBottomSheet(){
-
-        AddExpenseIGSheet().show(
-            parentFragmentManager,"AddExpenseBottomSheet"
-        )
+        binding.friendDetailSettleUpChip.setOnClickListener {
+            findNavController().navigate(R.id.action_detailGroupFragment_to_groupSettleFragment)
+        }
     }
 }
