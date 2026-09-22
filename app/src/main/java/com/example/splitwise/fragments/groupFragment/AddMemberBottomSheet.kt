@@ -118,7 +118,6 @@ class AddMemberBottomSheet : BottomSheetDialogFragment() {
 
                 editText.setText(date)
             }
-
             datePicker.show(parentFragmentManager, "DATE_PICKER")
         }
-    }
+}
