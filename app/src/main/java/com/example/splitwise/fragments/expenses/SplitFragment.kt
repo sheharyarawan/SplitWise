@@ -2,11 +2,9 @@ package com.example.splitwise.fragments.expenses
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
 import com.example.splitwise.R
-import com.example.splitwise.adapters.AddExpenseViewPager
 import com.example.splitwise.adapters.SplitViewPager
 import com.example.splitwise.databinding.FragmentSplitBinding
 import com.google.android.material.tabs.TabLayoutMediator
@@ -25,10 +23,7 @@ class SplitFragment : Fragment(R.layout.fragment_split) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding= FragmentSplitBinding.bind(view)
         setUpViewPager()
-
-        binding.splitToolbar.setNavigationOnClickListener {
-            goBackToAddExpense()
-        }
+        handleClicks()
 
     }
 
@@ -48,9 +43,12 @@ class SplitFragment : Fragment(R.layout.fragment_split) {
             }
         }.attach()
     }
-    private fun goBackToAddExpense() {
-        val sheet = parentFragment as? AddExpenseIGSheet
-        sheet?.goToPage(0)
+
+    fun handleClicks(){
+        binding.splitToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
     }
+
 
 }

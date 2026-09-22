@@ -16,13 +16,23 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
 
     override fun onResume() {
         super.onResume()
+
         val mainActivity = requireActivity() as MainActivity
 
         mainActivity.showAddExpenseButton()
 
         mainActivity.setAddExpenseClickListener {
-            openBottomSheet()
+            if (isAdded) {
+                openBottomSheet()
+            }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        (requireActivity() as MainActivity)
+            .clearAddExpenseClickListener()
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {

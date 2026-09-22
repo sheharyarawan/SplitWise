@@ -12,10 +12,12 @@ class PaidAmountFragment : Fragment(R.layout.fragment_paid_amount) {
     lateinit var binding: FragmentPaidAmountBinding
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding= FragmentPaidAmountBinding.bind(view)
+        handleClicks()
+    }
 
+    fun handleClicks(){
         binding.paidAmountToolbar.setNavigationOnClickListener {
-
-            (parentFragment as? AddExpenseIGSheet)?.goBack()
+            findNavController().navigateUp()
         }
     }
 }

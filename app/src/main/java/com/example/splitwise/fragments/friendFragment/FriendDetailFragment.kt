@@ -16,13 +16,23 @@ class FriendDetailFragment : Fragment(R.layout.fragment_friend_detail) {
 
     override fun onResume() {
         super.onResume()
+
         val mainActivity = requireActivity() as MainActivity
 
         mainActivity.showAddExpenseButton()
 
         mainActivity.setAddExpenseClickListener {
-            openBottomSheet()
+            if (isAdded) {
+                openBottomSheet()
+            }
         }
+    }
+
+    override fun onPause() {
+        super.onPause()
+
+        (requireActivity() as MainActivity)
+            .clearAddExpenseClickListener()
     }
     lateinit var binding: FragmentFriendDetailBinding
 

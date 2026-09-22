@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_graph_bottom"
+    app:startDestination="@id/addExpenseFragment">
+
+    <fragment
+        android:id="@+id/addExpenseFragment"
+        android:name="com.example.splitwise.fragments.expenses.AddExpenseFragment"
+        android:label="fragment_add_expense"
+        tools:layout="@layout/fragment_add_expense" >
+        <action
+            android:id="@+id/action_addExpenseFragment_to_expenseSplitFragment"
+            app:destination="@id/expenseSplitFragment" />
+        <action
+            android:id="@+id/action_addExpenseFragment_to_paidByFragment2"
+            app:destination="@id/paidByFragment2" />
+        <action
+            android:id="@+id/action_addExpenseFragment_to_splitFragment"
+            app:destination="@id/splitFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/expenseSplitFragment"
+        android:name="com.example.splitwise.fragments.expenses.ExpenseSplitFragment"
+        android:label="fragment_expense_split"
+        tools:layout="@layout/fragment_expense_split" >
+        <action
+            android:id="@+id/action_expenseSplitFragment_to_splitFragment"
+            app:destination="@id/splitFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paidByFragment2"
+        android:name="com.example.splitwise.fragments.expenses.PaidByFragment"
+        android:label="fragment_paid_by"
+        tools:layout="@layout/fragment_paid_by" >
+        <action
+            android:id="@+id/action_paidByFragment2_to_paidAmountFragment"
+            app:destination="@id/paidAmountFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/paidAmountFragment"
+        android:name="com.example.splitwise.fragments.expenses.PaidAmountFragment"
+        android:label="fragment_paid_amount"
+        tools:layout="@layout/fragment_paid_amount" />
+    <fragment
+        android:id="@+id/splitFragment"
+        android:name="com.example.splitwise.fragments.expenses.SplitFragment"
+        android:label="fragment_split"
+        tools:layout="@layout/fragment_split" />
+</navigation>
