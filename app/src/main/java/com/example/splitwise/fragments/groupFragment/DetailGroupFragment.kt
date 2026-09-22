@@ -64,5 +64,8 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
         binding.friendDetailSettleUpChip.setOnClickListener {
             findNavController().navigate(R.id.action_detailGroupFragment_to_groupSettleFragment)
         }
+        binding.balanceChip.setOnClickListener {
+            findNavController().navigate(R.id.action_detailGroupFragment_to_balancesFragment)
+        }
     }
 }

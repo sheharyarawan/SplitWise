@@ -57,6 +57,9 @@
         <action
             android:id="@+id/action_detailGroupFragment_to_groupSettleFragment"
             app:destination="@id/groupSettleFragment" />
+        <action
+            android:id="@+id/action_detailGroupFragment_to_balancesFragment"
+            app:destination="@id/balancesFragment" />
     </fragment>
     <fragment
         android:id="@+id/groupSettingsFragment"
@@ -109,4 +112,9 @@
         android:name="com.example.splitwise.fragments.groupFragment.RecordPaymentFragment"
         android:label="fragment_record_payment"
         tools:layout="@layout/fragment_record_payment" />
+    <fragment
+        android:id="@+id/balancesFragment"
+        android:name="com.example.splitwise.fragments.groupFragment.BalancesFragment"
+        android:label="fragment_balances"
+        tools:layout="@layout/fragment_balances" />
 </navigation>
