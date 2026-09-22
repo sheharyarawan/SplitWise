@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gray"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingBottom="16dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/groupshomeimage"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full">
+
+    </com.google.android.material.imageview.ShapeableImageView>
+
+    <TextView
+        android:id="@+id/balancesDesc"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:text="Sheharyar Awan owes 1000 to sheharyar awan"
+        android:layout_weight="9"
+        android:textColor="@color/white"
+        android:fontFamily="@font/poppins_medium"
+        android:textSize="18sp"
+        android:layout_gravity="center"
+        android:layout_marginStart="10dp"
+        >
+
+    </TextView>
+
+    <ImageView
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:src="@drawable/ic_arrow_up"
+        android:layout_gravity="center"
+        android:layout_weight="1">
+
+    </ImageView>
+
+</LinearLayout>
