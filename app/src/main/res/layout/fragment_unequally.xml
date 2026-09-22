@@ -59,7 +59,10 @@
                 android:layout_height="wrap_content"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView23">
+                app:layout_constraintTop_toBottomOf="@+id/textView23"
+                tools:listitem="@layout/item_unequally"
+                tools:itemCount="4"
+                >
 
             </androidx.recyclerview.widget.RecyclerView>
         </androidx.constraintlayout.widget.ConstraintLayout>

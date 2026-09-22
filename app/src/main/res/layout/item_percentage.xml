@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="horizontal"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/gray"
+    android:paddingStart="16dp"
+    android:paddingEnd="16dp"
+    android:paddingTop="16dp">
+
+    <com.google.android.material.imageview.ShapeableImageView
+        android:layout_width="60dp"
+        android:layout_height="60dp"
+        android:src="@drawable/groupshomeimage"
+        android:scaleType="centerCrop"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+        android:layout_weight="1"
+        >
+    </com.google.android.material.imageview.ShapeableImageView>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:layout_weight="6">
+        <TextView
+            android:id="@+id/itemPercentageName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Sheharyar Awan"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:fontFamily="@font/poppins_medium"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            >
+        </TextView>
+
+        <TextView
+            android:id="@+id/itemPercentageMoneyShare"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="0.00"
+            android:textSize="16sp"
+            android:textColor="#C6C6C6"
+            android:layout_marginStart="10dp"
+            >
+
+        </TextView>
+
+    </LinearLayout>
+
+
+    <EditText
+        android:id="@+id/itemPercentageEditText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:hint="0.00"
+        android:textSize="18sp"
+        android:textColor="@color/white"
+        android:layout_weight="2"
+        android:layout_gravity="center"
+        >
+
+    </EditText>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="%"
+        android:textColor="@color/white"
+        android:textSize="21sp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+        >
+
+    </TextView>
+
+</LinearLayout>
