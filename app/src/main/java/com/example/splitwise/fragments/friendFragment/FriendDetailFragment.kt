@@ -9,20 +9,26 @@ import androidx.navigation.fragment.findNavController
 import com.example.splitwise.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentFriendDetailBinding
+import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
 
 
 class FriendDetailFragment : Fragment(R.layout.fragment_friend_detail) {
 
     override fun onResume() {
         super.onResume()
-        (requireActivity() as MainActivity).showAddExpenseButton()
+        val mainActivity = requireActivity() as MainActivity
+
+        mainActivity.showAddExpenseButton()
+
+        mainActivity.setAddExpenseClickListener {
+            openBottomSheet()
+        }
     }
     lateinit var binding: FragmentFriendDetailBinding
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding= FragmentFriendDetailBinding.bind(view)
         setUpToolbarClicks()
-
     }
 
     fun setUpToolbarClicks(){
@@ -32,5 +38,12 @@ class FriendDetailFragment : Fragment(R.layout.fragment_friend_detail) {
         binding.friendDetailBackIcon.setOnClickListener {
             findNavController().navigateUp()
         }
+    }
+
+    fun openBottomSheet(){
+
+        AddExpenseIGSheet().show(
+            parentFragmentManager,"AddExpenseBottomSheet"
+        )
     }
 }

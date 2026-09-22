@@ -35,6 +35,10 @@ class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
         binding.expenseSplit.setOnClickListener {
             viewPager.setCurrentItem(3,false)
         }
+
+        binding.paidByAndSplitFor2.setOnClickListener {
+            viewPager.setCurrentItem(4,false)
+        }
     }
 
 }

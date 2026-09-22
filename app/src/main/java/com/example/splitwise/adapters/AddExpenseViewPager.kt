@@ -3,6 +3,7 @@ package com.example.splitwise.adapters
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.splitwise.fragments.expenses.AddExpenseFragment
+import com.example.splitwise.fragments.expenses.ExpenseSplitFragment
 import com.example.splitwise.fragments.expenses.PaidAmountFragment
 import com.example.splitwise.fragments.expenses.PaidByFragment
 import com.example.splitwise.fragments.expenses.SplitFragment
@@ -14,12 +15,13 @@ class AddExpenseViewPager(fragment: Fragment): FragmentStateAdapter(fragment) {
            1-> PaidByFragment()
            2-> PaidAmountFragment()
            3-> SplitFragment()
+           4-> ExpenseSplitFragment()
            else -> throw IllegalArgumentException("")
         }
     }
 
     override fun getItemCount(): Int {
-        return 4
+        return 5
     }
 
 }

@@ -1,26 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.expenses.AddExpenseFragment"
-    android:background="@color/gray">
+    android:background="@color/gray"
+    tools:context=".fragments.expenses.AddExpenseFragment">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/IgToolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:menu="@menu/add_friend_toolbar"
         app:navigationIcon="@drawable/ic_back"
         app:title="Add expense"
-        app:titleTextColor="@color/white">
-
-    </com.google.android.material.appbar.MaterialToolbar>
+        app:titleTextColor="@color/white" />
 
     <TextView
         android:id="@+id/textView17"
@@ -28,13 +26,12 @@
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="With you and: "
+        android:text="With you and:"
         android:textColor="@color/white"
         android:textSize="20sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/IgToolbar">
-
-    </TextView>
+        app:layout_constraintTop_toBottomOf="@id/IgToolbar" />
 
     <ImageView
         android:id="@+id/imageView7"
@@ -45,28 +42,24 @@
         android:padding="10dp"
         android:src="@drawable/ic_recipt"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView17"
-        app:tint="@color/white">
-
-    </ImageView>
+        app:layout_constraintTop_toBottomOf="@id/textView17"
+        app:tint="@color/white" />
 
     <EditText
         android:id="@+id/expenseDescriptionEt"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
-        app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginStart="10dp"
+        android:layout_marginEnd="40dp"
         android:hint="Enter a description"
         android:maxLines="1"
         android:padding="10dp"
-        android:layout_marginEnd="40dp"
-        android:textColorHint="#BCBBBB"
         android:textColor="@color/white"
+        android:textColorHint="#BCBBBB"
         android:textSize="18sp"
-        app:layout_constraintStart_toEndOf="@+id/imageView7">
-
-    </EditText>
+        app:layout_constraintBottom_toBottomOf="@id/imageView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageView7" />
 
     <TextView
         android:id="@+id/textView18"
@@ -79,11 +72,8 @@
         android:text="PKR"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@+id/imageView7"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7">
-
-    </TextView>
-
+        app:layout_constraintStart_toStartOf="@id/imageView7"
+        app:layout_constraintTop_toBottomOf="@id/imageView7" />
 
     <EditText
         android:id="@+id/expenseTotalEt"
@@ -92,99 +82,110 @@
         android:layout_marginStart="10dp"
         android:layout_marginEnd="40dp"
         android:hint="0.00"
+        android:inputType="numberDecimal"
         android:maxLines="1"
         android:padding="10dp"
         android:textColor="@color/white"
         android:textColorHint="#BCBBBB"
         android:textSize="26sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView18"
+        app:layout_constraintBottom_toBottomOf="@id/textView18"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toEndOf="@+id/textView18">
+        app:layout_constraintStart_toEndOf="@id/textView18" />
 
-    </EditText>
-
-    <TextView
-        android:id="@+id/textView19"
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/paidSplitContainer"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:layout_marginTop="30dp"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Paid by"
-        android:textAlignment="center"
-        android:layout_marginEnd="3dp"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toStartOf="@+id/expensePaidBy"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintHorizontal_chainStyle="spread_inside"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView18">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/expensePaidBy"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edit_text_bg"
-        android:fontFamily="@font/poppins_medium"
-        android:paddingStart="10dp"
-        android:textAlignment="center"
-        android:paddingTop="5dp"
-        android:paddingEnd="10dp"
-        android:layout_marginEnd="3dp"
-        android:paddingBottom="5dp"
-        android:text="Sheri"
-        android:textColor="@color/white"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView19"
-        app:layout_constraintEnd_toStartOf="@+id/textView20"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/textView19"
-        app:layout_constraintTop_toTopOf="@+id/textView19">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/textView20"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:text="and split"
-        android:textColor="@color/white"
-        android:textSize="18sp"
-        android:textAlignment="center"
-        android:layout_marginEnd="3dp"
-        app:layout_constraintBottom_toBottomOf="@+id/expensePaidBy"
-        app:layout_constraintEnd_toStartOf="@+id/expenseSplit"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/expensePaidBy"
-        app:layout_constraintTop_toTopOf="@+id/expensePaidBy">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/expenseSplit"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:background="@drawable/edit_text_bg"
-        android:fontFamily="@font/poppins_medium"
-        android:paddingStart="10dp"
-        android:paddingTop="5dp"
-        android:textAlignment="center"
-        android:paddingEnd="10dp"
-        android:paddingBottom="5dp"
-        android:layout_marginEnd="10dp"
-        android:text="equally"
-        android:textColor="@color/white"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toBottomOf="@+id/textView20"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView20"
-        app:layout_constraintTop_toTopOf="@+id/textView20"
-        app:layout_constraintHorizontal_bias="0.5">
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/textView18"
+        android:visibility="gone">
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="Paid by"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/expensePaidBy"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_bg"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            android:text="Sheri"
+            android:textColor="@color/white"
+            android:textSize="19sp" />
+
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/poppins_medium"
+            android:text="and split"
+            android:textColor="@color/white"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/expenseSplit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/edit_text_bg"
+            android:fontFamily="@font/poppins_medium"
+            android:paddingStart="10dp"
+            android:paddingTop="5dp"
+            android:paddingEnd="10dp"
+            android:paddingBottom="5dp"
+            android:text="equally"
+            android:textColor="@color/white"
+            android:textSize="19sp" />
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/paidSplitFlow"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:constraint_referenced_ids="textView19,expensePaidBy,textView20,expenseSplit"
+            app:flow_horizontalAlign="center"
+            app:flow_horizontalGap="4dp"
+            app:flow_horizontalStyle="packed"
+            app:flow_verticalGap="8dp"
+            app:flow_verticalStyle="packed"
+            app:flow_wrapMode="chain"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <TextView
+        android:id="@+id/paidByAndSplitFor2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Paid by you and split equally."
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/expenseTotalEt"
+        android:layout_marginTop="30dp"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:textAlignment="center"
+        android:paddingTop="10dp"
+        android:paddingBottom="10dp"
+        android:background="@drawable/edit_text_bg">
 
     </TextView>
 
