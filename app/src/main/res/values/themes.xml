@@ -17,6 +17,9 @@
         <item name="colorOnPrimary">@color/white</item>
         <item name="android:colorBackground">@color/black</item>
     </style>
+    <style name="SplitTabTextAppearance" parent="TextAppearance.Material3.BodyLarge">
+        <item name="android:textSize">22sp</item>
+    </style>
 
     <style name="Theme.SplitWise" parent="Base.Theme.SplitWise">
     </style>

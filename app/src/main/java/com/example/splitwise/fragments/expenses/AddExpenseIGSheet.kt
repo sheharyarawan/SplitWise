@@ -4,13 +4,14 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.example.splitwise.R
 import com.example.splitwise.adapters.AddExpenseViewPager
 import com.example.splitwise.databinding.AddExpenseBottomLayoutBinding
-import com.google.android.material.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 
-class AddExpenseIGSheet: BottomSheetDialogFragment() {
+class AddExpenseIGSheet : BottomSheetDialogFragment() {
+
     lateinit var binding: AddExpenseBottomLayoutBinding
 
     override fun onCreateView(
@@ -30,7 +31,7 @@ class AddExpenseIGSheet: BottomSheetDialogFragment() {
         super.onStart()
 
         val bottomSheet = dialog?.findViewById<View>(
-            R.id.design_bottom_sheet
+            com.google.android.material.R.id.design_bottom_sheet
         )
 
         bottomSheet?.layoutParams?.height = ViewGroup.LayoutParams.MATCH_PARENT
@@ -46,8 +47,26 @@ class AddExpenseIGSheet: BottomSheetDialogFragment() {
         setUpViewPager()
     }
 
-    fun setUpViewPager() {
+    private fun setUpViewPager() {
+        binding.addExpenseVp.isUserInputEnabled = false
         binding.addExpenseVp.adapter = AddExpenseViewPager(this)
-            binding.addExpenseVp.currentItem=0
+
+        binding.addExpenseVp.setCurrentItem(0, false)
+    }
+
+    fun goToPage(position: Int) {
+
+        binding.addExpenseVp.setCurrentItem(position, false)
+    }
+
+    fun goBack() {
+
+        val currentPosition = binding.addExpenseVp.currentItem
+
+        if (currentPosition > 0) {
+            binding.addExpenseVp.setCurrentItem(currentPosition - 1, false)
+        } else {
+            dismiss()
+        }
     }
 }

@@ -14,11 +14,16 @@ class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         binding= FragmentAddExpenseBinding.bind(view)
-        handleViewPagerClick()
-
         viewPager = requireParentFragment()
             .requireView()
             .findViewById(R.id.addExpenseVp)
+
+        handleViewPagerClick()
+        binding.IgToolbar.setNavigationOnClickListener {
+            (parentFragment as AddExpenseIGSheet).dismiss()
+        }
+
+
     }
 
     fun handleViewPagerClick(){
@@ -28,7 +33,7 @@ class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
         }
 
         binding.expenseSplit.setOnClickListener {
-            viewPager.currentItem=3
+            viewPager.setCurrentItem(3,false)
         }
     }
 

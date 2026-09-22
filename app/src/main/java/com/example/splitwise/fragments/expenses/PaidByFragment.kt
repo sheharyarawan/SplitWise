@@ -20,5 +20,9 @@ class PaidByFragment : Fragment(R.layout.fragment_paid_by) {
 
             viewPager.currentItem = 2
         }
+        binding.whoPaidToolbar.setNavigationOnClickListener {
+
+            (parentFragment as? AddExpenseIGSheet)?.goBack()
+        }
     }
 }
