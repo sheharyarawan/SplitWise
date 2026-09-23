@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.splitwise.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -39,13 +40,45 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        setUpNavigation()
+    }
+
+    fun setUpNavigation() {
+
         val navHostFragment =
             supportFragmentManager.findFragmentById(R.id.fragmentContainer)
                     as NavHostFragment
 
         val navController = navHostFragment.navController
 
+        val currentUser = FirebaseAuth.getInstance().currentUser
+
+        if (currentUser == null) {
+
+            navController.setGraph(R.navigation.auth_nav_graph)
+
+            hideBottomNav()
+            hideAddExpenseButton()
+
+        } else {
+
+            showMainApp()
+        }
+    }
+
+    fun showMainApp() {
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(R.id.fragmentContainer)
+                    as NavHostFragment
+
+        val navController = navHostFragment.navController
+
+        navController.setGraph(R.navigation.nav_graph)
+
         binding.bottomNav.setupWithNavController(navController)
+
+        showBottomNav()
     }
 
     fun showAddExpenseButton() {
@@ -73,7 +106,6 @@ class MainActivity : AppCompatActivity() {
     fun clearAddExpenseClickListener() {
         binding.addExpenseBtn.setOnClickListener(null)
     }
-
 
     fun showBottomNav() {
         binding.bottomNav.visibility = View.VISIBLE
