@@ -8,10 +8,12 @@ import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import com.example.splitwise.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentAuthBinding
+import com.example.splitwise.viewModel.AuthViewModel
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException
@@ -26,13 +28,21 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
     private lateinit var auth: FirebaseAuth
     private lateinit var credentialManager: CredentialManager
 
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+    private val viewModel: AuthViewModel by viewModels()
+
+    override fun onViewCreated(
+        view: View,
+        savedInstanceState: Bundle?
+    ) {
         super.onViewCreated(view, savedInstanceState)
 
         binding = FragmentAuthBinding.bind(view)
 
         auth = FirebaseAuth.getInstance()
-        credentialManager = CredentialManager.create(requireContext())
+
+        credentialManager = CredentialManager.create(
+            requireContext()
+        )
 
         handleButtonClicks()
     }
@@ -66,23 +76,44 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                     request
                 )
 
-                handleCredential(result.credential)
+                handleCredential(
+                    result.credential
+                )
 
             } catch (e: androidx.credentials.exceptions.NoCredentialException) {
-                Log.e("GoogleSignIn", "No Google credentials available", e)
+
+                Log.e(
+                    "GoogleSignIn",
+                    "No Google credentials available",
+                    e
+                )
 
                 Toast.makeText(
                     requireContext(),
                     "No Google account available on this device",
                     Toast.LENGTH_LONG
                 ).show()
+
             } catch (e: Exception) {
-                Log.e("GoogleSignIn", "Google sign-in failed", e)
+
+                Log.e(
+                    "GoogleSignIn",
+                    "Google sign-in failed",
+                    e
+                )
+
+                Toast.makeText(
+                    requireContext(),
+                    "Google sign-in failed",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
         }
     }
 
-    private fun handleCredential(credential: androidx.credentials.Credential) {
+    private fun handleCredential(
+        credential: androidx.credentials.Credential
+    ) {
 
         if (
             credential is CustomCredential &&
@@ -108,6 +139,12 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                     "Invalid Google ID token",
                     e
                 )
+
+                Toast.makeText(
+                    requireContext(),
+                    "Invalid Google credential",
+                    Toast.LENGTH_SHORT
+                ).show()
             }
 
         } else {
@@ -116,10 +153,18 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                 "GoogleSignIn",
                 "Unexpected credential type"
             )
+
+            Toast.makeText(
+                requireContext(),
+                "Unexpected Google credential",
+                Toast.LENGTH_SHORT
+            ).show()
         }
     }
 
-    private fun firebaseAuthWithGoogle(idToken: String) {
+    private fun firebaseAuthWithGoogle(
+        idToken: String
+    ) {
 
         val credential = GoogleAuthProvider.getCredential(
             idToken,
@@ -138,16 +183,37 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
                         "Login successful: ${user?.uid}"
                     )
 
-                    Toast.makeText(
-                        requireContext(),
-                        "Login successful",
-                        Toast.LENGTH_SHORT
-                    ).show()
+                    viewModel.saveUser(
 
-                    val activity =
-                        requireActivity() as MainActivity
+                        onSuccess = {
 
-                    activity.showMainApp()
+                            Toast.makeText(
+                                requireContext(),
+                                "Login successful",
+                                Toast.LENGTH_SHORT
+                            ).show()
+
+                            val activity =
+                                requireActivity() as MainActivity
+
+                            activity.showMainApp()
+                        },
+
+                        onFailure = { exception ->
+
+                            Log.e(
+                                "Firestore",
+                                "Failed to save user",
+                                exception
+                            )
+
+                            Toast.makeText(
+                                requireContext(),
+                                "Failed to save user",
+                                Toast.LENGTH_SHORT
+                            ).show()
+                        }
+                    )
 
                 } else {
 
