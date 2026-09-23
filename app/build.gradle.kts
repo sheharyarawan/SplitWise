@@ -5,7 +5,9 @@ plugins {
     alias(libs.plugins.kotlin.ksp)
     alias(libs.plugins.hilt)
     id("androidx.navigation.safeargs.kotlin")
+    alias(libs.plugins.google.services)
 }
+
 android {
     namespace = "com.example.splitwise"
     compileSdk {
@@ -49,6 +51,12 @@ dependencies {
     implementation(libs.androidx.activity.ktx)
     implementation(libs.androidx.fragment.ktx)
     implementation(libs.androidx.constraintlayout)
+
+    implementation(platform(libs.firebase.bom))
+
+    implementation(libs.firebase.analytics)
+    implementation(libs.firebase.auth)
+    implementation(libs.firebase.firestore)
 
     // Material
     implementation(libs.material)

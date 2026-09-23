@@ -7,5 +7,5 @@ import android.view.View
 import android.view.ViewGroup
 import com.example.splitwise.R
 
-class SettleUpFriendFragment : Fragment(R.layout) {
+class SettleUpFriendFragment : Fragment(R.layout.fragment_settle_up_friend) {
 }
