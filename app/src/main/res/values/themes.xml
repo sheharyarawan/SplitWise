@@ -24,4 +24,28 @@
     <style name="Theme.SplitWise" parent="Base.Theme.SplitWise">
     </style>
 
+
+    <style name="CustomAlertDialog"
+        parent="ThemeOverlay.Material3.MaterialAlertDialog">
+
+        <item name="colorPrimary">@color/green</item>
+        <item name="colorOnPrimary">@color/white</item>
+
+        <item name="colorSurface">#858585</item>
+        <item name="colorSurfaceContainer">@color/gray</item>
+        <item name="colorSurfaceContainerHigh">@color/gray</item>
+
+        <item name="colorOnSurface">@color/white</item>
+        <item name="colorOnSurfaceVariant">#BDBDBD</item>
+
+        <item name="shapeAppearanceMediumComponent">@style/DialogShape</item>
+
+    </style>
+    <style name="DialogShape"
+        parent="ShapeAppearance.Material3.Corner.Medium">
+
+        <item name="cornerSize">0dp</item>
+
+    </style>
+
 </resources>

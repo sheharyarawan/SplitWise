@@ -1,277 +1,250 @@
 package com.example.splitwise.fragments.groupFragment
 
+import android.app.AlertDialog
 import android.graphics.Color
+import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.activityViewModels
+import androidx.fragment.app.viewModels
+
 import com.example.splitwise.R
 import com.example.splitwise.databinding.CreateAGroupBottomSheetBinding
-import com.example.splitwise.model.GroupType
+
 import com.example.splitwise.viewModels.GroupViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.datepicker.MaterialDatePicker
+import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
+import kotlin.getValue
 
 class AddMemberBottomSheet : BottomSheetDialogFragment() {
-
     private lateinit var binding: CreateAGroupBottomSheetBinding
-
-    private val groupViewModel: GroupViewModel by activityViewModels()
-
-    private var selectedGroupType = GroupType.OTHER
+    private val viewModel: GroupViewModel by viewModels()
+    private var selectedGroupType = ""
 
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-
-        binding =
-            CreateAGroupBottomSheetBinding.inflate(
-                inflater,
-                container,
-                false
-            )
-
+        binding = CreateAGroupBottomSheetBinding.inflate(
+            inflater,
+            container,
+            false
+        )
         return binding.root
     }
 
     override fun onStart() {
         super.onStart()
 
-        val bottomSheet =
-            dialog?.findViewById<View>(
-                com.google.android.material.R.id.design_bottom_sheet
-            )
+        val bottomSheet = dialog?.findViewById<View>(
+            com.google.android.material.R.id.design_bottom_sheet
+        )
 
-        bottomSheet?.layoutParams?.height =
-            ViewGroup.LayoutParams.MATCH_PARENT
+        bottomSheet?.layoutParams?.height = ViewGroup.LayoutParams.MATCH_PARENT
 
-        val behavior =
-            BottomSheetBehavior.from(bottomSheet!!)
-
-        behavior.state =
-            BottomSheetBehavior.STATE_EXPANDED
-
+        val behavior = BottomSheetBehavior.from(bottomSheet!!)
+        behavior.state = BottomSheetBehavior.STATE_EXPANDED
         behavior.skipCollapsed = true
     }
 
-    override fun onViewCreated(
-        view: View,
-        savedInstanceState: Bundle?
-    ) {
-        super.onViewCreated(
-            view,
-            savedInstanceState
-        )
-
-        setTrip()
-        setOthers()
-        setDatePickers()
-        setToolbar()
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+        handleGroupTypeClicks()
+        handleClicks()
     }
 
-    private fun setToolbar() {
+    private fun handleClicks() {
 
-        binding.createGroupToolbar.setNavigationOnClickListener {
-            dismiss()
+        binding.startEditTextTv.setOnClickListener {
+            showDatePicker(binding.startEditTextTv)
         }
 
-        binding.createGroupToolbar.setOnMenuItemClickListener { item ->
+        binding.endEditTextTv.setOnClickListener {
+            showDatePicker(binding.endEditTextTv)
+        }
 
-            when (item.itemId) {
+        binding.createGroupToolbar.setNavigationOnClickListener {
+            dialog?.dismiss()
+        }
 
-                R.id.createGroup -> {
-                    createGroup()
-                    true
-                }
+        binding.createGroupToolbar.setOnMenuItemClickListener {
+            createGroup()
+            true
+        }
 
-                else -> false
+        binding.addTripDateSwitch.setOnCheckedChangeListener { _, isChecked ->
+
+            if (isChecked) {
+                binding.addTripDatesCL.visibility = View.VISIBLE
+            } else {
+                binding.addTripDatesCL.visibility = View.GONE
+
+                binding.startEditTextTv.setText("")
+                binding.endEditTextTv.setText("")
             }
         }
     }
 
-    private fun setTrip() {
+    private fun handleGroupTypeClicks() {
 
         binding.TripChip.setOnClickListener {
 
-            selectedGroupType =
-                GroupType.TRIP
+            selectedGroupType = "Trip"
+            selectChip(binding.TripChip)
 
-            binding.addTripSwitchCL.visibility =
-                View.VISIBLE
+            binding.addTripSwitchCL.visibility = View.VISIBLE
+
         }
-
-        binding.addTripDateSwitch.setOnCheckedChangeListener {
-                _,
-                isChecked ->
-
-            binding.addTripDatesCL.visibility =
-                if (isChecked) {
-
-                    binding.startEditTextTv.hint =
-                        "Today"
-
-                    binding.startEditTextTv
-                        .setHintTextColor(Color.GRAY)
-
-                    View.VISIBLE
-
-                } else {
-
-                    binding.startEditTextTv.setText("")
-                    binding.endEditTextTv.setText("")
-
-                    View.GONE
-                }
-        }
-    }
-
-    private fun setOthers() {
 
         binding.homeChip.setOnClickListener {
 
-            selectedGroupType =
-                GroupType.HOME
+            selectedGroupType = "Home"
 
-            hideTripOptions()
+            hideTripViews()
+            selectChip(binding.homeChip)
 
-            Toast.makeText(
-                requireContext(),
-                "Home selected",
-                Toast.LENGTH_SHORT
-            ).show()
         }
 
         binding.coupleChip.setOnClickListener {
 
-            selectedGroupType =
-                GroupType.COUPLE
+            selectedGroupType = "Couple"
 
-            hideTripOptions()
+            hideTripViews()
 
-            Toast.makeText(
-                requireContext(),
-                "Couple selected",
-                Toast.LENGTH_SHORT
-            ).show()
+            selectChip(binding.coupleChip)
         }
 
         binding.otherChip.setOnClickListener {
 
-            selectedGroupType =
-                GroupType.OTHER
+            selectedGroupType = "Other"
 
-            hideTripOptions()
+            hideTripViews()
 
-            Toast.makeText(
-                requireContext(),
-                "Other selected",
-                Toast.LENGTH_SHORT
-            ).show()
+            selectChip(binding.otherChip)
         }
     }
 
-    private fun hideTripOptions() {
+    private fun selectChip(selectedChip: TextView) {
 
-        binding.addTripSwitchCL.visibility =
-            View.GONE
+        val chips = listOf(
+            binding.TripChip,
+            binding.homeChip,
+            binding.coupleChip,
+            binding.otherChip
+        )
 
-        binding.addTripDatesCL.visibility =
-            View.GONE
+        chips.forEach { chip ->
 
-        binding.addTripDateSwitch.isChecked =
-            false
-    }
+            val drawable = chip.background.mutate() as GradientDrawable
 
-    private fun setDatePickers() {
-
-        binding.startEditTextTv.setOnClickListener {
-
-            showDatePicker(
-                binding.startEditTextTv
-            )
-        }
-
-        binding.endEditTextTv.setOnClickListener {
-
-            showDatePicker(
-                binding.endEditTextTv
-            )
-        }
-    }
-
-    private fun showDatePicker(
-        editText: EditText
-    ) {
-
-        val datePicker =
-            MaterialDatePicker.Builder
-                .datePicker()
-                .setTitleText("Select date")
-                .setTheme(R.style.DatePickerTheme)
-                .build()
-
-        datePicker.addOnPositiveButtonClickListener {
-                selectedDate ->
-
-            val formatter =
-                SimpleDateFormat(
-                    "dd MMM yyyy",
-                    Locale.getDefault()
+            if (chip == selectedChip) {
+                drawable.setColor(
+                    ContextCompat.getColor(requireContext(), R.color.green)
                 )
-
-            val date =
-                formatter.format(
-                    Date(selectedDate)
+            } else {
+                drawable.setColor(
+                    ContextCompat.getColor(requireContext(), R.color.gray)
                 )
+            }
+        }
+    }
+
+    private fun hideTripViews() {
+
+        binding.addTripSwitchCL.visibility = View.GONE
+        binding.addTripDatesCL.visibility = View.GONE
+        binding.addTripDateSwitch.isChecked = false
+
+        binding.startEditTextTv.setText("")
+        binding.endEditTextTv.setText("")
+    }
+    fun showDatePicker(editText: EditText){
+        val datePicker = MaterialDatePicker.Builder.datePicker()
+            .setTitleText("Select date")
+            .setTheme(R.style.DatePickerTheme)
+            .build()
+
+        datePicker.addOnPositiveButtonClickListener { selectedDate ->
+            val formatter = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+            val date = formatter.format(Date(selectedDate))
 
             editText.setText(date)
         }
-
-        datePicker.show(
-            parentFragmentManager,
-            "DATE_PICKER"
-        )
+        datePicker.show(parentFragmentManager, "DATE_PICKER")
     }
-
     private fun createGroup() {
 
-        val name =
-            binding.groupNameEditText
-                .text
-                .toString()
-                .trim()
+        val groupName = binding.groupNameEditText.text
+            .toString()
+            .trim()
 
-        groupViewModel.createGroup(
-            name = name,
+        if (groupName.isEmpty()) {
+
+            MaterialAlertDialogBuilder(
+                requireContext(),
+                R.style.CustomAlertDialog
+            )
+                .setTitle("Error")
+                .setMessage("You haven't entered a name for your group yet!")
+                .setPositiveButton("OK", null)
+                .show()
+
+            return
+        }
+        val tripStartDate =
+            if (selectedGroupType == "Trip") {
+                binding.startEditTextTv.text
+                    .toString()
+                    .trim()
+            } else {
+                ""
+            }
+
+        val tripEndDate =
+            if (selectedGroupType == "Trip") {
+                binding.endEditTextTv.text
+                    .toString()
+                    .trim()
+            } else {
+                ""
+            }
+
+        viewModel.createGroup(
+
+            name = groupName,
+
             type = selectedGroupType,
 
             onSuccess = { groupId ->
 
-                Toast.makeText(
-                    requireContext(),
-                    "Group created",
-                    Toast.LENGTH_SHORT
-                ).show()
+                parentFragmentManager.setFragmentResult(
+                    "group_created",
+                    Bundle().apply {
+                        putString("groupId", groupId)
+                    }
+                )
 
-                dismiss()
+                dialog?.dismiss()
             },
 
             onFailure = { exception ->
 
                 Toast.makeText(
                     requireContext(),
-                    exception.message
-                        ?: "Failed to create group",
-                    Toast.LENGTH_SHORT
+                    exception.message ?: "Failed to create group",
+                    Toast.LENGTH_LONG
                 ).show()
             }
         )

@@ -1,10 +1,20 @@
 package com.example.splitwise.viewModels
 
+import androidx.lifecycle.ViewModel
+import com.example.splitwise.model.Group
 import com.example.splitwise.repositories.GroupRepository
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
 
-class GroupViewModel {
+class GroupViewModel: ViewModel(){
     private val repository = GroupRepository()
+    private val _groups = MutableStateFlow<List<Group>>(emptyList())
+    val groups: StateFlow<List<Group>> = _groups.asStateFlow()
 
+    init {
+        getGroups()
+    }
     fun createGroup(
         name: String,
         type:String,
@@ -18,6 +28,16 @@ class GroupViewModel {
             },
             onFailure={exception ->
                 onFailure(exception)
+            }
+        )
+    }
+
+    fun getGroups( ){
+        repository.getGroups(
+            onSuccess = { groups->
+                _groups.value= groups
+            },
+            onFailure={ exception ->
             }
         )
     }

@@ -64,4 +64,32 @@ class GroupRepository {
                 onFailure(exception)
             }
     }
+
+    fun getGroups(
+        onSuccess: (List<Group>) -> Unit,
+        onFailure: (Exception) -> Unit) {
+
+        val currentUser= auth.currentUser
+
+        if (currentUser == null) {
+            onFailure(
+                Exception("User is not logged in")
+            )
+            return
+        }
+        firestore.collection("groups").whereArrayContains(
+            "memberIds",
+            currentUser.uid
+        ).get().addOnSuccessListener { snapshots ->
+            val groups= snapshots.documents.mapNotNull { document->
+                document.toObject(Group::class.java)?.copy(
+                    id = document.id
+                )
+            }
+            onSuccess(groups)
+        }.addOnFailureListener { exception ->
+
+            onFailure(exception)
+        }
+    }
 }

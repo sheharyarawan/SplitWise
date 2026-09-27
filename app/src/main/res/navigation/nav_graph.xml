@@ -60,6 +60,12 @@
         <action
             android:id="@+id/action_detailGroupFragment_to_balancesFragment"
             app:destination="@id/balancesFragment" />
+
+        <argument
+            android:name="groupId"
+            app:argType="string">
+
+        </argument>
     </fragment>
     <fragment
         android:id="@+id/groupSettingsFragment"
