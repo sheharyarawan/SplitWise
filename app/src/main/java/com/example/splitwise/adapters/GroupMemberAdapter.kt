@@ -3,6 +3,7 @@ package com.example.splitwise.adapters
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.example.splitwise.R
@@ -24,11 +25,14 @@ class GroupMemberAdapter:
         holder: GroupViewHolder,
         position: Int
     ) {
-        TODO("Not yet implemented")
+        val user = getItem(position)
+        holder.userName.text= user.name
+        holder.userMail.text= user.email
     }
 
     class GroupViewHolder(itemView: View): GroupAdapter.ViewHolder(itemView){
-        val userName= itemView.
+        val userName= itemView.findViewById<TextView>(R.id.memberName)
+        val userMail= itemView.findViewById<TextView>(R.id.memberMail)
     }
 }
 
