@@ -18,6 +18,7 @@ class GroupSettingsFragment : Fragment(R.layout.fragment_group_settings) {
 
     private lateinit var binding: FragmentGroupSettingsBinding
     val groupViewModel: GroupViewModel by activityViewModels()
+    lateinit var groupId: String
     override fun onResume() {
         super.onResume()
         val mainActivity = requireActivity() as MainActivity
@@ -37,7 +38,9 @@ class GroupSettingsFragment : Fragment(R.layout.fragment_group_settings) {
 
     fun handleClicks(){
         binding.addPeopleToGroup.setOnClickListener {
-            findNavController().navigate(R.id.action_groupSettingsFragment_to_addFriendFragment)
+            val action= GroupSettingsFragmentDirections
+                .actionGroupSettingsFragmentToAddFriendFragment(groupId)
+            findNavController().navigate(action)
         }
         binding.toolbarGroupSettings.setNavigationOnClickListener {
             findNavController().navigateUp()
@@ -60,6 +63,7 @@ class GroupSettingsFragment : Fragment(R.layout.fragment_group_settings) {
                     groupViewModel.group.collect { group ->
                         binding.groupName.text= group?.name
                         binding.groupType.text= group?.type
+                        groupId= group?.id.toString()
                     }
                 }
         }

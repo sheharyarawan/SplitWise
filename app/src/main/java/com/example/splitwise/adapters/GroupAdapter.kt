@@ -34,7 +34,7 @@ class GroupAdapter(
         }
     }
 
-    class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+    open class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val name= itemView.findViewById<TextView>(R.id.groupName)
     }
 }

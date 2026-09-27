@@ -2,6 +2,7 @@ package com.example.splitwise.viewModels
 
 import androidx.lifecycle.ViewModel
 import com.example.splitwise.model.Group
+import com.example.splitwise.model.User
 import com.example.splitwise.repositories.GroupRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -14,6 +15,12 @@ class GroupViewModel: ViewModel(){
     val groups: StateFlow<List<Group>> = _groups.asStateFlow()
     private val _group = MutableStateFlow<Group?>(null)
     val group: StateFlow<Group?> = _group.asStateFlow()
+
+    private val _groupMembers =
+        MutableStateFlow<List<User>>(emptyList())
+
+    val groupMembers: StateFlow<List<User>> =
+        _groupMembers.asStateFlow()
 
     init {
         getGroups()
@@ -51,6 +58,24 @@ class GroupViewModel: ViewModel(){
                 _group.value= group
             },
             onFailure = {exception ->
+            }
+        )
+    }
+
+    fun getGroupMembers(
+        groupId: String,
+        onFailure: (Exception) -> Unit
+    ) {
+
+        repository.getGroupMembers(
+            groupId = groupId,
+            onSuccess = { members ->
+
+                _groupMembers.value = members
+            },
+            onFailure = { exception ->
+
+                onFailure(exception)
             }
         )
     }

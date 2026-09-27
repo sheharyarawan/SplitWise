@@ -79,7 +79,15 @@
     <fragment
         android:id="@+id/addFriendFragment"
         android:name="com.example.splitwise.fragments.friendFragment.AddFriendFragment"
-        android:label="AddFriendFragment" />
+        android:label="AddFriendFragment">
+        <argument
+            android:name="groupId"
+            app:argType="string">
+
+        </argument>
+
+    </fragment>
+
     <fragment
         android:id="@+id/friendDetailFragment"
         android:name="com.example.splitwise.fragments.friendFragment.FriendDetailFragment"

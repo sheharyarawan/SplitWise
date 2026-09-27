@@ -1,6 +1,7 @@
 package com.example.splitwise.repositories
 
 import com.example.splitwise.model.Group
+import com.example.splitwise.model.User
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
@@ -126,4 +127,72 @@ class GroupRepository {
                 onFailure(exception)
             }
     }
+
+    fun getGroupMembers(
+        groupId: String,
+        onSuccess: (List<User>) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+
+        firestore
+            .collection("groups")
+            .document(groupId)
+            .addSnapshotListener { document, exception ->
+
+                if (exception != null) {
+                    onFailure(exception)
+                    return@addSnapshotListener
+                }
+
+                if (document == null || !document.exists()) {
+                    onFailure(
+                        Exception("Group not found")
+                    )
+                    return@addSnapshotListener
+                }
+
+                val memberIds =
+                    document.get("memberIds")
+                            as? List<String>
+                        ?: emptyList()
+
+                if (memberIds.isEmpty()) {
+                    onSuccess(emptyList())
+                    return@addSnapshotListener
+                }
+
+                val requests =
+                    memberIds.map { userId ->
+
+                        firestore
+                            .collection("users")
+                            .document(userId)
+                            .get()
+                    }
+
+                com.google.android.gms.tasks.Tasks
+                    .whenAllSuccess<com.google.firebase.firestore.DocumentSnapshot>(
+                        requests
+                    )
+                    .addOnSuccessListener { documents ->
+
+                        val members =
+                            documents.mapNotNull { userDocument ->
+
+                                userDocument
+                                    .toObject(User::class.java)
+                                    ?.copy(
+                                        id = userDocument.id
+                                    )
+                            }
+
+                        onSuccess(members)
+                    }
+                    .addOnFailureListener { exception ->
+
+                        onFailure(exception)
+                    }
+            }
+    }
+
 }
