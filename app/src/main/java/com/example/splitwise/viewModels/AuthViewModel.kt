@@ -1,61 +1,31 @@
 package com.example.splitwise.viewModel
 
 import androidx.lifecycle.ViewModel
-import androidx.lifecycle.viewModelScope
 import com.example.splitwise.model.User
-import com.example.splitwise.repository.AuthRepository
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
-import kotlinx.coroutines.flow.asStateFlow
-import kotlinx.coroutines.launch
+import com.example.splitwise.repository.UserRepository
+import com.google.firebase.auth.FirebaseAuth
 
 class AuthViewModel : ViewModel() {
 
-    private val repository = AuthRepository()
+    private val auth = FirebaseAuth.getInstance()
+    private val userRepository = UserRepository()
 
-    private val _authState =
-        MutableStateFlow<AuthState>(AuthState.Idle)
+    fun saveUser(
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        val firebaseUser = auth.currentUser ?: return
 
-    val authState: StateFlow<AuthState> =
-        _authState.asStateFlow()
+        val user = User(
+            name = firebaseUser.displayName ?: "",
+            email = firebaseUser.email ?: ""
+        )
 
-    fun signInWithGoogle(idToken: String) {
-
-        viewModelScope.launch {
-
-            _authState.value = AuthState.Loading
-
-            val result = repository.signInWithGoogle(idToken)
-
-            _authState.value = result.fold(
-                onSuccess = { user ->
-                    AuthState.Success(user)
-                },
-                onFailure = { exception ->
-                    AuthState.Error(
-                        exception.message ?: "Authentication failed"
-                    )
-                }
-            )
-        }
+        userRepository.createUser(
+            uid = firebaseUser.uid,
+            user = user,
+            onSuccess = onSuccess,
+            onFailure = onFailure
+        )
     }
-
-    fun signOut(){
-        repository.signOut()
-    }
-}
-
-sealed class AuthState {
-
-    data object Idle : AuthState()
-
-    data object Loading : AuthState()
-
-    data class Success(
-        val user: User
-    ) : AuthState()
-
-    data class Error(
-        val message: String
-    ) : AuthState()
 }

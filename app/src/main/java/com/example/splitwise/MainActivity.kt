@@ -28,9 +28,7 @@ class MainActivity : AppCompatActivity() {
         ) { v, insets ->
 
             val systemBars =
-                insets.getInsets(
-                    WindowInsetsCompat.Type.systemBars()
-                )
+                insets.getInsets(WindowInsetsCompat.Type.systemBars())
 
             v.setPadding(
                 systemBars.left,
@@ -42,70 +40,45 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
-        setupNavigation()
+        setUpNavigation()
     }
 
-    private fun setupNavigation() {
+    fun setUpNavigation() {
 
         val navHostFragment =
-            supportFragmentManager.findFragmentById(
-                R.id.fragmentContainer
-            ) as NavHostFragment
+            supportFragmentManager.findFragmentById(R.id.fragmentContainer)
+                    as NavHostFragment
 
-        val navController =
-            navHostFragment.navController
+        val navController = navHostFragment.navController
 
-        val currentUser =
-            FirebaseAuth.getInstance().currentUser
+        val currentUser = FirebaseAuth.getInstance().currentUser
 
-        if (currentUser != null) {
+        if (currentUser == null) {
 
-            val graph =
-                navController.navInflater.inflate(
-                    R.navigation.nav_graph
-                )
-
-            navController.setGraph(graph, null)
-
-            binding.bottomNav.setupWithNavController(
-                navController
-            )
-
-            showBottomNav()
-
-        } else {
-
-            val graph =
-                navController.navInflater.inflate(
-                    R.navigation.auth_nav_graph
-                )
-
-            navController.setGraph(graph, null)
+            navController.setGraph(R.navigation.auth_nav_graph)
 
             hideBottomNav()
             hideAddExpenseButton()
+
+        } else {
+
+            showMainApp()
         }
     }
 
-    fun showAuthGraph() {
+    fun showMainApp() {
 
         val navHostFragment =
-            supportFragmentManager.findFragmentById(
-                R.id.fragmentContainer
-            ) as NavHostFragment
+            supportFragmentManager.findFragmentById(R.id.fragmentContainer)
+                    as NavHostFragment
 
-        val navController =
-            navHostFragment.navController
+        val navController = navHostFragment.navController
 
-        val graph =
-            navController.navInflater.inflate(
-                R.navigation.auth_nav_graph
-            )
+        navController.setGraph(R.navigation.nav_graph)
 
-        navController.setGraph(graph, null)
+        binding.bottomNav.setupWithNavController(navController)
 
-        hideBottomNav()
-        hideAddExpenseButton()
+        showBottomNav()
     }
 
     fun showAddExpenseButton() {
