@@ -80,16 +80,50 @@ class GroupRepository {
         firestore.collection("groups").whereArrayContains(
             "memberIds",
             currentUser.uid
-        ).get().addOnSuccessListener { snapshots ->
-            val groups= snapshots.documents.mapNotNull { document->
+        ).addSnapshotListener { snapshots, error ->
+            if (error != null) {
+                onFailure(error)
+                return@addSnapshotListener
+            }
+            val groups= snapshots?.documents?.mapNotNull { document->
                 document.toObject(Group::class.java)?.copy(
                     id = document.id
                 )
-            }
+            }?:emptyList()
             onSuccess(groups)
-        }.addOnFailureListener { exception ->
-
-            onFailure(exception)
         }
+    }
+
+    fun getGroupById(
+        groupId:String,
+        onSuccess: (Group?) -> Unit,
+        onFailure: (Exception) -> Unit
+    ){
+        firestore
+            .collection("groups")
+            .document(groupId)
+            .get()
+            .addOnSuccessListener { document ->
+
+                if (document.exists()) {
+
+                    val group =
+                        document
+                            .toObject(Group::class.java)
+                            ?.copy(
+                                id = document.id
+                            )
+
+                    onSuccess(group)
+
+                } else {
+
+                    onSuccess(null)
+                }
+            }
+            .addOnFailureListener { exception ->
+
+                onFailure(exception)
+            }
     }
 }

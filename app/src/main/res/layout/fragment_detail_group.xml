@@ -17,7 +17,7 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="@color/green" />
+            android:background="#131A49" />
 
         <ImageView
             android:id="@+id/groupDetailBackBtn"
@@ -70,6 +70,7 @@
                 app:chipStartPadding="10dp"
                 app:chipEndPadding="10dp"
                 app:chipCornerRadius="20dp"
+                android:visibility="gone"
                 />
 
         </LinearLayout>
@@ -158,6 +159,7 @@
         android:visibility="visible"
         >
         <LinearLayout
+            android:id="@+id/AddGroupMemberLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/light_gray"

@@ -112,11 +112,10 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
     }
 
     fun setUpRecyclerView(){
-        groupAdapter= GroupAdapter{ group ->
+        groupAdapter= GroupAdapter{ group->
             val action= GroupsFragmentDirections.
             actionGroupsFragmentToDetailGroupFragment(
-                group.id
-            )
+                 group.id)
             findNavController().navigate(action)
 
         }
