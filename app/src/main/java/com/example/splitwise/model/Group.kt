@@ -5,7 +5,7 @@ import com.google.firebase.Timestamp
 data class Group(
     val id: String = "",
     val name: String = "",
-    val type: GroupType = GroupType.OTHER,
+    val type: String = "",
     val createdBy: String = "",
     val memberIds: List<String> = emptyList(),
     val createdAt: Timestamp = Timestamp.now()
