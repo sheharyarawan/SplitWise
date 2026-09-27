@@ -15,6 +15,7 @@ class GroupMemberAdapter:
         viewType: Int
     ): GroupViewHolder {
         val view = LayoutInflater.from(parent.context).inflate(
+            R.layout.item_member_group_setting, null, false
         )
         return GroupViewHolder(view)
     }
@@ -27,7 +28,7 @@ class GroupMemberAdapter:
     }
 
     class GroupViewHolder(itemView: View): GroupAdapter.ViewHolder(itemView){
-
+        val userName= itemView.
     }
 }
 
