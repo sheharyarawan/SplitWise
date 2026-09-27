@@ -61,7 +61,11 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
     }
     fun handleClicks(){
         binding.detailGroupSettings.setOnClickListener {
-            findNavController().navigate(R.id.action_detailGroupFragment_to_groupSettingsFragment)
+            val action =
+                DetailGroupFragmentDirections.actionDetailGroupFragmentToGroupSettingsFragment(args.groupId)
+            findNavController().navigate(
+                action
+            )
         }
         binding.detailGroupPeopleCountChip.setOnClickListener {
             findNavController().navigate(R.id.action_detailGroupFragment_to_groupSettingsFragment)

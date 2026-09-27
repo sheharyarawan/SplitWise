@@ -1,5 +1,6 @@
 package com.example.splitwise.repositories
 
+import android.util.Log
 import com.example.splitwise.model.Group
 import com.example.splitwise.model.User
 import com.google.firebase.Timestamp
@@ -185,7 +186,6 @@ class GroupRepository {
                                         id = userDocument.id
                                     )
                             }
-
                         onSuccess(members)
                     }
                     .addOnFailureListener { exception ->

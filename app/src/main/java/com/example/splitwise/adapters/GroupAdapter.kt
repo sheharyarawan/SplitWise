@@ -18,7 +18,7 @@ class GroupAdapter(
         viewType: Int
     ): ViewHolder {
         val view= LayoutInflater.from(parent.context).inflate(
-            R.layout.item_view_groups, null, false
+            R.layout.item_view_groups, parent, false
         )
         return ViewHolder(view)
     }
@@ -34,22 +34,22 @@ class GroupAdapter(
         }
     }
 
-    open class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
+     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
         val name= itemView.findViewById<TextView>(R.id.groupName)
     }
-}
-class DiffCallback : DiffUtil.ItemCallback<Group>() {
-    override fun areItemsTheSame(
-        oldItem: Group,
-        newItem: Group
-    ): Boolean {
-        return oldItem.id==newItem.id
-    }
+    class DiffCallback : DiffUtil.ItemCallback<Group>() {
+        override fun areItemsTheSame(
+            oldItem: Group,
+            newItem: Group
+        ): Boolean {
+            return oldItem.id==newItem.id
+        }
 
-    override fun areContentsTheSame(
-        oldItem: Group,
-        newItem: Group
-    ): Boolean {
-        return oldItem==newItem
+        override fun areContentsTheSame(
+            oldItem: Group,
+            newItem: Group
+        ): Boolean {
+            return oldItem==newItem
+        }
     }
 }

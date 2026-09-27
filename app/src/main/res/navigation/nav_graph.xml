@@ -75,6 +75,11 @@
         <action
             android:id="@+id/action_groupSettingsFragment_to_addFriendFragment"
             app:destination="@id/addFriendFragment" />
+        <argument
+            android:name="groupId"
+            app:argType="string">
+
+        </argument>
     </fragment>
     <fragment
         android:id="@+id/addFriendFragment"

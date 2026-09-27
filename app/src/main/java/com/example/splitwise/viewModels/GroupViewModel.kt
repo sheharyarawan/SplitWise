@@ -1,5 +1,6 @@
 package com.example.splitwise.viewModels
 
+import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.splitwise.model.Group
 import com.example.splitwise.model.User
@@ -70,7 +71,6 @@ class GroupViewModel: ViewModel(){
         repository.getGroupMembers(
             groupId = groupId,
             onSuccess = { members ->
-
                 _groupMembers.value = members
             },
             onFailure = { exception ->
