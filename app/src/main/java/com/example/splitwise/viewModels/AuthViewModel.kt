@@ -39,6 +39,10 @@ class AuthViewModel : ViewModel() {
             )
         }
     }
+
+    fun signOut(){
+        repository.signOut()
+    }
 }
 
 sealed class AuthState {

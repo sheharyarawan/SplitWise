@@ -9,6 +9,7 @@ import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
 import com.example.splitwise.databinding.ActivityMainBinding
+import com.google.firebase.auth.FirebaseAuth
 
 class MainActivity : AppCompatActivity() {
 
@@ -27,7 +28,9 @@ class MainActivity : AppCompatActivity() {
         ) { v, insets ->
 
             val systemBars =
-                insets.getInsets(WindowInsetsCompat.Type.systemBars())
+                insets.getInsets(
+                    WindowInsetsCompat.Type.systemBars()
+                )
 
             v.setPadding(
                 systemBars.left,
@@ -39,13 +42,70 @@ class MainActivity : AppCompatActivity() {
             insets
         }
 
+        setupNavigation()
+    }
+
+    private fun setupNavigation() {
+
         val navHostFragment =
-            supportFragmentManager.findFragmentById(R.id.fragmentContainer)
-                    as NavHostFragment
+            supportFragmentManager.findFragmentById(
+                R.id.fragmentContainer
+            ) as NavHostFragment
 
-        val navController = navHostFragment.navController
+        val navController =
+            navHostFragment.navController
 
-        binding.bottomNav.setupWithNavController(navController)
+        val currentUser =
+            FirebaseAuth.getInstance().currentUser
+
+        if (currentUser != null) {
+
+            val graph =
+                navController.navInflater.inflate(
+                    R.navigation.nav_graph
+                )
+
+            navController.setGraph(graph, null)
+
+            binding.bottomNav.setupWithNavController(
+                navController
+            )
+
+            showBottomNav()
+
+        } else {
+
+            val graph =
+                navController.navInflater.inflate(
+                    R.navigation.auth_nav_graph
+                )
+
+            navController.setGraph(graph, null)
+
+            hideBottomNav()
+            hideAddExpenseButton()
+        }
+    }
+
+    fun showAuthGraph() {
+
+        val navHostFragment =
+            supportFragmentManager.findFragmentById(
+                R.id.fragmentContainer
+            ) as NavHostFragment
+
+        val navController =
+            navHostFragment.navController
+
+        val graph =
+            navController.navInflater.inflate(
+                R.navigation.auth_nav_graph
+            )
+
+        navController.setGraph(graph, null)
+
+        hideBottomNav()
+        hideAddExpenseButton()
     }
 
     fun showAddExpenseButton() {
@@ -73,7 +133,6 @@ class MainActivity : AppCompatActivity() {
     fun clearAddExpenseClickListener() {
         binding.addExpenseBtn.setOnClickListener(null)
     }
-
 
     fun showBottomNav() {
         binding.bottomNav.visibility = View.VISIBLE

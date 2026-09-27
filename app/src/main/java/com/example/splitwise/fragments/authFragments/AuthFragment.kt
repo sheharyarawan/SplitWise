@@ -1,60 +1,144 @@
 package com.example.splitwise.fragments.authFragments
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
+import android.widget.Toast
+import androidx.credentials.CredentialManager
+import androidx.credentials.GetCredentialRequest
+import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
+import androidx.lifecycle.lifecycleScope
 import com.example.splitwise.R
+import com.example.splitwise.databinding.FragmentAuthBinding
+import com.example.splitwise.viewModel.AuthState
+import com.example.splitwise.viewModel.AuthViewModel
+import com.google.android.libraries.identity.googleid.GetGoogleIdOption
+import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
+import kotlinx.coroutines.launch
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+class AuthFragment : Fragment(R.layout.fragment_auth) {
 
-/**
- * A simple [Fragment] subclass.
- * Use the [AuthFragment.newInstance] factory method to
- * create an instance of this fragment.
- */
-class AuthFragment : Fragment() {
-    // TODO: Rename and change types of parameters
-    private var param1: String? = null
-    private var param2: String? = null
+    private var _binding: FragmentAuthBinding? = null
+    private val binding get() = _binding!!
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
+    private val viewModel: AuthViewModel by viewModels()
+
+    private lateinit var credentialManager: CredentialManager
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        super.onViewCreated(view, savedInstanceState)
+
+        _binding = FragmentAuthBinding.bind(view)
+
+        credentialManager = CredentialManager.create(requireContext())
+
+        binding.signInGoogleButton.setOnClickListener {
+            signInWithGoogle()
+        }
+
+        observeAuthState()
+    }
+
+    private fun signInWithGoogle() {
+
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            try {
+
+                binding.signInGoogleButton.isEnabled = false
+
+                val googleOption = GetGoogleIdOption.Builder()
+                    .setServerClientId(
+                        getString(R.string.default_web_client_id)
+                    )
+                    .setFilterByAuthorizedAccounts(false)
+                    .build()
+
+                val request = GetCredentialRequest.Builder()
+                    .addCredentialOption(googleOption)
+                    .build()
+
+                val result = credentialManager.getCredential(
+                    requireContext(),
+                    request
+                )
+
+                val credential = result.credential
+
+                if (
+                    credential.type ==
+                    GoogleIdTokenCredential.TYPE_GOOGLE_ID_TOKEN_CREDENTIAL
+                ) {
+
+                    val googleCredential =
+                        GoogleIdTokenCredential.createFrom(
+                            credential.data
+                        )
+
+                    viewModel.signInWithGoogle(
+                        googleCredential.idToken
+                    )
+                }
+
+            } catch (e: Exception) {
+
+                binding.signInGoogleButton.isEnabled = true
+
+                Toast.makeText(
+                    requireContext(),
+                    e.message ?: "Google sign in failed",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
         }
     }
 
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_auth, container, false)
-    }
+    private fun observeAuthState() {
 
-    companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment AuthFragment.
-         */
-        // TODO: Rename and change types and number of parameters
-        @JvmStatic
-        fun newInstance(param1: String, param2: String) =
-            AuthFragment().apply {
-                arguments = Bundle().apply {
-                    putString(ARG_PARAM1, param1)
-                    putString(ARG_PARAM2, param2)
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            viewModel.authState.collect { state ->
+
+                when (state) {
+
+                    AuthState.Idle -> {
+                        binding.signInGoogleButton.isEnabled = true
+                    }
+
+                    AuthState.Loading -> {
+                        binding.signInGoogleButton.isEnabled = false
+                    }
+
+                    is AuthState.Success -> {
+
+                        binding.signInGoogleButton.isEnabled = true
+
+                        Toast.makeText(
+                            requireContext(),
+                            "Welcome ${state.user.name}",
+                            Toast.LENGTH_SHORT
+                        ).show()
+
+                        requireActivity().recreate()
+                    }
+
+                    is AuthState.Error -> {
+
+                        binding.signInGoogleButton.isEnabled = true
+
+                        Toast.makeText(
+                            requireContext(),
+                            state.message,
+                            Toast.LENGTH_SHORT
+                        ).show()
+                    }
                 }
             }
+        }
+    }
+
+    override fun onDestroyView() {
+        super.onDestroyView()
+        _binding = null
     }
 }
