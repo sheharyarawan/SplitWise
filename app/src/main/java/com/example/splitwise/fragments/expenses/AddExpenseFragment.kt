@@ -24,6 +24,8 @@ class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
     val args: AddExpenseFragmentArgs by navArgs()
     val expenseViewModel: ExpenseViewModel by activityViewModels()
     private var userId: String? = FirebaseAuth.getInstance().currentUser?.uid
+
+    lateinit var userName:String
     private var splitType: String = "equally"
 
     private var splitUsers: List<User> = emptyList()
@@ -78,7 +80,7 @@ class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
         ) { _, bundle ->
 
             userId = bundle.getString("userId")
-            val userName = bundle.getString("userName")
+            userName = bundle.getString("userName").toString()
 
             binding.expensePaidBy.text = userName
         }
@@ -95,7 +97,6 @@ class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
             when (splitType) {
 
                 "equally" -> {
-
                     splitUsers =
                         BundleCompat.getParcelableArrayList(
                             bundle,
@@ -221,6 +222,7 @@ class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
             groupId = groupId,
             description = description,
             amount = amount,
+            paidByName = userName,
             paidBy = paidBy,
             involvedUserIds = involvedUsers,
             splitType = splitType,

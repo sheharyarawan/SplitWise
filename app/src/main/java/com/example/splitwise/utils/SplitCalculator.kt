@@ -32,6 +32,7 @@ object SplitCalculator {
 
             Split(
                 userId = user.id,
+                userName = user.name,
                 amount = cents / 100.0
             )
         }

@@ -27,4 +27,41 @@ class ExpenseRepository {
                 onFailure(exception)
             }
     }
+
+    fun getGroupExpenses(
+        groupId: String,
+        onSuccess: (List<Expense>) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+
+        firestore
+            .collection("expenses")
+            .whereEqualTo("groupId", groupId)
+            .addSnapshotListener { snapshot, exception ->
+
+                if (exception != null) {
+                    onFailure(exception)
+                    return@addSnapshotListener
+                }
+
+                if (snapshot == null) {
+                    onFailure(
+                        Exception("Unable to load expenses")
+                    )
+                    return@addSnapshotListener
+                }
+
+                val expenses =
+                    snapshot.documents.mapNotNull { document ->
+
+                        document
+                            .toObject(Expense::class.java)
+                            ?.copy(
+                                id = document.id
+                            )
+                    }
+
+                onSuccess(expenses)
+            }
+    }
 }

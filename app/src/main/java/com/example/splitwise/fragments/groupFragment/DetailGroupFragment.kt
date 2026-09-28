@@ -1,19 +1,25 @@
 package com.example.splitwise.fragments.groupFragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.splitwise.MainActivity
 import com.example.splitwise.R
+import com.example.splitwise.adapters.GroupExpensesAdapter
 import com.example.splitwise.databinding.FragmentDetailGroupBinding
 import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
+import com.example.splitwise.model.Expense
+import com.example.splitwise.viewModels.ExpenseViewModel
 import com.example.splitwise.viewModels.GroupViewModel
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
@@ -23,6 +29,8 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
     lateinit var binding: FragmentDetailGroupBinding
     val args: DetailGroupFragmentArgs by navArgs()
     val groupViewModel : GroupViewModel by activityViewModels()
+    val expenseViewModel: ExpenseViewModel by activityViewModels()
+    lateinit var groupExpenseAdapter: GroupExpensesAdapter
 
     override fun onResume() {
         super.onResume()
@@ -53,6 +61,9 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
         observeGroup()
         loadGroupMembers()
 
+        setUpRecyclerView()
+        loadExpenses()
+        observeExpenses()
     }
 
     fun openBottomSheet(groupId:String){
@@ -102,26 +113,25 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
         groupViewModel.getGroupById(args.groupId)
     }
 
-    fun observeGroup(){
+    fun observeGroup() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
-                groupViewModel.group.collect{ group ->
-                    binding.detailGroupName.text= group?.name
-                    val count=group?.memberIds?.size
-                    if (count != null) {
-                        if(count>1){
-                            binding.detailGroupPeopleCountChip.visibility= View.VISIBLE
-                            binding.detailGroupPeopleCountChip.text= "${count} people  +"
-                            binding.singleMemberLinearDisplay.visibility= View.VISIBLE
-                            binding.AddGroupMemberLayout.visibility= View.GONE
-                        }
-                        else{
-                            binding.detailGroupPeopleCountChip.visibility= View.GONE
-                            binding.AddGroupMemberLayout.visibility= View.VISIBLE
-                            binding.singleMemberLinearDisplay.visibility= View.GONE
-                        }
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                groupViewModel.group.collect { group ->
+
+                    binding.detailGroupName.text = group?.name
+
+                    val count = group?.memberIds?.size ?: 0
+
+                    binding.detailGroupPeopleCountChip.isVisible = count > 1
+
+                    if (count > 1) {
+                        binding.detailGroupPeopleCountChip.text =
+                            "$count people  +"
                     }
 
+                    updateExpenseVisibility(
+                        expenseViewModel.groupExpenses.value
+                    )
                 }
             }
         }
@@ -134,5 +144,58 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
         })
     }
 
+    fun loadExpenses(){
+        expenseViewModel.getGroupExpenses(args.groupId, onFailure = {
 
+        })
+    }
+
+    fun observeExpenses() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                expenseViewModel.groupExpenses.collect { expenses ->
+
+                    groupExpenseAdapter.submitList(expenses)
+                    Log.d("Debug", "$expenses.size")
+                    expenses.forEach { expense->
+                        Log.d("Debug", expense.amount.toString())
+                    }
+
+                    updateExpenseVisibility(expenses)
+                }
+            }
+        }
+    }
+
+    fun setUpRecyclerView(){
+
+        groupExpenseAdapter= GroupExpensesAdapter{ expense ->
+            val action= DetailGroupFragmentDirections.
+            actionDetailGroupFragmentToDetailGroupExpenseFragment(expense)
+
+            findNavController().navigate(action)
+        }
+        binding.detailGroupPaymentsRv.apply {
+            layoutManager= LinearLayoutManager(requireContext())
+            adapter= this@DetailGroupFragment.groupExpenseAdapter
+        }
+    }
+
+    fun updateExpenseVisibility(expenses: List<Expense>) {
+
+        val hasExpenses = expenses.isNotEmpty()
+        val memberCount =
+            groupViewModel.group.value?.memberIds?.size ?: 0
+
+        binding.detailGroupPaymentsRv.isVisible = hasExpenses
+
+        if (hasExpenses) {
+            binding.detailCard.isVisible = false
+            binding.singleMemberLinearDisplay.isVisible = false
+            return
+        }
+
+        binding.detailCard.isVisible = memberCount <= 1
+        binding.singleMemberLinearDisplay.isVisible = memberCount > 1
+    }
 }

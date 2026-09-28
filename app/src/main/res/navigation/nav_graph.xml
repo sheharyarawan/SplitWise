@@ -66,6 +66,9 @@
             app:argType="string">
 
         </argument>
+        <action
+            android:id="@+id/action_detailGroupFragment_to_detailGroupExpenseFragment"
+            app:destination="@id/detailGroupExpenseFragment" />
     </fragment>
     <fragment
         android:id="@+id/groupSettingsFragment"
@@ -136,4 +139,15 @@
         android:name="com.example.splitwise.fragments.groupFragment.BalancesFragment"
         android:label="fragment_balances"
         tools:layout="@layout/fragment_balances" />
+    <fragment
+        android:id="@+id/detailGroupExpenseFragment"
+        android:name="com.example.splitwise.fragments.groupFragment.DetailGroupExpenseFragment"
+        android:label="fragment_detail_group_expense"
+        tools:layout="@layout/fragment_detail_group_expense" >
+        <argument
+            android:name="expense"
+            app:argType="com.example.splitwise.model.Expense">
+
+        </argument>
+    </fragment>
 </navigation>

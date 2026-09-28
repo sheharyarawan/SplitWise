@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -8,76 +9,74 @@
     android:padding="16dp">
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/expenseDate"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="Sep\n15"
+        android:text=""
         android:textColor="#AAAAAA"
         android:textSize="18sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </TextView>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:layout_marginStart="16dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toTopOf="parent"
+        android:background="@color/white"
         android:src="@drawable/ic_recipt"
-        android:background="@color/white">
-
-    </ImageView>
-
-    <TextView
-        android:id="@+id/detailGroupExpenseName"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
-        android:text="Paid for food"
-        android:textColor="@color/white"
-        android:layout_marginStart="10dp"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@+id/detailGroupExpensePaidBy"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toTopOf="@+id/imageView">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/detailGroupExpensePaidBy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="You paid 32"
-        android:layout_marginStart="10dp"
-        android:fontFamily="@font/poppins_medium"
-        android:textColor="@color/white"
-        android:textSize="16sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/detailGroupExpenseName">
-
-    </TextView>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toEndOf="@id/expenseDate"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
         android:id="@+id/detailGroupExpenseLent"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:textColor="@color/green"
-        android:text="you lent\n25"
         android:fontFamily="@font/poppins_medium"
-        android:textSize="18sp"
-        android:textAlignment="textEnd"
+        android:gravity="end"
+        android:maxLines="2"
+        android:text=""
+        android:textAlignment="viewEnd"
+        android:textSize="14sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        >
+        app:layout_constraintTop_toTopOf="parent" />
 
-    </TextView>
+    <TextView
+        android:id="@+id/detailGroupExpenseName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="12dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/poppins_medium"
+        android:maxLines="1"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        app:layout_constraintBottom_toTopOf="@id/detailGroupExpensePaidBy"
+        app:layout_constraintEnd_toStartOf="@id/detailGroupExpenseLent"
+        app:layout_constraintStart_toEndOf="@id/imageView"
+        app:layout_constraintTop_toTopOf="@id/imageView" />
+
+    <TextView
+        android:id="@+id/detailGroupExpensePaidBy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="12dp"
+        android:ellipsize="end"
+        android:fontFamily="@font/poppins_medium"
+        android:maxLines="1"
+        android:text=""
+        android:textColor="#D3D3D3"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="@id/imageView"
+        app:layout_constraintEnd_toStartOf="@id/detailGroupExpenseLent"
+        app:layout_constraintStart_toEndOf="@id/imageView"
+        app:layout_constraintTop_toBottomOf="@id/detailGroupExpenseName" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
