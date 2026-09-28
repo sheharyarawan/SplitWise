@@ -3,6 +3,7 @@ package com.example.splitwise.fragments.groupFragment
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -32,7 +33,7 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
 
         mainActivity.setAddExpenseClickListener {
             if (isAdded) {
-                openBottomSheet()
+                openBottomSheet(args.groupId)
             }
         }
     }
@@ -50,15 +51,23 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
         handleClicks()
         getGroupDetails()
         observeGroup()
+        loadGroupMembers()
 
     }
 
-    fun openBottomSheet(){
+    fun openBottomSheet(groupId:String){
+        val bottomSheet = AddExpenseIGSheet().apply {
+            arguments = Bundle().apply {
+                putString("groupId", groupId)
+            }
+        }
 
-        AddExpenseIGSheet().show(
-            parentFragmentManager,"AddExpenseBottomSheet"
+        bottomSheet.show(
+            parentFragmentManager,
+            "AddExpenseBottomSheet"
         )
     }
+
     fun handleClicks(){
         binding.detailGroupSettings.setOnClickListener {
             val action =
@@ -118,6 +127,12 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
         }
     }
 
+    fun loadGroupMembers(){
+        groupViewModel.getGroupMembers(args.groupId, onFailure = {
+            Toast.makeText(requireContext()
+                ,"Error", Toast.LENGTH_SHORT).show()
+        })
+    }
 
 
 }

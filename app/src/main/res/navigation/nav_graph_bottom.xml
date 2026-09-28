@@ -19,6 +19,9 @@
         <action
             android:id="@+id/action_addExpenseFragment_to_splitFragment"
             app:destination="@id/splitFragment" />
+        <argument
+            android:name="groupId"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/expenseSplitFragment"
@@ -37,6 +40,12 @@
         <action
             android:id="@+id/action_paidByFragment2_to_paidAmountFragment"
             app:destination="@id/paidAmountFragment" />
+
+        <argument
+            android:name="groupId"
+            app:argType="string">
+
+        </argument>
     </fragment>
     <fragment
         android:id="@+id/paidAmountFragment"

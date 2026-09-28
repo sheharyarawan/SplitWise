@@ -7,7 +7,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 class UserRepository {
     private val firestore= FirebaseFirestore.getInstance()
 
-
     fun createUser(
         uid: String,
         user: User,

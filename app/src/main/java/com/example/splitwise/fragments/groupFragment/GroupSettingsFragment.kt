@@ -42,7 +42,7 @@ class GroupSettingsFragment : Fragment(R.layout.fragment_group_settings) {
         setUpRecyclerView()
         observeGroupDetails()
         observeGroupMembers()
-        loadGroupMembers()
+
         handleClicks()
     }
 
@@ -89,12 +89,7 @@ class GroupSettingsFragment : Fragment(R.layout.fragment_group_settings) {
         }
     }
 
-    fun loadGroupMembers(){
-        groupViewModel.getGroupMembers(args.groupId, onFailure = {
-            Toast.makeText(requireContext()
-                ,"Error", Toast.LENGTH_SHORT).show()
-        })
-    }
+
 
     fun setUpRecyclerView(){
         memberAdapter= GroupMemberAdapter()

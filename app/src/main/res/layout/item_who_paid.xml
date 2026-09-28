@@ -47,7 +47,9 @@
         android:src="@drawable/ic_check"
         app:layout_constraintBottom_toBottomOf="@+id/whoPaidName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/whoPaidName">
+        app:layout_constraintTop_toTopOf="@+id/whoPaidName"
+        android:visibility="invisible"
+        >
 
     </ImageView>
 

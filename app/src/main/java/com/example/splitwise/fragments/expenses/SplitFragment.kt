@@ -49,6 +49,4 @@ class SplitFragment : Fragment(R.layout.fragment_split) {
             findNavController().navigateUp()
         }
     }
-
-
 }
