@@ -5,7 +5,6 @@ import com.google.firebase.firestore.FirebaseFirestore
 
 class ExpenseRepository {
     val firestore= FirebaseFirestore.getInstance()
-
     fun addExpense(
         expense: Expense,
         onSuccess: () -> Unit,

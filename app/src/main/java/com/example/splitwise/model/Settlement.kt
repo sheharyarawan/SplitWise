@@ -9,5 +9,4 @@ data class Settlement(
     val toUser: String = "",
     val amount: Double = 0.0,
     val date: Timestamp = Timestamp.now(),
-
 )

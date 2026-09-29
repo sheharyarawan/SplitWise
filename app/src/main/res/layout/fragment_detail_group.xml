@@ -1,11 +1,14 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.groupFragment.DetailGroupFragment"
-    android:background="@color/gray">
+    android:background="@color/gray"
+    tools:context=".fragments.groupFragment.DetailGroupFragment">
+
+    <!-- HEADER -->
     <FrameLayout
         android:id="@+id/frameLayout"
         android:layout_width="0dp"
@@ -43,9 +46,9 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|start"
-            android:orientation="vertical"
             android:layout_marginStart="10dp"
-            android:layout_marginBottom="10dp">
+            android:layout_marginBottom="10dp"
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/detailGroupName"
@@ -61,191 +64,193 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
+                android:backgroundTint="@color/gray"
                 android:fontFamily="@font/poppins_medium"
                 android:text="5 people"
                 android:textColor="@color/white"
-                android:backgroundTint="@color/gray"
-                app:chipStrokeColor="#656565"
-                app:chipStrokeWidth="2dp"
-                app:chipStartPadding="10dp"
-                app:chipEndPadding="10dp"
-                app:chipCornerRadius="20dp"
                 android:visibility="gone"
-                />
+                app:chipCornerRadius="20dp"
+                app:chipEndPadding="10dp"
+                app:chipStartPadding="10dp"
+                app:chipStrokeColor="#656565"
+                app:chipStrokeWidth="2dp" />
 
         </LinearLayout>
 
     </FrameLayout>
 
-    <LinearLayout
-        android:id="@+id/detailGroupExpenseTotalLL"
+
+    <!-- EVERYTHING BELOW HEADER SCROLLS -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/detailGroupNestedScrollView"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="10dp"
+        android:layout_height="0dp"
+        android:fillViewport="true"
+        android:overScrollMode="never"
+        android:scrollbars="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/frameLayout">
+        app:layout_constraintTop_toBottomOf="@id/frameLayout">
 
-        <TextView
-            android:id="@+id/detailGroupExpenseTotalTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:text="You are owed 10000 overall"
-            android:textColor="@color/white"
-            android:textSize="19sp">
-
-        </TextView>
-    </LinearLayout>
-
-    <com.google.android.material.chip.ChipGroup
-        android:id="@+id/detailFriendChipsGroup"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:padding="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailGroupExpenseTotalLL">
-
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/friendDetailSettleUpChip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/gray"
-            android:fontFamily="@font/poppins_medium"
-            android:padding="10dp"
-            android:text="Settle up"
-            android:textColor="@color/white"
-            android:textSize="21sp"
-            app:chipCornerRadius="30dp"
-            app:chipEndPadding="8dp"
-            app:chipStartPadding="8dp"
-            app:chipStrokeColor="#363636"
-            app:chipStrokeWidth="2dp" />
-
-        <com.google.android.material.chip.Chip
-            android:id="@+id/balanceChip"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:backgroundTint="@color/gray"
-            android:fontFamily="@font/poppins_medium"
-            android:padding="10dp"
-            android:text="Balances"
-            android:textColor="@color/white"
-            android:textSize="21sp"
-            app:chipCornerRadius="30dp"
-            app:chipEndPadding="8dp"
-            app:chipStartPadding="8dp"
-            app:chipStrokeColor="#363636"
-            app:chipStrokeWidth="2dp">
-
-        </com.google.android.material.chip.Chip>
-
-    </com.google.android.material.chip.ChipGroup>
-
-    <com.google.android.material.card.MaterialCardView
-        android:id="@+id/detailCard"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailFriendChipsGroup"
-        android:layout_margin="15dp"
-        android:visibility="visible"
-        >
         <LinearLayout
-            android:id="@+id/AddGroupMemberLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:background="@color/light_gray"
-            android:orientation="vertical"
-            android:padding="20dp">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-            <TextView
-                android:layout_width="wrap_content"
+            <!-- TOTAL EXPENSE -->
+            <LinearLayout
+                android:id="@+id/detailGroupExpenseTotalLL"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="You're the only one here!"
-                android:layout_gravity="center_horizontal"
-                android:textSize="18sp"
-                android:fontFamily="@font/poppins_medium"
-                android:textColor="@color/white">
-            </TextView>
+                android:orientation="vertical"
+                android:padding="10dp"
+                android:layout_marginTop="10dp">
 
-            <com.google.android.material.button.MaterialButton
-                android:id="@+id/addFriendGroupButton"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/detailGroupExpenseTotalTv"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="You are owed 10000 overall"
+                    android:textColor="@color/white"
+                    android:textSize="19sp" />
+
+            </LinearLayout>
+
+
+            <!-- CHIPS -->
+            <com.google.android.material.chip.ChipGroup
+                android:id="@+id/detailFriendChipsGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:backgroundTint="@color/green"
-                android:text="Add group members"
-                app:icon="@drawable/ic_friend"
-                android:layout_gravity="center_horizontal"
-                android:textSize="20sp"
-                android:paddingStart="30dp"
-                android:paddingEnd="30dp"
-                android:layout_marginTop="5dp"
-                app:iconSize="25dp">
-            </com.google.android.material.button.MaterialButton>
+                android:padding="10dp">
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/friendDetailSettleUpChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/gray"
+                    android:fontFamily="@font/poppins_medium"
+                    android:padding="10dp"
+                    android:text="Settle up"
+                    android:textColor="@color/white"
+                    android:textSize="21sp"
+                    app:chipCornerRadius="30dp"
+                    app:chipEndPadding="8dp"
+                    app:chipStartPadding="8dp"
+                    app:chipStrokeColor="#363636"
+                    app:chipStrokeWidth="2dp" />
+
+                <com.google.android.material.chip.Chip
+                    android:id="@+id/balanceChip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/gray"
+                    android:fontFamily="@font/poppins_medium"
+                    android:padding="10dp"
+                    android:text="Balances"
+                    android:textColor="@color/white"
+                    android:textSize="21sp"
+                    app:chipCornerRadius="30dp"
+                    app:chipEndPadding="8dp"
+                    app:chipStartPadding="8dp"
+                    app:chipStrokeColor="#363636"
+                    app:chipStrokeWidth="2dp" />
+
+            </com.google.android.material.chip.ChipGroup>
+
+
+            <!-- ADD MEMBER CARD -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/detailCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="15dp"
+                android:visibility="visible">
+
+                <LinearLayout
+                    android:id="@+id/AddGroupMemberLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@color/light_gray"
+                    android:orientation="vertical"
+                    android:padding="20dp">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="You're the only one here!"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                    <com.google.android.material.button.MaterialButton
+                        android:id="@+id/addFriendGroupButton"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center_horizontal"
+                        android:layout_marginTop="5dp"
+                        android:backgroundTint="@color/green"
+                        android:paddingStart="30dp"
+                        android:paddingEnd="30dp"
+                        android:text="Add group members"
+                        android:textSize="20sp"
+                        app:icon="@drawable/ic_friend"
+                        app:iconSize="25dp" />
+
+                </LinearLayout>
+
+            </com.google.android.material.card.MaterialCardView>
+
+
+            <!-- NO EXPENSE MESSAGE -->
+            <LinearLayout
+                android:id="@+id/singleMemberLinearDisplay"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="30dp"
+                android:orientation="vertical"
+                android:visibility="gone">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="No expense here yet."
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_marginStart="40dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="40dp"
+                    android:fontFamily="@font/poppins_medium"
+                    android:text="Add an expense to get this party started."
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="22sp" />
+
+            </LinearLayout>
+
+
+            <!-- EXPENSE RECYCLER VIEW -->
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/detailGroupPaymentsRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                tools:itemCount="4"
+                tools:listitem="@layout/item_view_expense_detail_group" />
 
         </LinearLayout>
 
-    </com.google.android.material.card.MaterialCardView>
-
-    <LinearLayout
-        android:id="@+id/singleMemberLinearDisplay"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_marginTop="30dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailFriendChipsGroup"
-        android:visibility="gone">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:fontFamily="@font/poppins_medium"
-            android:text="No expense here yet."
-            android:textColor="@color/white"
-            android:textSize="22sp">
-        </TextView>
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Add an expense to get this party started."
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="40dp"
-            android:layout_marginEnd="40dp"
-            android:layout_marginTop="10dp"
-            android:textColor="@color/white"
-            android:textSize="22sp"
-            android:textAlignment="center">
-        </TextView>
-
-    </LinearLayout>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/detailGroupPaymentsRv"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/detailFriendChipsGroup"
-        tools:listitem="@layout/item_view_expense_detail_group"
-        tools:itemCount="4"
-        android:visibility="gone"
-        >
-
-    </androidx.recyclerview.widget.RecyclerView>
-
+    </androidx.core.widget.NestedScrollView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

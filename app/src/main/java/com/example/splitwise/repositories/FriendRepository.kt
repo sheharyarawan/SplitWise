@@ -48,7 +48,6 @@ class FriendRepository {
 
                 if (!snapshot.isEmpty) {
 
-                    // User already exists
                     val userDocument =
                         snapshot.documents[0]
 
@@ -66,9 +65,6 @@ class FriendRepository {
 
                 } else {
 
-                    // User does not exist
-                    // Create a new user using the
-                    // name and email provided by the UI.
 
                     createUserAndAddToGroup(
                         groupId = groupId,

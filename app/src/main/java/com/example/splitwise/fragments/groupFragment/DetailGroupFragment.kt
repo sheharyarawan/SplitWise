@@ -1,10 +1,14 @@
 package com.example.splitwise.fragments.groupFragment
 
 import android.os.Bundle
+import android.text.Spannable
+import android.text.SpannableString
+import android.text.style.ForegroundColorSpan
 import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
@@ -21,6 +25,7 @@ import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
 import com.example.splitwise.model.Expense
 import com.example.splitwise.viewModels.ExpenseViewModel
 import com.example.splitwise.viewModels.GroupViewModel
+import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -156,12 +161,8 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
                 expenseViewModel.groupExpenses.collect { expenses ->
 
                     groupExpenseAdapter.submitList(expenses)
-                    Log.d("Debug", "$expenses.size")
-                    expenses.forEach { expense->
-                        Log.d("Debug", expense.amount.toString())
-                    }
-
                     updateExpenseVisibility(expenses)
+                    updateGroupTotal(expenses)
                 }
             }
         }
@@ -197,5 +198,63 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
 
         binding.detailCard.isVisible = memberCount <= 1
         binding.singleMemberLinearDisplay.isVisible = memberCount > 1
+    }
+
+    private fun updateGroupTotal(expenses: List<Expense>) {
+
+        val currentUserId =
+            FirebaseAuth.getInstance().currentUser?.uid ?: return
+
+        val totalBalance = expenses.sumOf { expense ->
+
+            val myShare = expense.splits
+                .find { it.userId == currentUserId }
+                ?.amount ?: 0.0
+
+            val myPaidAmount =
+                if (expense.paidBy == currentUserId) {
+                    expense.amount
+                } else {
+                    0.0
+                }
+
+            myPaidAmount - myShare
+        }
+
+        val amountText = "Rs ${kotlin.math.abs(totalBalance).toInt()}"
+
+        val fullText = when {
+            totalBalance > 0 ->
+                "You are owed $amountText overall"
+
+            totalBalance < 0 ->
+                "You owe $amountText overall"
+
+            else ->
+                "You are settled up"
+        }
+
+        val spannable = SpannableString(fullText)
+
+        if (totalBalance != 0.0) {
+
+            val start = fullText.indexOf(amountText)
+            val end = start + amountText.length
+
+            val color = if (totalBalance > 0) {
+                ContextCompat.getColor(requireContext(), R.color.green)
+            } else {
+                ContextCompat.getColor(requireContext(), R.color.red)
+            }
+
+            spannable.setSpan(
+                ForegroundColorSpan(color),
+                start,
+                end,
+                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+            )
+        }
+
+        binding.detailGroupExpenseTotalTv.text = spannable
     }
 }

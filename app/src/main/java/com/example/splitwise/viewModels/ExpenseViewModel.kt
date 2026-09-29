@@ -11,7 +11,6 @@ class ExpenseViewModel: ViewModel() {
 
     private val repository = ExpenseRepository()
     private val _groupExpenses = MutableStateFlow<List<Expense>>(emptyList())
-
     val groupExpenses: StateFlow<List<Expense>> = _groupExpenses.asStateFlow()
 
     fun addExpense(
@@ -19,7 +18,6 @@ class ExpenseViewModel: ViewModel() {
         onSuccess: () -> Unit,
         onFailure: (Exception) -> Unit
     ) {
-
         repository.addExpense(
             expense = expense,
             onSuccess = {
