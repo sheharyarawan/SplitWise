@@ -8,7 +8,6 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class ExpenseViewModel: ViewModel() {
-
     private val repository = ExpenseRepository()
     private val _groupExpenses = MutableStateFlow<List<Expense>>(emptyList())
     val groupExpenses: StateFlow<List<Expense>> = _groupExpenses.asStateFlow()

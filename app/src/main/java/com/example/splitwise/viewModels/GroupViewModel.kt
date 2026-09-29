@@ -2,7 +2,9 @@ package com.example.splitwise.viewModels
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
+import com.example.splitwise.model.Expense
 import com.example.splitwise.model.Group
+import com.example.splitwise.model.GroupMemberBalance
 import com.example.splitwise.model.User
 import com.example.splitwise.repositories.GroupRepository
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -22,6 +24,12 @@ class GroupViewModel: ViewModel(){
 
     val groupMembers: StateFlow<List<User>> =
         _groupMembers.asStateFlow()
+
+    private val _memberBalances =
+        MutableStateFlow<List<GroupMemberBalance>>(emptyList())
+
+    val memberBalances: StateFlow<List<GroupMemberBalance>> =
+        _memberBalances.asStateFlow()
 
     init {
         getGroups()
@@ -78,5 +86,42 @@ class GroupViewModel: ViewModel(){
                 onFailure(exception)
             }
         )
+    }
+
+    fun calculateMemberBalances(
+        members: List<User>,
+        expenses: List<Expense>
+    ) {
+        val balances = members.map { member ->
+
+            var totalPaid = 0.0
+            var totalOwed = 0.0
+
+            expenses.forEach { expense ->
+
+                // Amount this member paid
+                if (expense.paidBy == member.id) {
+                    totalPaid += expense.amount
+                }
+
+                // Amount this member owes
+                val memberSplit = expense.splits.find {
+                    it.userId == member.id
+                }
+
+                if (memberSplit != null) {
+                    totalOwed += memberSplit.amount
+                }
+            }
+
+            GroupMemberBalance(
+                userId = member.id,
+                name = member.name,
+                email = member.email,
+                balance = totalPaid - totalOwed
+            )
+        }
+
+        _memberBalances.value = balances
     }
 }

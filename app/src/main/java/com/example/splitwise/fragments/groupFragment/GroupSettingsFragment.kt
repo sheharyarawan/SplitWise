@@ -16,6 +16,9 @@ import com.example.splitwise.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.adapters.GroupMemberAdapter
 import com.example.splitwise.databinding.FragmentGroupSettingsBinding
+import com.example.splitwise.model.Expense
+import com.example.splitwise.model.User
+import com.example.splitwise.viewModels.ExpenseViewModel
 import com.example.splitwise.viewModels.GroupViewModel
 import kotlinx.coroutines.launch
 
@@ -23,7 +26,10 @@ class GroupSettingsFragment : Fragment(R.layout.fragment_group_settings) {
 
     private lateinit var binding: FragmentGroupSettingsBinding
     lateinit var memberAdapter: GroupMemberAdapter
+    private var currentMembers = emptyList<User>()
+    private var currentExpenses = emptyList<Expense>()
     val groupViewModel: GroupViewModel by activityViewModels()
+    val expenseViewModel: ExpenseViewModel by activityViewModels()
 
     val args: GroupSettingsFragmentArgs by navArgs()
     override fun onResume() {
@@ -42,6 +48,8 @@ class GroupSettingsFragment : Fragment(R.layout.fragment_group_settings) {
         setUpRecyclerView()
         observeGroupDetails()
         observeGroupMembers()
+        observeGroupExpenses()
+        observeMemberBalances()
 
         handleClicks()
     }
@@ -49,7 +57,7 @@ class GroupSettingsFragment : Fragment(R.layout.fragment_group_settings) {
     fun handleClicks(){
         binding.addPeopleToGroup.setOnClickListener {
             val action= GroupSettingsFragmentDirections
-                .actionGroupSettingsFragmentToAddFriendFragment(args.groupId)
+                .actionGroupSettingsFragmentToAddFriendFragment("groups",args.groupId)
             findNavController().navigate(action)
         }
         binding.toolbarGroupSettings.setNavigationOnClickListener {
@@ -78,18 +86,46 @@ class GroupSettingsFragment : Fragment(R.layout.fragment_group_settings) {
         }
     }
 
-    fun observeGroupMembers(){
+    fun observeGroupMembers() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(
-                Lifecycle.State.STARTED){
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
                 groupViewModel.groupMembers.collect { members ->
-                    memberAdapter.submitList(members)
+                    currentMembers = members
+                    groupViewModel.calculateMemberBalances(
+                        currentMembers,
+                        currentExpenses
+                    )
                 }
             }
         }
     }
 
 
+    fun observeGroupExpenses() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                expenseViewModel.groupExpenses.collect { expenses ->
+
+                    currentExpenses = expenses
+
+                    groupViewModel.calculateMemberBalances(
+                        currentMembers,
+                        currentExpenses
+                    )
+                }
+            }
+        }
+    }
+
+    fun observeMemberBalances() {
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+                groupViewModel.memberBalances.collect { balances ->
+                    memberAdapter.submitList(balances)
+                }
+            }
+        }
+    }
 
     fun setUpRecyclerView(){
         memberAdapter= GroupMemberAdapter()

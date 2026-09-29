@@ -100,11 +100,14 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
         }
         binding.addFriendGroupButton.setOnClickListener {
 
-            val action= DetailGroupFragmentDirections.
-            actionDetailGroupFragmentToAddFriendFragment(args.groupId)
-            findNavController().navigate(
-                action
-            )
+            val action =
+                DetailGroupFragmentDirections
+                    .actionDetailGroupFragmentToAddFriendFragment(
+                        source = "groups",
+                        groupId = args.groupId
+                    )
+
+            findNavController().navigate(action)
         }
         binding.friendDetailSettleUpChip.setOnClickListener {
             findNavController().navigate(R.id.action_detailGroupFragment_to_groupSettleFragment)

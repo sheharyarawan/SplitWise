@@ -5,21 +5,30 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
+import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.splitwise.R
-import com.example.splitwise.model.User
+import com.example.splitwise.model.GroupMemberBalance
+import kotlin.math.abs
 
-class GroupMemberAdapter:
-    ListAdapter<User, GroupMemberAdapter.GroupViewHolder>(DiffCallBack()){
+class GroupMemberAdapter :
+    ListAdapter<GroupMemberBalance, GroupMemberAdapter.GroupViewHolder>(
+        DiffCallBack()
+    ) {
+
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): GroupViewHolder {
+
         val view = LayoutInflater.from(parent.context).inflate(
-            R.layout.item_member_group_setting, parent, false
+            R.layout.item_member_group_setting,
+            parent,
+            false
         )
+
         return GroupViewHolder(view)
     }
 
@@ -27,34 +36,86 @@ class GroupMemberAdapter:
         holder: GroupViewHolder,
         position: Int
     ) {
-        val user = getItem(position)
+
+        val member = getItem(position)
 
         Log.d(
             "GROUP_DEBUG",
-            "Binding position=$position: ${user.name} - ${user.email}"
+            "Binding position=$position: ${member.name} - ${member.email} - ${member.balance}"
         )
-        holder.userName.text= user.name
-        holder.userMail.text= user.email
+
+        holder.userName.text = member.name
+        holder.userMail.text = member.email
+
+        when {
+            member.balance > 0.01 -> {
+
+                holder.memberBalance.text =
+                    "gets back\n Rs ${abs(member.balance).toInt()}"
+
+                holder.memberBalance.setTextColor(
+                    ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.green
+                    )
+                )
+            }
+
+            member.balance < -0.01 -> {
+
+                holder.memberBalance.text =
+                    "owes \nRs ${abs(member.balance).toInt()}"
+
+                holder.memberBalance.setTextColor(
+                    ContextCompat.getColor(
+                        holder.itemView.context,
+                        R.color.red
+                    )
+                )
+            }
+
+            else -> {
+
+                holder.memberBalance.text = ""
+
+//                holder.memberBalance.setTextColor(
+//                    ContextCompat.getColor(
+//                        holder.itemView.context,
+//                        R.color.white
+//                    )
+//                )
+            }
+        }
     }
 
-    class GroupViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-        val userName= itemView.findViewById<TextView>(R.id.memberName)
-        val userMail= itemView.findViewById<TextView>(R.id.memberMail)
+    class GroupViewHolder(itemView: View) :
+        RecyclerView.ViewHolder(itemView) {
+
+        val userName: TextView =
+            itemView.findViewById(R.id.memberName)
+
+        val userMail: TextView =
+            itemView.findViewById(R.id.memberMail)
+
+        val memberBalance: TextView =
+            itemView.findViewById(R.id.memberBalance)
     }
-    class DiffCallBack: DiffUtil.ItemCallback<User>(){
+
+    class DiffCallBack :
+        DiffUtil.ItemCallback<GroupMemberBalance>() {
+
         override fun areItemsTheSame(
-            oldItem: User,
-            newItem: User
+            oldItem: GroupMemberBalance,
+            newItem: GroupMemberBalance
         ): Boolean {
-            return oldItem.id== newItem.id
+            return oldItem.userId == newItem.userId
         }
 
         override fun areContentsTheSame(
-            oldItem: User,
-            newItem: User
+            oldItem: GroupMemberBalance,
+            newItem: GroupMemberBalance
         ): Boolean {
-            return oldItem==newItem
+            return oldItem == newItem
         }
     }
 }
-

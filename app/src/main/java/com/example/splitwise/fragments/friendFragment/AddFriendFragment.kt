@@ -1,10 +1,9 @@
 package com.example.splitwise.fragments.friendFragment
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.fragment.app.activityViewModels
 import androidx.navigation.fragment.findNavController
@@ -24,6 +23,7 @@ class AddFriendFragment : Fragment(R.layout.fragment_add_friend) {
 
         binding= FragmentAddFriendBinding.bind(view)
         setUpToolbarClicks()
+        Log.d("Debugging",args.source)
 
     }
 
@@ -32,7 +32,17 @@ class AddFriendFragment : Fragment(R.layout.fragment_add_friend) {
             findNavController().navigateUp()
         }
         binding.addFriendNextButton.setOnClickListener {
-            addUserToGroup()
+
+            when(args.source){
+                "friends"->{
+                    addFriend()
+
+                }
+                "groups"->{
+                    addUserToGroup()
+                }
+            }
+
         }
     }
 
@@ -50,4 +60,24 @@ class AddFriendFragment : Fragment(R.layout.fragment_add_friend) {
                     Toast.LENGTH_SHORT).show()
             })
     }
+
+    fun addFriend(){
+        val name= binding.nameEditText.text.toString().trim()
+        val email= binding.phoneOrEmailEditText.text.toString().trim()
+        friendViewModel.addFriend(
+            name = name,
+            email = email,
+            onSuccess = {
+                findNavController().navigateUp()
+            },
+            onFailure = { exception ->
+                Toast.makeText(
+                    requireContext(),
+                    exception.message ?: "Failed to add friend",
+                    Toast.LENGTH_SHORT
+                ).show()
+            }
+        )
+    }
+
 }

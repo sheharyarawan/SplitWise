@@ -5,11 +5,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.activityViewModels
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.splitwise.MainActivity
 import com.example.splitwise.R
+import com.example.splitwise.adapters.FriendsAdapter
 import com.example.splitwise.databinding.FragmentFriendsBinding
 import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
+import com.example.splitwise.viewModels.FriendViewModel
+import kotlinx.coroutines.launch
 
 
 class FriendsFragment : Fragment(R.layout.fragment_friends) {
@@ -26,13 +34,24 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
         }
     }
     lateinit var binding: FragmentFriendsBinding
+    lateinit var friendAdapter: FriendsAdapter
+    val friendViewModel: FriendViewModel by activityViewModels()
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding= FragmentFriendsBinding.bind(view)
         binding.addMoreFriendButton.setOnClickListener {
-           // findNavController().navigate(R.id.action_friendsFragment_to_addFriendFragment)
-             findNavController().navigate(R.id.action_friendsFragment_to_friendDetailFragment)
+            val action =
+                FriendsFragmentDirections
+                    .actionFriendsFragmentToAddFriendFragment(
+                        source = "friends",
+                        groupId = null
+                    )
+
+            findNavController().navigate(action)
         }
         setUpToolbarClicks()
+        setUpRecyclerView()
+        observeFriends()
     }
 
     fun setUpToolbarClicks(){
@@ -42,11 +61,36 @@ class FriendsFragment : Fragment(R.layout.fragment_friends) {
                 true
             }
                 R.id.friendAdd->{
-                    findNavController().navigate(R.id.action_friendsFragment_to_addFriendFragment)
+                    val action =
+                        FriendsFragmentDirections
+                            .actionFriendsFragmentToAddFriendFragment(
+                                source = "friends",
+                                groupId = null
+                            )
+
+                    findNavController().navigate(action)
                     true
                 }
                 else -> false
             }
+        }
+    }
+
+    fun observeFriends(){
+        viewLifecycleOwner.lifecycleScope.launch {
+            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED){
+                friendViewModel.friends.collect { friend->
+                    friendAdapter.submitList(friend)
+                }
+            }
+        }
+    }
+
+    fun setUpRecyclerView(){
+        friendAdapter= FriendsAdapter()
+        binding.friendRv.apply {
+            layoutManager= LinearLayoutManager(requireContext())
+            adapter= this@FriendsFragment.friendAdapter
         }
     }
 
