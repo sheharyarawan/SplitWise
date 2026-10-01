@@ -2,14 +2,14 @@ package com.example.splitwise.ui.viewModels
 
 import androidx.lifecycle.ViewModel
 import com.example.splitwise.data.model.User
-import com.example.splitwise.data.repositories.FriendRepository
+import com.example.splitwise.data.repositories.FriendRepositoryImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class FriendViewModel : ViewModel() {
 
-    private val repository = FriendRepository()
+    private val repository = FriendRepositoryImpl()
 
     // ---------------------------------------------------------
     // FRIENDS LIST

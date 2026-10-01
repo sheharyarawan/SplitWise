@@ -7,14 +7,14 @@ import com.example.splitwise.data.model.GroupBalance
 import com.example.splitwise.data.model.GroupMemberBalance
 import com.example.splitwise.data.model.GroupWithBalance
 import com.example.splitwise.data.model.User
-import com.example.splitwise.data.repositories.GroupRepository
+import com.example.splitwise.data.repositories.GroupRepositoryImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class GroupViewModel : ViewModel() {
 
-    private val repository = GroupRepository()
+    private val repository = GroupRepositoryImpl()
 
     private val _groups =
         MutableStateFlow<List<Group>>(emptyList())
