@@ -9,6 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentAddFriendBinding
+import com.example.splitwise.fragments.friendFragment.AddFriendFragmentArgs
 import com.example.splitwise.ui.viewModels.FriendViewModel
 
 

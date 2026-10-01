@@ -13,7 +13,8 @@ import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.ui.adapters.FriendsAdapter
 import com.example.splitwise.databinding.FragmentFriendsBinding
-import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
+import com.example.splitwise.fragments.friendFragment.FriendsFragmentDirections
+import com.example.splitwise.ui.fragments.expenses.AddExpenseIGSheet
 import com.example.splitwise.ui.viewModels.FriendViewModel
 import kotlinx.coroutines.launch
 

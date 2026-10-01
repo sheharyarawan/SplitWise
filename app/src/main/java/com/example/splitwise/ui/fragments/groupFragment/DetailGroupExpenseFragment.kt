@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.splitwise.R
 import com.example.splitwise.ui.adapters.DetailGroupExpenseAdapter
 import com.example.splitwise.databinding.FragmentDetailGroupExpenseBinding
+import com.example.splitwise.fragments.groupFragment.DetailGroupExpenseFragmentArgs
 
 class DetailGroupExpenseFragment : Fragment(R.layout.fragment_detail_group_expense) {
 

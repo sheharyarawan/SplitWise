@@ -7,7 +7,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentFriendDetailBinding
-import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
+import com.example.splitwise.ui.fragments.expenses.AddExpenseIGSheet
 
 
 class FriendDetailFragment : Fragment(R.layout.fragment_friend_detail) {

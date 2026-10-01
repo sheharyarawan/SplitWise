@@ -8,8 +8,8 @@ import androidx.navigation.fragment.NavHostFragment
 import com.example.splitwise.R
 import com.example.splitwise.databinding.AddExpenseBottomLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-
 class AddExpenseIGSheet : BottomSheetDialogFragment() {
 
     lateinit var binding: AddExpenseBottomLayoutBinding
@@ -53,9 +53,8 @@ class AddExpenseIGSheet : BottomSheetDialogFragment() {
     override fun onStart() {
         super.onStart()
 
-        val bottomSheet = dialog?.findViewById<View>(
-            com.google.android.material.R.id.design_bottom_sheet
-        )
+        val bottomSheet = (dialog as? BottomSheetDialog)
+            ?.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
 
         bottomSheet?.layoutParams?.height =
             ViewGroup.LayoutParams.MATCH_PARENT

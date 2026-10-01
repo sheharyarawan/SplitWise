@@ -13,7 +13,8 @@ import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.ui.adapters.GroupAdapter
 import com.example.splitwise.databinding.FragmentGroupsBinding
-import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
+import com.example.splitwise.fragments.groupFragment.GroupsFragmentDirections
+import com.example.splitwise.ui.fragments.expenses.AddExpenseIGSheet
 import com.example.splitwise.ui.viewModels.GroupViewModel
 import kotlinx.coroutines.launch
 

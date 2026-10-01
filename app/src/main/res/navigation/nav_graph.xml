@@ -7,87 +7,102 @@
 
     <fragment
         android:id="@+id/groupsFragment"
-        android:name="com.example.splitwise.fragments.groupFragment.GroupsFragment"
+        android:name="com.example.splitwise.ui.fragments.groupFragment.GroupsFragment"
         android:label="fragment_groups"
-        tools:layout="@layout/fragment_groups" >
+        tools:layout="@layout/fragment_groups">
+
         <action
             android:id="@+id/action_groupsFragment_to_detailGroupFragment"
             app:destination="@id/detailGroupFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/friendsFragment"
-        android:name="com.example.splitwise.fragments.friendFragment.FriendsFragment"
+        android:name="com.example.splitwise.ui.fragments.friendFragment.FriendsFragment"
         android:label="fragment_friends"
-        tools:layout="@layout/fragment_friends" >
+        tools:layout="@layout/fragment_friends">
+
         <action
             android:id="@+id/action_friendsFragment_to_addFriendFragment"
             app:destination="@id/addFriendFragment" />
+
         <action
             android:id="@+id/action_friendsFragment_to_friendDetailFragment"
             app:destination="@id/friendDetailFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/activityFragment"
-        android:name="com.example.splitwise.fragments.activityFragment.ActivityFragment"
+        android:name="com.example.splitwise.ui.fragments.activityFragment.ActivityFragment"
         android:label="fragment_activity"
         tools:layout="@layout/fragment_activity" />
+
     <fragment
         android:id="@+id/accountFragment"
-        android:name="com.example.splitwise.fragments.accountFragment.AccountFragment"
+        android:name="com.example.splitwise.ui.fragments.accountFragment.AccountFragment"
         android:label="fragment_account"
-        tools:layout="@layout/fragment_account" >
+        tools:layout="@layout/fragment_account">
+
         <action
             android:id="@+id/action_accountFragment_to_accountSettingsFragment"
             app:destination="@id/accountSettingsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/detailGroupFragment"
-        android:name="com.example.splitwise.fragments.groupFragment.DetailGroupFragment"
+        android:name="com.example.splitwise.ui.fragments.groupFragment.DetailGroupFragment"
         android:label="fragment_detail_group"
-        tools:layout="@layout/fragment_detail_group" >
+        tools:layout="@layout/fragment_detail_group">
+
         <action
             android:id="@+id/action_detailGroupFragment_to_groupSettingsFragment"
             app:destination="@id/groupSettingsFragment" />
+
         <action
             android:id="@+id/action_detailGroupFragment_to_addFriendFragment"
             app:destination="@id/addFriendFragment" />
+
         <action
             android:id="@+id/action_detailGroupFragment_to_paidByFragment"
             app:destination="@id/paidByFragment" />
+
         <action
             android:id="@+id/action_detailGroupFragment_to_groupSettleFragment"
             app:destination="@id/groupSettleFragment" />
+
         <action
             android:id="@+id/action_detailGroupFragment_to_balancesFragment"
             app:destination="@id/balancesFragment" />
 
-        <argument
-            android:name="groupId"
-            app:argType="string">
-
-        </argument>
         <action
             android:id="@+id/action_detailGroupFragment_to_detailGroupExpenseFragment"
             app:destination="@id/detailGroupExpenseFragment" />
+
+        <argument
+            android:name="groupId"
+            app:argType="string" />
     </fragment>
+
     <fragment
         android:id="@+id/groupSettingsFragment"
-        android:name="com.example.splitwise.fragments.groupFragment.GroupSettingsFragment"
+        android:name="com.example.splitwise.ui.fragments.groupFragment.GroupSettingsFragment"
         android:label="fragment_group_settings"
-        tools:layout="@layout/fragment_group_settings" >
+        tools:layout="@layout/fragment_group_settings">
+
         <action
             android:id="@+id/action_groupSettingsFragment_to_addFriendFragment"
             app:destination="@id/addFriendFragment" />
+
         <argument
             android:name="groupId"
-            app:argType="string">
-
-        </argument>
+            app:argType="string" />
     </fragment>
+
     <fragment
         android:id="@+id/addFriendFragment"
-        android:name="com.example.splitwise.fragments.friendFragment.AddFriendFragment"
+        android:name="com.example.splitwise.ui.fragments.friendFragment.AddFriendFragment"
         android:label="AddFriendFragment">
+
         <argument
             android:name="source"
             app:argType="string"
@@ -98,62 +113,69 @@
             app:argType="string"
             app:nullable="true"
             android:defaultValue="@null" />
-
-
     </fragment>
 
     <fragment
         android:id="@+id/friendDetailFragment"
-        android:name="com.example.splitwise.fragments.friendFragment.FriendDetailFragment"
+        android:name="com.example.splitwise.ui.fragments.friendFragment.FriendDetailFragment"
         android:label="fragment_friend_detail"
-        tools:layout="@layout/fragment_friend_detail" >
+        tools:layout="@layout/fragment_friend_detail">
+
         <action
             android:id="@+id/action_friendDetailFragment_to_friendSettingsFragment"
             app:destination="@id/friendSettingsFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/friendSettingsFragment"
-        android:name="com.example.splitwise.fragments.friendFragment.FriendSettingsFragment"
+        android:name="com.example.splitwise.ui.fragments.friendFragment.FriendSettingsFragment"
         android:label="fragment_friend_settings"
         tools:layout="@layout/fragment_friend_settings" />
+
     <fragment
         android:id="@+id/accountSettingsFragment"
-        android:name="com.example.splitwise.fragments.accountFragment.AccountSettingsFragment"
+        android:name="com.example.splitwise.ui.fragments.accountFragment.AccountSettingsFragment"
         android:label="fragment_account_settings"
         tools:layout="@layout/fragment_account_settings" />
+
     <fragment
         android:id="@+id/paidByFragment"
-        android:name="com.example.splitwise.fragments.expenses.PaidByFragment"
+        android:name="com.example.splitwise.ui.fragments.expenses.PaidByFragment"
         android:label="fragment_paid_by"
         tools:layout="@layout/fragment_paid_by" />
+
     <fragment
         android:id="@+id/groupSettleFragment"
-        android:name="com.example.splitwise.fragments.groupFragment.GroupSettleFragment"
+        android:name="com.example.splitwise.ui.fragments.groupFragment.GroupSettleFragment"
         android:label="fragment_group_settle"
-        tools:layout="@layout/fragment_group_settle" >
+        tools:layout="@layout/fragment_group_settle">
+
         <action
             android:id="@+id/action_groupSettleFragment_to_recordPaymentFragment"
             app:destination="@id/recordPaymentFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/recordPaymentFragment"
-        android:name="com.example.splitwise.fragments.groupFragment.RecordPaymentFragment"
+        android:name="com.example.splitwise.ui.fragments.groupFragment.RecordPaymentFragment"
         android:label="fragment_record_payment"
         tools:layout="@layout/fragment_record_payment" />
+
     <fragment
         android:id="@+id/balancesFragment"
-        android:name="com.example.splitwise.fragments.groupFragment.BalancesFragment"
+        android:name="com.example.splitwise.ui.fragments.groupFragment.BalancesFragment"
         android:label="fragment_balances"
         tools:layout="@layout/fragment_balances" />
+
     <fragment
         android:id="@+id/detailGroupExpenseFragment"
-        android:name="com.example.splitwise.fragments.groupFragment.DetailGroupExpenseFragment"
+        android:name="com.example.splitwise.ui.fragments.groupFragment.DetailGroupExpenseFragment"
         android:label="fragment_detail_group_expense"
-        tools:layout="@layout/fragment_detail_group_expense" >
+        tools:layout="@layout/fragment_detail_group_expense">
+
         <argument
             android:name="expense"
-            app:argType="com.example.splitwise.data.model.Expense">
-
-        </argument>
+            app:argType="com.example.splitwise.data.model.Expense" />
     </fragment>
+
 </navigation>

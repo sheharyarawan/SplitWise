@@ -2,9 +2,9 @@ package com.example.splitwise.ui.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
-import com.example.splitwise.fragments.expenses.EquallyFragment
-import com.example.splitwise.fragments.expenses.PercentageFragment
-import com.example.splitwise.fragments.expenses.UnequallyFragment
+import com.example.splitwise.ui.fragments.expenses.EquallyFragment
+import com.example.splitwise.ui.fragments.expenses.PercentageFragment
+import com.example.splitwise.ui.fragments.expenses.UnequallyFragment
 
 class SplitViewPager(fragment: Fragment): FragmentStateAdapter(fragment) {
     override fun createFragment(position: Int): Fragment {

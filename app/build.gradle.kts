@@ -57,14 +57,15 @@ dependencies {
     implementation(libs.firebase.analytics)
     implementation(libs.firebase.auth)
     implementation(libs.firebase.firestore)
-        implementation("androidx.credentials:credentials:1.5.0")
-        implementation("androidx.credentials:credentials-play-services-auth:1.5.0")
-        implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
+    implementation("androidx.credentials:credentials:1.5.0")
+    implementation("androidx.credentials:credentials-play-services-auth:1.5.0")
+    implementation("com.google.android.libraries.identity.googleid:googleid:1.1.1")
 
-        implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
+    implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
 
     // Material
     implementation(libs.material)
+    implementation("com.google.android.material:material:1.13.0")
 
 
     // =========================

@@ -6,7 +6,7 @@ import android.view.View
 import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentActivityBinding
-import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
+import com.example.splitwise.ui.fragments.expenses.AddExpenseIGSheet
 
 class ActivityFragment : Fragment(R.layout.fragment_activity) {
 

@@ -7,54 +7,63 @@
 
     <fragment
         android:id="@+id/addExpenseFragment"
-        android:name="com.example.splitwise.fragments.expenses.AddExpenseFragment"
+        android:name="com.example.splitwise.ui.fragments.expenses.AddExpenseFragment"
         android:label="fragment_add_expense"
-        tools:layout="@layout/fragment_add_expense" >
+        tools:layout="@layout/fragment_add_expense">
+
         <action
             android:id="@+id/action_addExpenseFragment_to_expenseSplitFragment"
             app:destination="@id/expenseSplitFragment" />
+
         <action
             android:id="@+id/action_addExpenseFragment_to_paidByFragment2"
             app:destination="@id/paidByFragment2" />
+
         <action
             android:id="@+id/action_addExpenseFragment_to_splitFragment"
             app:destination="@id/splitFragment" />
+
         <argument
             android:name="groupId"
             app:argType="string" />
     </fragment>
+
     <fragment
         android:id="@+id/expenseSplitFragment"
-        android:name="com.example.splitwise.fragments.expenses.ExpenseSplitFragment"
+        android:name="com.example.splitwise.ui.fragments.expenses.ExpenseSplitFragment"
         android:label="fragment_expense_split"
-        tools:layout="@layout/fragment_expense_split" >
+        tools:layout="@layout/fragment_expense_split">
+
         <action
             android:id="@+id/action_expenseSplitFragment_to_splitFragment"
             app:destination="@id/splitFragment" />
     </fragment>
+
     <fragment
         android:id="@+id/paidByFragment2"
-        android:name="com.example.splitwise.fragments.expenses.PaidByFragment"
+        android:name="com.example.splitwise.ui.fragments.expenses.PaidByFragment"
         android:label="fragment_paid_by"
-        tools:layout="@layout/fragment_paid_by" >
+        tools:layout="@layout/fragment_paid_by">
+
         <action
             android:id="@+id/action_paidByFragment2_to_paidAmountFragment"
             app:destination="@id/paidAmountFragment" />
 
         <argument
             android:name="groupId"
-            app:argType="string">
-
-        </argument>
+            app:argType="string" />
     </fragment>
+
     <fragment
         android:id="@+id/paidAmountFragment"
-        android:name="com.example.splitwise.fragments.expenses.PaidAmountFragment"
+        android:name="com.example.splitwise.ui.fragments.expenses.PaidAmountFragment"
         android:label="fragment_paid_amount"
         tools:layout="@layout/fragment_paid_amount" />
+
     <fragment
         android:id="@+id/splitFragment"
-        android:name="com.example.splitwise.fragments.expenses.SplitFragment"
+        android:name="com.example.splitwise.ui.fragments.expenses.SplitFragment"
         android:label="fragment_split"
         tools:layout="@layout/fragment_split" />
+
 </navigation>
