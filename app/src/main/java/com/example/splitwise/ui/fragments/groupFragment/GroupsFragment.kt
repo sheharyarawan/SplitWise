@@ -4,6 +4,7 @@ import android.app.AlertDialog
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -107,11 +108,14 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
                 groupViewModel.groupsWithBalances.collect { state ->
                     when (state) {
                         UiState.Loading -> {
+                            binding.groupsProgressBar.isVisible = true
                         }
                         is UiState.Success -> {
+                            binding.groupsProgressBar.isVisible = false
                             groupAdapter.submitList(state.data)
                         }
                         is UiState.Error -> {
+                            binding.groupsProgressBar.isVisible = false
                             showErrorDialog(state.message)
                         }
                     }
