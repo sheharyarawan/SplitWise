@@ -171,14 +171,6 @@ class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
             return
         }
 
-//        if(binding.expenseSplit.text=="Split Type"){
-//            Toast.makeText(
-//                requireContext(),
-//                "Enter who all are involved", Toast.LENGTH_SHORT
-//            ).show()
-//            return
-//        }
-
         val paidBy = userId
         val splitType = binding.expenseSplit.text.toString()
         val involvedUsers = mutableListOf<String>()

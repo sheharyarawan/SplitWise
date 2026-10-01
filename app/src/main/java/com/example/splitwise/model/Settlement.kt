@@ -4,9 +4,11 @@ import com.google.firebase.Timestamp
 
 data class Settlement(
     val id: String = "",
-    val groupId: String? = null,
-    val fromUser: String = "",
-    val toUser: String = "",
+    val groupId: String = "",
+    val fromUserId: String = "",
+    val fromUserName: String = "",
+    val toUserId: String = "",
+    val toUserName: String = "",
     val amount: Double = 0.0,
-    val date: Timestamp = Timestamp.now(),
+    val createdAt: Timestamp = Timestamp.now()
 )

@@ -23,8 +23,6 @@ class AddFriendFragment : Fragment(R.layout.fragment_add_friend) {
 
         binding= FragmentAddFriendBinding.bind(view)
         setUpToolbarClicks()
-        Log.d("Debugging",args.source)
-
     }
 
     fun setUpToolbarClicks(){
@@ -51,7 +49,7 @@ class AddFriendFragment : Fragment(R.layout.fragment_add_friend) {
         val name= binding.nameEditText.text.toString().trim()
         val email= binding.phoneOrEmailEditText.text.toString().trim()
 
-        friendViewModel.addUserToGroup(groupId,email,name,
+        friendViewModel.addUserToGroup(groupId,name,email,
             onSuccess = {
                 findNavController().navigateUp()
             },

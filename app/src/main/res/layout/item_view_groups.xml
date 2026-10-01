@@ -1,58 +1,92 @@
 <?xml version="1.0" encoding="utf-8"?>
+
 <androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+
     android:id="@+id/nonGroupExpensesCL"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="1.0"
-    app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toBottomOf="@+id/groupsFragmentDrawerTv"
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/gray"
-    android:paddingBottom="10dp"
-    >
+    android:paddingBottom="12dp"
+    android:paddingTop="5dp">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/groupNonExpenseIv"
         android:layout_width="100dp"
-        android:layout_height="100dp"
-
+        android:layout_height="0dp"
+        android:minHeight="100dp"
         android:scaleType="centerCrop"
         android:src="@drawable/groupshomeimage"
+
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium">
-
-    </com.google.android.material.imageview.ShapeableImageView>
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Medium" />
 
     <TextView
         android:id="@+id/groupName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
+        android:layout_marginEnd="10dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="group Name"
+        android:text="Trip to Murree"
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toTopOf="@+id/groupExpenses"
-        app:layout_constraintStart_toEndOf="@+id/groupNonExpenseIv"
-        app:layout_constraintTop_toTopOf="@+id/groupNonExpenseIv"
-        app:layout_constraintVertical_chainStyle="packed">
 
-    </TextView>
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/groupNonExpenseIv"
+        app:layout_constraintTop_toTopOf="@id/groupNonExpenseIv" />
 
     <TextView
         android:id="@+id/groupExpenses"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="15dp"
-        android:text="no expense"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="You are owed Rs 500"
         android:textColor="#C2C0C0"
-        android:textSize="19sp"
-        app:layout_constraintBottom_toBottomOf="@+id/groupNonExpenseIv"
-        app:layout_constraintStart_toEndOf="@+id/groupNonExpenseIv"
-        app:layout_constraintTop_toBottomOf="@+id/groupName">
-    </TextView>
+        android:textSize="17sp"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/groupNonExpenseIv"
+        app:layout_constraintTop_toBottomOf="@id/groupName" />
+
+    <TextView
+        android:id="@+id/groupOwedBy"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="Ali owes you Rs 300&#10;Ahmed owes you Rs 200"
+        android:textColor="#C2C0C0"
+        android:textSize="14sp"
+        android:visibility="gone"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/groupNonExpenseIv"
+        app:layout_constraintTop_toBottomOf="@id/groupExpenses" />
+
+    <TextView
+        android:id="@+id/groupOweTo"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="15dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="10dp"
+        android:fontFamily="@font/poppins_medium"
+        android:text="You owe Bilal Rs 150"
+        android:textColor="#C2C0C0"
+        android:textSize="14sp"
+        android:visibility="gone"
+
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/groupNonExpenseIv"
+        app:layout_constraintTop_toBottomOf="@id/groupOwedBy" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

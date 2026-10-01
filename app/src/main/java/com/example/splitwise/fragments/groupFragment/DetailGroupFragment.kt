@@ -23,6 +23,7 @@ import com.example.splitwise.adapters.GroupExpensesAdapter
 import com.example.splitwise.databinding.FragmentDetailGroupBinding
 import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
 import com.example.splitwise.model.Expense
+import com.example.splitwise.utils.GroupBalanceCalculator
 import com.example.splitwise.viewModels.ExpenseViewModel
 import com.example.splitwise.viewModels.GroupViewModel
 import com.google.firebase.auth.FirebaseAuth
@@ -49,6 +50,16 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
                 openBottomSheet(args.groupId)
             }
         }
+        groupViewModel.getGroupBalances(
+            groupId = args.groupId,
+            onFailure = { exception ->
+                Log.e(
+                    "DetailGroupFragment",
+                    "Failed to refresh balances",
+                    exception
+                )
+            }
+        )
     }
 
     override fun onPause() {
@@ -65,10 +76,11 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
         getGroupDetails()
         observeGroup()
         loadGroupMembers()
-
         setUpRecyclerView()
         loadExpenses()
         observeExpenses()
+        loadGroupBalances()
+        observeGroupBalances()
     }
 
     fun openBottomSheet(groupId:String){
@@ -160,12 +172,40 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
 
     fun observeExpenses() {
         viewLifecycleOwner.lifecycleScope.launch {
-            viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
+            viewLifecycleOwner.repeatOnLifecycle(
+                Lifecycle.State.STARTED
+            ) {
                 expenseViewModel.groupExpenses.collect { expenses ->
-
                     groupExpenseAdapter.submitList(expenses)
                     updateExpenseVisibility(expenses)
-                    updateGroupTotal(expenses)
+                }
+            }
+        }
+    }
+    fun loadGroupBalances() {
+
+        groupViewModel.getGroupBalances(
+            groupId = args.groupId,
+            onFailure = { exception ->
+
+                Log.e(
+                    "DetailGroupFragment",
+                    "Failed to load group balances",
+                    exception
+                )
+            }
+        )
+    }
+
+    fun observeGroupBalances() {
+
+        viewLifecycleOwner.lifecycleScope.launch {
+
+            viewLifecycleOwner.repeatOnLifecycle(
+                Lifecycle.State.STARTED
+            ) {
+                groupViewModel.groupBalances.collect { balances ->
+                    updateGroupTotal(balances)
                 }
             }
         }
@@ -203,61 +243,101 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
         binding.singleMemberLinearDisplay.isVisible = memberCount > 1
     }
 
-    private fun updateGroupTotal(expenses: List<Expense>) {
+    private fun updateGroupTotal(
+        balances: List<com.example.splitwise.model.GroupBalance>
+    ) {
 
         val currentUserId =
-            FirebaseAuth.getInstance().currentUser?.uid ?: return
+            FirebaseAuth.getInstance().currentUser?.uid
+                ?: return
 
-        val totalBalance = expenses.sumOf { expense ->
+        val youGetBack =
+            GroupBalanceCalculator.getYouGetBack(
+                balances = balances,
+                currentUserId = currentUserId
+            )
 
-            val myShare = expense.splits
-                .find { it.userId == currentUserId }
-                ?.amount ?: 0.0
+        val youOwe =
+            GroupBalanceCalculator.getYouOwe(
+                balances = balances,
+                currentUserId = currentUserId
+            )
 
-            val myPaidAmount =
-                if (expense.paidBy == currentUserId) {
-                    expense.amount
-                } else {
-                    0.0
-                }
+        val fullText: String
 
-            myPaidAmount - myShare
-        }
+        val amountText: String
 
-        val amountText = "Rs ${kotlin.math.abs(totalBalance).toInt()}"
+        when {
 
-        val fullText = when {
-            totalBalance > 0 ->
-                "You are owed $amountText overall"
+            youGetBack > 0.01 -> {
 
-            totalBalance < 0 ->
-                "You owe $amountText overall"
+                amountText =
+                    "Rs ${formatAmount(youGetBack)}"
 
-            else ->
-                "You are settled up"
-        }
-
-        val spannable = SpannableString(fullText)
-
-        if (totalBalance != 0.0) {
-
-            val start = fullText.indexOf(amountText)
-            val end = start + amountText.length
-
-            val color = if (totalBalance > 0) {
-                ContextCompat.getColor(requireContext(), R.color.green)
-            } else {
-                ContextCompat.getColor(requireContext(), R.color.red)
+                fullText =
+                    "You are owed $amountText overall"
             }
 
-            spannable.setSpan(
-                ForegroundColorSpan(color),
-                start,
-                end,
-                Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
-            )
+            youOwe > 0.01 -> {
+
+                amountText =
+                    "Rs ${formatAmount(youOwe)}"
+
+                fullText =
+                    "You owe $amountText overall"
+            }
+
+            else -> {
+
+                binding.detailGroupExpenseTotalTv.text =
+                    "You are settled up"
+
+                return
+            }
         }
 
-        binding.detailGroupExpenseTotalTv.text = spannable
+        val spannable =
+            SpannableString(fullText)
+
+        val start =
+            fullText.indexOf(amountText)
+
+        val end =
+            start + amountText.length
+
+        val color =
+            if (youGetBack > 0.01) {
+
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.green
+                )
+
+            } else {
+
+                ContextCompat.getColor(
+                    requireContext(),
+                    R.color.red
+                )
+            }
+
+        spannable.setSpan(
+            ForegroundColorSpan(color),
+            start,
+            end,
+            Spannable.SPAN_EXCLUSIVE_EXCLUSIVE
+        )
+
+        binding.detailGroupExpenseTotalTv.text =
+            spannable
+    }
+
+    private fun formatAmount(amount: Double): String {
+
+        return if (amount % 1.0 == 0.0) {
+            amount.toInt().toString()
+        } else {
+            String.format("%.2f", amount)
+        }
     }
 }

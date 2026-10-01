@@ -1,24 +1,31 @@
 package com.example.splitwise.repositories
 
-import android.util.Log
+import com.example.splitwise.model.Expense
 import com.example.splitwise.model.Group
+import com.example.splitwise.model.GroupBalance
+import com.example.splitwise.model.GroupWithBalance
+import com.example.splitwise.model.Settlement
 import com.example.splitwise.model.User
+import com.example.splitwise.utils.GroupBalanceCalculator
+import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-import com.google.firebase.firestore.memoryEagerGcSettings
+import com.google.firebase.firestore.QuerySnapshot
 
 class GroupRepository {
-    private val firestore= FirebaseFirestore.getInstance()
-    private val auth= FirebaseAuth.getInstance()
+
+    private val firestore = FirebaseFirestore.getInstance()
+    private val auth = FirebaseAuth.getInstance()
 
     fun createGroup(
-        name:String,
-        type:String,
+        name: String,
+        type: String,
         onSuccess: (String) -> Unit,
         onFailure: (Exception) -> Unit
-    ){
-        val currentUser= auth.currentUser
+    ) {
+
+        val currentUser = auth.currentUser
 
         if (currentUser == null) {
             onFailure(
@@ -26,29 +33,34 @@ class GroupRepository {
             )
             return
         }
-        val userId= currentUser.uid
 
-        val groupId= firestore.collection("groups")
-            .document().id
+        val userId = currentUser.uid
 
-        val group= Group(
+        val groupId = firestore
+            .collection("groups")
+            .document()
+            .id
+
+        val group = Group(
             id = groupId,
-            name= name,
-            type= type,
+            name = name,
+            type = type,
             createdBy = userId,
             memberIds = listOf(userId),
             createdAt = Timestamp.now()
         )
 
-        val groupRef= firestore.collection("groups")
+        val groupRef = firestore
+            .collection("groups")
             .document(groupId)
 
-        val memberRef= groupRef.collection("members")
+        val memberRef = groupRef
+            .collection("members")
             .document(userId)
 
-        val batch= firestore.batch()
+        val batch = firestore.batch()
 
-        batch.set(groupRef,group)
+        batch.set(groupRef, group)
 
         batch.set(
             memberRef,
@@ -69,9 +81,10 @@ class GroupRepository {
 
     fun getGroups(
         onSuccess: (List<Group>) -> Unit,
-        onFailure: (Exception) -> Unit) {
+        onFailure: (Exception) -> Unit
+    ) {
 
-        val currentUser= auth.currentUser
+        val currentUser = auth.currentUser
 
         if (currentUser == null) {
             onFailure(
@@ -79,28 +92,195 @@ class GroupRepository {
             )
             return
         }
-        firestore.collection("groups").whereArrayContains(
-            "memberIds",
-            currentUser.uid
-        ).addSnapshotListener { snapshots, error ->
-            if (error != null) {
-                onFailure(error)
-                return@addSnapshotListener
+
+        firestore
+            .collection("groups")
+            .whereArrayContains(
+                "memberIds",
+                currentUser.uid
+            )
+            .addSnapshotListener { snapshots, error ->
+
+                if (error != null) {
+                    onFailure(error)
+                    return@addSnapshotListener
+                }
+
+                val groups =
+                    snapshots
+                        ?.documents
+                        ?.mapNotNull { document ->
+
+                            document
+                                .toObject(Group::class.java)
+                                ?.copy(
+                                    id = document.id
+                                )
+                        }
+                        ?: emptyList()
+
+                onSuccess(groups)
             }
-            val groups= snapshots?.documents?.mapNotNull { document->
-                document.toObject(Group::class.java)?.copy(
-                    id = document.id
-                )
-            }?:emptyList()
-            onSuccess(groups)
+    }
+
+    // --------------------------------------------------
+    // GET GROUPS WITH BALANCES
+    // --------------------------------------------------
+
+    fun getGroupsWithBalances(
+        onSuccess: (List<GroupWithBalance>) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+
+        val currentUser = auth.currentUser
+
+        if (currentUser == null) {
+            onFailure(
+                Exception("User is not logged in")
+            )
+            return
         }
+
+        firestore
+            .collection("groups")
+            .whereArrayContains(
+                "memberIds",
+                currentUser.uid
+            )
+            .get()
+            .addOnSuccessListener { snapshot ->
+
+                val groups =
+                    snapshot.documents.mapNotNull { document ->
+
+                        document
+                            .toObject(Group::class.java)
+                            ?.copy(
+                                id = document.id
+                            )
+                    }
+
+                if (groups.isEmpty()) {
+                    onSuccess(emptyList())
+                    return@addOnSuccessListener
+                }
+
+                getBalancesForGroups(
+                    groups = groups,
+                    currentUserId = currentUser.uid,
+                    onSuccess = onSuccess,
+                    onFailure = onFailure
+                )
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
+    }
+
+    private fun getBalancesForGroups(
+        groups: List<Group>,
+        currentUserId: String,
+        onSuccess: (List<GroupWithBalance>) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+
+        val requests = groups.map { group ->
+
+            val expensesTask =
+                firestore
+                    .collection("expenses")
+                    .whereEqualTo(
+                        "groupId",
+                        group.id
+                    )
+                    .get()
+
+            val settlementsTask =
+                firestore
+                    .collection("settlements")
+                    .whereEqualTo(
+                        "groupId",
+                        group.id
+                    )
+                    .get()
+
+            Tasks
+                .whenAllSuccess<com.google.firebase.firestore.QuerySnapshot>(
+                    expensesTask,
+                    settlementsTask
+                )
+                .continueWith { task ->
+
+                    val results = task.result
+
+                    val expenseSnapshot = results[0]
+                    val settlementSnapshot = results[1]
+
+                    val expenses =
+                        expenseSnapshot.documents.mapNotNull { document ->
+
+                            document
+                                .toObject(Expense::class.java)
+                                ?.copy(
+                                    id = document.id
+                                )
+                        }
+
+                    val settlements =
+                        settlementSnapshot.documents.mapNotNull { document ->
+
+                            document
+                                .toObject(Settlement::class.java)
+                                ?.copy(
+                                    id = document.id
+                                )
+                        }
+
+                    val balances =
+                        GroupBalanceCalculator.calculate(
+                            expenses = expenses,
+                            settlements = settlements
+                        )
+
+                    val youOwe =
+                        GroupBalanceCalculator.getYouOwe(
+                            balances = balances,
+                            currentUserId = currentUserId
+                        )
+
+                    val youGetBack =
+                        GroupBalanceCalculator.getYouGetBack(
+                            balances = balances,
+                            currentUserId = currentUserId
+                        )
+
+                    GroupWithBalance(
+                        group = group,
+                        youGetBack = youGetBack,
+                        youOwe = youOwe,
+                        balances = balances
+                    )
+                }
+        }
+
+        Tasks
+            .whenAllSuccess<GroupWithBalance>(requests)
+            .addOnSuccessListener { results ->
+
+                onSuccess(results)
+            }
+            .addOnFailureListener { exception ->
+
+                onFailure(exception)
+            }
     }
 
     fun getGroupById(
-        groupId:String,
+        groupId: String,
         onSuccess: (Group?) -> Unit,
         onFailure: (Exception) -> Unit
-    ){
+    ) {
+
         firestore
             .collection("groups")
             .document(groupId)
@@ -146,9 +326,11 @@ class GroupRepository {
                 }
 
                 if (document == null || !document.exists()) {
+
                     onFailure(
                         Exception("Group not found")
                     )
+
                     return@addSnapshotListener
                 }
 
@@ -171,7 +353,7 @@ class GroupRepository {
                             .get()
                     }
 
-                com.google.android.gms.tasks.Tasks
+                Tasks
                     .whenAllSuccess<com.google.firebase.firestore.DocumentSnapshot>(
                         requests
                     )
@@ -186,6 +368,7 @@ class GroupRepository {
                                         id = userDocument.id
                                     )
                             }
+
                         onSuccess(members)
                     }
                     .addOnFailureListener { exception ->
@@ -194,5 +377,65 @@ class GroupRepository {
                     }
             }
     }
+
+    fun getGroupBalances(
+        groupId: String,
+        onSuccess: (List<GroupBalance>) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+
+        val expensesTask = firestore
+            .collection("expenses")
+            .whereEqualTo("groupId", groupId)
+            .get()
+
+        val settlementsTask = firestore
+            .collection("settlements")
+            .whereEqualTo("groupId", groupId)
+            .get()
+
+        Tasks.whenAllSuccess<QuerySnapshot>(
+            expensesTask,
+            settlementsTask
+        )
+            .addOnSuccessListener { results ->
+
+                val expenseSnapshot = results[0]
+                val settlementSnapshot = results[1]
+
+                val expenses =
+                    expenseSnapshot.documents.mapNotNull { document ->
+
+                        document
+                            .toObject(Expense::class.java)
+                            ?.copy(
+                                id = document.id
+                            )
+                    }
+
+                val settlements =
+                    settlementSnapshot.documents.mapNotNull { document ->
+
+                        document
+                            .toObject(Settlement::class.java)
+                            ?.copy(
+                                id = document.id
+                            )
+                    }
+
+                val balances =
+                    GroupBalanceCalculator.calculate(
+                        expenses = expenses,
+                        settlements = settlements
+                    )
+
+                onSuccess(balances)
+            }
+            .addOnFailureListener { exception ->
+
+                onFailure(exception)
+            }
+    }
+
 
 }

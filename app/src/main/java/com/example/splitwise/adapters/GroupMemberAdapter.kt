@@ -39,11 +39,6 @@ class GroupMemberAdapter :
 
         val member = getItem(position)
 
-        Log.d(
-            "GROUP_DEBUG",
-            "Binding position=$position: ${member.name} - ${member.email} - ${member.balance}"
-        )
-
         holder.userName.text = member.name
         holder.userMail.text = member.email
 

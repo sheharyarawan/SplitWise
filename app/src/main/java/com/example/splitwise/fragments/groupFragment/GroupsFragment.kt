@@ -35,6 +35,7 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
                 openBottomSheetExpense()
             }
         }
+        groupViewModel.getGroupsWithBalances()
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
 
@@ -50,14 +51,14 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
     fun handleClicks(){
         val mainActivity = requireActivity() as MainActivity
 
-        binding.groupsScrollView.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-
-            if (scrollY > oldScrollY) {
-                mainActivity.shrinkAddExpenseButton()
-            } else if (scrollY < oldScrollY) {
-                mainActivity.extendAddExpenseButton()
-            }
-        }
+//        binding.groupsScrollView.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
+//
+//            if (scrollY > oldScrollY) {
+//                mainActivity.shrinkAddExpenseButton()
+//            } else if (scrollY < oldScrollY) {
+//                mainActivity.extendAddExpenseButton()
+//            }
+//        }
 
         binding.nonGroupExpensesCL.setOnClickListener {
             findNavController().navigate(R.id.action_groupsFragment_to_detailGroupFragment)
@@ -126,12 +127,12 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
         }
     }
 
-    fun observeGroups(){
+    fun observeGroups() {
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(
                 Lifecycle.State.STARTED
             ) {
-                groupViewModel.groups.collect { groups ->
+                groupViewModel.groupsWithBalances.collect { groups ->
                     groupAdapter.submitList(groups)
                 }
             }

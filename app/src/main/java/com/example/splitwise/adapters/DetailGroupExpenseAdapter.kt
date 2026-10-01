@@ -27,7 +27,7 @@ class DetailGroupExpenseAdapter:
         position: Int
     ) {
         val item= getItem(position)
-        holder.paidBy.text="${item.userName} owes ${item.amount}"
+        "${item.userName} owes ${item.amount}".also { holder.paidBy.text = it }
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){

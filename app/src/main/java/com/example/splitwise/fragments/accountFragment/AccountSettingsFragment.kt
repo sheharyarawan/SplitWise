@@ -58,7 +58,6 @@ class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
 
     private fun setUpPasswordEdit() {
         binding.accountSettingPasswordEdit.setOnClickListener {
-
             binding.accountSettingPassword.visibility = View.GONE
             binding.accountSettingPasswordEdit.visibility = View.GONE
             binding.accountSettingPasswordLL.visibility = View.VISIBLE
