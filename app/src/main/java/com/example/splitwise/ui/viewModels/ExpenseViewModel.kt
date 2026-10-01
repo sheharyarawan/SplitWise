@@ -2,13 +2,13 @@ package com.example.splitwise.ui.viewModels
 
 import androidx.lifecycle.ViewModel
 import com.example.splitwise.data.model.Expense
-import com.example.splitwise.data.repositories.ExpenseRepository
+import com.example.splitwise.data.repositories.ExpenseRepositoryImpl
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
 class ExpenseViewModel: ViewModel() {
-    private val repository = ExpenseRepository()
+    private val repository = ExpenseRepositoryImpl()
     private val _groupExpenses = MutableStateFlow<List<Expense>>(emptyList())
     val groupExpenses: StateFlow<List<Expense>> = _groupExpenses.asStateFlow()
 
