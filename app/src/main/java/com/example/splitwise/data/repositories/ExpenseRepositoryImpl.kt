@@ -1,10 +1,13 @@
 package com.example.splitwise.data.repositories
 
 import com.example.splitwise.data.model.Expense
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.firestore.FirebaseFirestore
-
-class ExpenseRepositoryImpl: ExpenseRepository {
-    val firestore= FirebaseFirestore.getInstance()
+import jakarta.inject.Inject
+class ExpenseRepositoryImpl @Inject constructor(
+    private val firestore: FirebaseFirestore,
+    private val auth: FirebaseAuth
+): ExpenseRepository {
     override fun addExpense(
         expense: Expense,
         onSuccess: () -> Unit,
