@@ -1,26 +1,13 @@
-package com.example.splitwise.repository
+package com.example.splitwise.data.repositories
 
 import com.example.splitwise.data.model.User
-import com.google.firebase.firestore.FirebaseFirestore
 
-class UserRepository {
-    private val firestore= FirebaseFirestore.getInstance()
+interface UserRepository {
 
     fun createUser(
         uid: String,
         user: User,
         onSuccess: () -> Unit,
         onFailure: (Exception) -> Unit
-    ) {
-        firestore
-            .collection("users")
-            .document(uid)
-            .set(user)
-            .addOnSuccessListener {
-                onSuccess()
-            }
-            .addOnFailureListener { exception ->
-                onFailure(exception)
-            }
-    }
+    )
 }

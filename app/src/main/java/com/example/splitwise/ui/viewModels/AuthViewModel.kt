@@ -2,13 +2,13 @@ package com.example.splitwise.viewModel
 
 import androidx.lifecycle.ViewModel
 import com.example.splitwise.data.model.User
-import com.example.splitwise.repository.UserRepository
+import com.example.splitwise.data.repositories.UserRepositoryImpl
 import com.google.firebase.auth.FirebaseAuth
 
 class AuthViewModel : ViewModel() {
 
     private val auth = FirebaseAuth.getInstance()
-    private val userRepository = UserRepository()
+    private val userRepository = UserRepositoryImpl()
 
     fun saveUser(
         onSuccess: () -> Unit,
