@@ -1,4 +1,4 @@
-package com.example.splitwise
+package com.example.splitwise.ui
 
 import android.os.Bundle
 import android.view.View
@@ -8,6 +8,7 @@ import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
 import androidx.navigation.fragment.NavHostFragment
 import androidx.navigation.ui.setupWithNavController
+import com.example.splitwise.R
 import com.example.splitwise.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
 

@@ -10,7 +10,7 @@ import androidx.credentials.GetCredentialRequest
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
-import com.example.splitwise.MainActivity
+import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentAuthBinding
 import com.example.splitwise.viewModel.AuthViewModel

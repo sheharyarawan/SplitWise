@@ -4,7 +4,7 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
-import com.example.splitwise.MainActivity
+import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentAccountSettingsBinding
 

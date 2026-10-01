@@ -9,7 +9,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.splitwise.MainActivity
+import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.ui.adapters.GroupAdapter
 import com.example.splitwise.databinding.FragmentGroupsBinding
