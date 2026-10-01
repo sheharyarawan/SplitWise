@@ -47,16 +47,6 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
     }
 
     fun handleClicks(){
-        val mainActivity = requireActivity() as MainActivity
-
-//        binding.groupsScrollView.setOnScrollChangeListener { _, _, scrollY, _, oldScrollY ->
-//
-//            if (scrollY > oldScrollY) {
-//                mainActivity.shrinkAddExpenseButton()
-//            } else if (scrollY < oldScrollY) {
-//                mainActivity.extendAddExpenseButton()
-//            }
-//        }
 
         binding.nonGroupExpensesCL.setOnClickListener {
             findNavController().navigate(R.id.action_groupsFragment_to_detailGroupFragment)
