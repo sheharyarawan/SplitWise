@@ -1,0 +1,31 @@
+package com.example.splitwise.ui.fragments.friendFragment
+
+import android.os.Bundle
+import androidx.fragment.app.Fragment
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
+import androidx.navigation.fragment.findNavController
+import com.example.splitwise.MainActivity
+import com.example.splitwise.R
+import com.example.splitwise.databinding.FragmentFriendSettingsBinding
+
+
+class FriendSettingsFragment : Fragment(R.layout.fragment_friend_settings) {
+
+    override fun onResume() {
+        super.onResume()
+
+        val mainActivity = requireActivity() as MainActivity
+        mainActivity.hideAddExpenseButton()
+        mainActivity.hideBottomNav()
+    }
+    lateinit var binding: FragmentFriendSettingsBinding
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        binding= FragmentFriendSettingsBinding.bind(view)
+        binding.friendSettingToolbar.setNavigationOnClickListener {
+            findNavController().navigateUp()
+        }
+    }
+}
