@@ -8,12 +8,12 @@ import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 
-class FriendRepositoryImpl {
+class FriendRepositoryImpl: FriendRepository {
 
     private val firestore = FirebaseFirestore.getInstance()
     private val auth = FirebaseAuth.getInstance()
 
-    fun addFriend(
+    override fun addFriend(
         name: String,
         email: String,
         onSuccess: () -> Unit,
@@ -158,7 +158,7 @@ class FriendRepositoryImpl {
                 onFailure(exception)
             }
     }
-    fun addUserToGroup(
+    override fun addUserToGroup(
         groupId: String?,
         name: String,
         email: String,
@@ -425,7 +425,7 @@ class FriendRepositoryImpl {
             }
     }
 
-    fun getFriends(
+    override fun getFriends(
         onSuccess: (List<User>) -> Unit,
         onFailure: (Exception) -> Unit
     ) {
