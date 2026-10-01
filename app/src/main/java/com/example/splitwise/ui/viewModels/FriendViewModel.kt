@@ -1,9 +1,8 @@
 package com.example.splitwise.ui.viewModels
-
 import androidx.lifecycle.ViewModel
 import com.example.splitwise.data.model.User
 import com.example.splitwise.data.repositories.FriendRepository
-import com.example.splitwise.data.repositories.FriendRepositoryImpl
+import com.example.splitwise.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -12,29 +11,16 @@ import kotlinx.coroutines.flow.asStateFlow
 
 @HiltViewModel
 class FriendViewModel @Inject constructor(
-    private val repository:FriendRepository
-):ViewModel() {
-
-
-    // ---------------------------------------------------------
-    // FRIENDS LIST
-    // ---------------------------------------------------------
-
-    private val _friends = MutableStateFlow<List<User>>(emptyList())
-    val friends: StateFlow<List<User>> = _friends.asStateFlow()
-
-
-    // ---------------------------------------------------------
-    // ADD FRIEND
-    // ---------------------------------------------------------
-
+    private val repository: FriendRepository
+) : ViewModel() {
+    private val _friends = MutableStateFlow<UiState<List<User>>>(UiState.Loading)
+    val friends: StateFlow<UiState<List<User>>> = _friends.asStateFlow()
     fun addFriend(
         name: String,
         email: String,
         onSuccess: () -> Unit,
         onFailure: (Exception) -> Unit
     ) {
-
         repository.addFriend(
             name = name,
             email = email,
@@ -46,12 +32,6 @@ class FriendViewModel @Inject constructor(
             }
         )
     }
-
-
-    // ---------------------------------------------------------
-    // ADD USER TO GROUP
-    // ---------------------------------------------------------
-
     fun addUserToGroup(
         groupId: String?,
         name: String,
@@ -59,43 +39,31 @@ class FriendViewModel @Inject constructor(
         onSuccess: () -> Unit,
         onFailure: (Exception) -> Unit
     ) {
-
         repository.addUserToGroup(
             groupId = groupId,
             name = name,
             email = email,
             onSuccess = {
                 onSuccess()
-                getFriends()
             },
             onFailure = { exception ->
                 onFailure(exception)
             }
         )
     }
-
-
-    // ---------------------------------------------------------
-    // GET FRIENDS
-    // ---------------------------------------------------------
-
     fun getFriends() {
-
+        _friends.value = UiState.Loading
         repository.getFriends(
             onSuccess = { friends ->
-                _friends.value = friends
+                _friends.value = UiState.Success(friends)
             },
             onFailure = { exception ->
-                // We can add an error StateFlow later if needed.
+                _friends.value = UiState.Error(
+                    exception.message ?: "Failed to load friends"
+                )
             }
         )
     }
-
-
-    // ---------------------------------------------------------
-    // LOAD FRIENDS WHEN VIEWMODEL IS CREATED
-    // ---------------------------------------------------------
-
     init {
         getFriends()
     }
