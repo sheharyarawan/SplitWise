@@ -1,162 +1,155 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.core.widget.NestedScrollView
+<FrameLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/gray"
-    android:fillViewport="true"
-    tools:context=".fragments.groupFragment.GroupSettingsFragment">
-
-    <LinearLayout
+    tools:context=".ui.fragments.groupFragment.GroupSettingsFragment">
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:orientation="vertical">
-
-        <com.google.android.material.appbar.MaterialToolbar
-            android:id="@+id/toolbarGroupSettings"
+        android:layout_height="match_parent"
+        android:background="@color/gray"
+        android:fillViewport="true">
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:navigationIcon="@drawable/ic_back"
-            app:title="Group Settings"
-            app:titleMarginStart="10dp"
-            app:titleTextColor="@color/white" />
-
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:id="@+id/customizeGroupCL"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:padding="20dp">
-
-            <ImageView
-                android:id="@+id/imageView2"
-                android:layout_width="70dp"
-                android:layout_height="70dp"
-                android:scaleType="centerCrop"
-                android:src="@drawable/groupshomeimage"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <TextView
-                android:id="@+id/groupName"
-                android:layout_width="0dp"
+            android:orientation="vertical">
+            <com.google.android.material.appbar.MaterialToolbar
+                android:id="@+id/toolbarGroupSettings"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="Group"
+                app:navigationIcon="@drawable/ic_back"
+                app:title="Group Settings"
+                app:titleMarginStart="10dp"
+                app:titleTextColor="@color/white" />
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:id="@+id/customizeGroupCL"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="20dp">
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="70dp"
+                    android:layout_height="70dp"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/groupshomeimage"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    android:id="@+id/groupName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Group"
+                    android:textColor="@color/white"
+                    android:textSize="20sp"
+                    app:layout_constraintBottom_toTopOf="@id/groupType"
+                    app:layout_constraintEnd_toStartOf="@id/editGroupImage"
+                    app:layout_constraintStart_toEndOf="@id/imageView2"
+                    app:layout_constraintTop_toTopOf="@id/imageView2"
+                    app:layout_constraintVertical_chainStyle="packed" />
+                <TextView
+                    android:id="@+id/groupType"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:ellipsize="end"
+                    android:maxLines="1"
+                    android:text="Other"
+                    android:textColor="#8D8D8D"
+                    android:textSize="18sp"
+                    app:layout_constraintBottom_toBottomOf="@id/imageView2"
+                    app:layout_constraintEnd_toStartOf="@id/editGroupImage"
+                    app:layout_constraintStart_toEndOf="@id/imageView2"
+                    app:layout_constraintTop_toBottomOf="@id/groupName" />
+                <ImageView
+                    android:id="@+id/editGroupImage"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:src="@drawable/ic_edit"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginBottom="10dp"
+                android:background="#8D8D8D" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:text="Group members"
                 android:textColor="@color/white"
-                android:textSize="20sp"
-                app:layout_constraintBottom_toTopOf="@id/groupType"
-                app:layout_constraintEnd_toStartOf="@id/editGroupImage"
-                app:layout_constraintStart_toEndOf="@id/imageView2"
-                app:layout_constraintTop_toTopOf="@id/imageView2"
-                app:layout_constraintVertical_chainStyle="packed" />
-
+                android:textSize="19sp" />
             <TextView
-                android:id="@+id/groupType"
-                android:layout_width="0dp"
+                android:id="@+id/addPeopleToGroup"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="10dp"
-                android:ellipsize="end"
-                android:maxLines="1"
-                android:text="Other"
-                android:textColor="#8D8D8D"
-                android:textSize="18sp"
-                app:layout_constraintBottom_toBottomOf="@id/imageView2"
-                app:layout_constraintEnd_toStartOf="@id/editGroupImage"
-                app:layout_constraintStart_toEndOf="@id/imageView2"
-                app:layout_constraintTop_toBottomOf="@id/groupName" />
-
-            <ImageView
-                android:id="@+id/editGroupImage"
-                android:layout_width="30dp"
-                android:layout_height="30dp"
-                android:src="@drawable/ic_edit"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="1dp"
-            android:layout_marginBottom="10dp"
-            android:background="#8D8D8D" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:text="Group members"
-            android:textColor="@color/white"
-            android:textSize="19sp" />
-
-        <TextView
-            android:id="@+id/addPeopleToGroup"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:drawableStart="@drawable/ic_addgroup"
-            android:drawablePadding="30dp"
-            android:gravity="center_vertical"
-            android:text="Add people to group"
-            android:textColor="@color/white"
-            android:textSize="24sp" />
-
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/detailGroupSettingsRv"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginEnd="20dp"
-            android:nestedScrollingEnabled="false"
-            tools:itemCount="3"
-            tools:listitem="@layout/item_member_group_setting" />
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_margin="20dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Advanced settings"
-            android:textColor="@color/white"
-            android:textSize="20sp" />
-
-        <TextView
-            android:id="@+id/groupDetailSettingsLeaveGroupTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:drawableStart="@drawable/ic_leave_group"
-            android:drawablePadding="20dp"
-            android:fontFamily="@font/poppins_medium"
-            android:gravity="center_vertical"
-            android:text="Leave group"
-            android:textColor="@color/white"
-            android:textSize="22sp" />
-
-        <TextView
-            android:id="@+id/groupDetailSettingsDeleteGroupTv"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:drawableStart="@drawable/ic_delete"
-            android:drawablePadding="20dp"
-            android:drawableTint="@color/red"
-            android:fontFamily="@font/poppins_medium"
-            android:gravity="center_vertical"
-            android:text="Delete group"
-            android:textColor="@color/red"
-            android:textSize="22sp" />
-
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="20dp" />
-
-    </LinearLayout>
-
-</androidx.core.widget.NestedScrollView>
+                android:layout_margin="20dp"
+                android:drawableStart="@drawable/ic_addgroup"
+                android:drawablePadding="30dp"
+                android:gravity="center_vertical"
+                android:text="Add people to group"
+                android:textColor="@color/white"
+                android:textSize="24sp" />
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/detailGroupSettingsRv"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:nestedScrollingEnabled="false"
+                tools:itemCount="3"
+                tools:listitem="@layout/item_member_group_setting" />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Advanced settings"
+                android:textColor="@color/white"
+                android:textSize="20sp" />
+            <TextView
+                android:id="@+id/groupDetailSettingsLeaveGroupTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:drawableStart="@drawable/ic_leave_group"
+                android:drawablePadding="20dp"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center_vertical"
+                android:text="Leave group"
+                android:textColor="@color/white"
+                android:textSize="22sp" />
+            <TextView
+                android:id="@+id/groupDetailSettingsDeleteGroupTv"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:drawableStart="@drawable/ic_delete"
+                android:drawablePadding="20dp"
+                android:drawableTint="@color/red"
+                android:fontFamily="@font/poppins_medium"
+                android:gravity="center_vertical"
+                android:text="Delete group"
+                android:textColor="@color/red"
+                android:textSize="22sp" />
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="20dp" />
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+    <ProgressBar
+        android:id="@+id/groupSettingsProgressBar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:visibility="gone" />
+</FrameLayout>
