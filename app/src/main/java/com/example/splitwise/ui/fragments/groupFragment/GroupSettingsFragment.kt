@@ -16,10 +16,10 @@ import com.example.splitwise.R
 import com.example.splitwise.ui.adapters.GroupMemberAdapter
 import com.example.splitwise.databinding.FragmentGroupSettingsBinding
 import com.example.splitwise.ui.viewModels.GroupViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
-class GroupSettingsFragment :
-    Fragment(R.layout.fragment_group_settings) {
+@AndroidEntryPoint
+class GroupSettingsFragment : Fragment(R.layout.fragment_group_settings) {
 
     private lateinit var binding: FragmentGroupSettingsBinding
 

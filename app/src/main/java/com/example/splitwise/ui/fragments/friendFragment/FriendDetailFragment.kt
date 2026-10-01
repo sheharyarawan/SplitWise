@@ -8,8 +8,9 @@ import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentFriendDetailBinding
 import com.example.splitwise.ui.fragments.expenses.AddExpenseIGSheet
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FriendDetailFragment : Fragment(R.layout.fragment_friend_detail) {
 
     override fun onResume() {

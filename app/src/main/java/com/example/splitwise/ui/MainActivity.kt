@@ -11,7 +11,9 @@ import androidx.navigation.ui.setupWithNavController
 import com.example.splitwise.R
 import com.example.splitwise.databinding.ActivityMainBinding
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : AppCompatActivity() {
 
     lateinit var binding: ActivityMainBinding

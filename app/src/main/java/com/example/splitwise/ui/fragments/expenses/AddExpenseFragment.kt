@@ -15,7 +15,9 @@ import com.example.splitwise.data.model.User
 import com.example.splitwise.utils.SplitCalculator
 import com.example.splitwise.ui.viewModels.ExpenseViewModel
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
 
     lateinit var binding: FragmentAddExpenseBinding

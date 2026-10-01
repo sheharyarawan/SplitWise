@@ -7,7 +7,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentAccountSettingsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class AccountSettingsFragment : Fragment(R.layout.fragment_account_settings) {
 
     private lateinit var binding: FragmentAccountSettingsBinding

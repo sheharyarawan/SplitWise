@@ -15,9 +15,9 @@ import com.example.splitwise.ui.adapters.FriendsAdapter
 import com.example.splitwise.databinding.FragmentFriendsBinding
 import com.example.splitwise.ui.fragments.expenses.AddExpenseIGSheet
 import com.example.splitwise.ui.viewModels.FriendViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
-
+@AndroidEntryPoint
 class FriendsFragment : Fragment(R.layout.fragment_friends) {
 
     override fun onResume() {

@@ -28,8 +28,9 @@ import com.example.splitwise.utils.GroupBalanceCalculator
 import com.example.splitwise.ui.viewModels.ExpenseViewModel
 import com.example.splitwise.ui.viewModels.GroupViewModel
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
+@AndroidEntryPoint
 class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
 
     lateinit var binding: FragmentDetailGroupBinding

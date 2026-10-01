@@ -10,6 +10,9 @@ import com.example.splitwise.databinding.AddExpenseBottomLayoutBinding
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import dagger.hilt.android.AndroidEntryPoint
+
+@AndroidEntryPoint
 class AddExpenseIGSheet : BottomSheetDialogFragment() {
 
     lateinit var binding: AddExpenseBottomLayoutBinding

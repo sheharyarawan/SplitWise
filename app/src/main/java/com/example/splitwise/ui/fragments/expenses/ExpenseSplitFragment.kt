@@ -9,7 +9,9 @@ import androidx.navigation.fragment.findNavController
 import androidx.viewpager2.widget.ViewPager2
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentExpenseSplitBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ExpenseSplitFragment : Fragment(R.layout.fragment_expense_split) {
 
     lateinit var binding: FragmentExpenseSplitBinding

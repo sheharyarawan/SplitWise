@@ -8,8 +8,8 @@ import android.view.ViewGroup
 import androidx.navigation.fragment.findNavController
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentRecordPaymentBinding
-
-
+import dagger.hilt.android.AndroidEntryPoint
+@AndroidEntryPoint
 class RecordPaymentFragment : Fragment(R.layout.fragment_record_payment) {
     lateinit var binding: FragmentRecordPaymentBinding
 

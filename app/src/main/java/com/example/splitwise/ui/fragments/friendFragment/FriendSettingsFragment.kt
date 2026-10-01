@@ -7,8 +7,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentFriendSettingsBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class FriendSettingsFragment : Fragment(R.layout.fragment_friend_settings) {
 
     override fun onResume() {

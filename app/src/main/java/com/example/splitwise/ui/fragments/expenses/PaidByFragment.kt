@@ -14,8 +14,9 @@ import com.example.splitwise.R
 import com.example.splitwise.ui.adapters.PaidByAdapter
 import com.example.splitwise.databinding.FragmentPaidByBinding
 import com.example.splitwise.ui.viewModels.GroupViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
+@AndroidEntryPoint
 class PaidByFragment : Fragment(R.layout.fragment_paid_by) {
 
     lateinit var binding: FragmentPaidByBinding

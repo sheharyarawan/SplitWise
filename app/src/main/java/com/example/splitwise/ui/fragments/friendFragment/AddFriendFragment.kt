@@ -10,8 +10,9 @@ import androidx.navigation.fragment.navArgs
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentAddFriendBinding
 import com.example.splitwise.ui.viewModels.FriendViewModel
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class AddFriendFragment : Fragment(R.layout.fragment_add_friend) {
 
     lateinit var binding: FragmentAddFriendBinding

@@ -9,8 +9,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentGroupSettingsBinding
 import com.example.splitwise.databinding.FragmentGroupSettleBinding
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class GroupSettleFragment : Fragment(R.layout.fragment_group_settle) {
    lateinit var binding: FragmentGroupSettleBinding
 

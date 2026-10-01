@@ -9,7 +9,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.splitwise.R
 import com.example.splitwise.ui.adapters.DetailGroupExpenseAdapter
 import com.example.splitwise.databinding.FragmentDetailGroupExpenseBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class DetailGroupExpenseFragment : Fragment(R.layout.fragment_detail_group_expense) {
 
     val args: DetailGroupExpenseFragmentArgs by navArgs()

@@ -19,11 +19,12 @@ import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.datepicker.MaterialDatePicker
 import com.google.android.material.dialog.MaterialAlertDialogBuilder
+import dagger.hilt.android.AndroidEntryPoint
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.Locale
 import kotlin.getValue
-
+@AndroidEntryPoint
 class AddMemberBottomSheet : BottomSheetDialogFragment() {
     private lateinit var binding: CreateAGroupBottomSheetBinding
     private val viewModel: GroupViewModel by viewModels()

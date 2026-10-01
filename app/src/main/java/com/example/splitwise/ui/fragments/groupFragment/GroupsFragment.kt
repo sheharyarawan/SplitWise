@@ -15,8 +15,9 @@ import com.example.splitwise.ui.adapters.GroupAdapter
 import com.example.splitwise.databinding.FragmentGroupsBinding
 import com.example.splitwise.ui.fragments.expenses.AddExpenseIGSheet
 import com.example.splitwise.ui.viewModels.GroupViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
-
+@AndroidEntryPoint
 class GroupsFragment : Fragment(R.layout.fragment_groups) {
     lateinit var binding: FragmentGroupsBinding
     lateinit var groupAdapter: GroupAdapter

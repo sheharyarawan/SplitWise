@@ -7,7 +7,9 @@ import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentActivityBinding
 import com.example.splitwise.ui.fragments.expenses.AddExpenseIGSheet
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class ActivityFragment : Fragment(R.layout.fragment_activity) {
 
     lateinit var binding: FragmentActivityBinding

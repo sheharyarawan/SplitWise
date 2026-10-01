@@ -7,7 +7,9 @@ import androidx.navigation.fragment.findNavController
 import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentBalancesBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class BalancesFragment : Fragment(R.layout.fragment_balances) {
 
     lateinit var binding: FragmentBalancesBinding

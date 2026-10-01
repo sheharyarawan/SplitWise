@@ -8,9 +8,10 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
+import javax.inject.Inject
 
 @HiltViewModel
-class ExpenseViewModel(
+class ExpenseViewModel @Inject constructor(
     private val repository: ExpenseRepository
 ): ViewModel() {
     private val _groupExpenses = MutableStateFlow<List<Expense>>(emptyList())

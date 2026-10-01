@@ -15,8 +15,10 @@ import com.example.splitwise.data.model.User
 import com.example.splitwise.databinding.FragmentEquallyBinding
 import com.example.splitwise.ui.viewModels.GroupViewModel
 import com.example.splitwise.ui.viewModels.SplitViewModel
+import dagger.hilt.android.AndroidEntryPoint
 import kotlinx.coroutines.launch
 
+@AndroidEntryPoint
 class EquallyFragment : Fragment(R.layout.fragment_equally) {
 
     private lateinit var binding: FragmentEquallyBinding

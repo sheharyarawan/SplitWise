@@ -8,8 +8,9 @@ import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentAccountBinding
 import com.google.firebase.auth.FirebaseAuth
+import dagger.hilt.android.AndroidEntryPoint
 
-
+@AndroidEntryPoint
 class AccountFragment : Fragment(R.layout.fragment_account) {
 
     lateinit var binding: FragmentAccountBinding

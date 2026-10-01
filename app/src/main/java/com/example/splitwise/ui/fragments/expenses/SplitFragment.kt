@@ -10,7 +10,9 @@ import com.example.splitwise.ui.adapters.SplitViewPager
 import com.example.splitwise.databinding.FragmentSplitBinding
 import com.example.splitwise.ui.viewModels.SplitViewModel
 import com.google.android.material.tabs.TabLayoutMediator
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class SplitFragment : Fragment(R.layout.fragment_split) {
 
     private lateinit var binding: FragmentSplitBinding

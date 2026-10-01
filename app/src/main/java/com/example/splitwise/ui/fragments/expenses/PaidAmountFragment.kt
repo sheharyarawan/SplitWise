@@ -6,7 +6,9 @@ import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentPaidAmountBinding
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class PaidAmountFragment : Fragment(R.layout.fragment_paid_amount) {
 
     lateinit var binding: FragmentPaidAmountBinding
