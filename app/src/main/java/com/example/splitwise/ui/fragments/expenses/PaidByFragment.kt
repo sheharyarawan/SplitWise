@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.splitwise.R
-import com.example.splitwise.adapters.PaidByAdapter
+import com.example.splitwise.ui.adapters.PaidByAdapter
 import com.example.splitwise.databinding.FragmentPaidByBinding
 import com.example.splitwise.ui.viewModels.GroupViewModel
 import kotlinx.coroutines.launch

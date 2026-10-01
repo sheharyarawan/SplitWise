@@ -11,7 +11,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.splitwise.MainActivity
 import com.example.splitwise.R
-import com.example.splitwise.adapters.FriendsAdapter
+import com.example.splitwise.ui.adapters.FriendsAdapter
 import com.example.splitwise.databinding.FragmentFriendsBinding
 import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
 import com.example.splitwise.ui.viewModels.FriendViewModel

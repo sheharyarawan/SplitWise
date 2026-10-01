@@ -1,4 +1,4 @@
-package com.example.splitwise.adapters
+package com.example.splitwise.ui.adapters
 
 import android.view.LayoutInflater
 import android.view.View
@@ -8,15 +8,17 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.splitwise.R
-import com.example.splitwise.data.model.User
+import com.example.splitwise.data.model.Split
 
-class FriendsAdapter: ListAdapter<User, FriendsAdapter.ViewHolder>(DiffCallBack()) {
+class DetailGroupExpenseAdapter:
+    ListAdapter<Split, DetailGroupExpenseAdapter.ViewHolder>(DiffCallBack()) {
     override fun onCreateViewHolder(
         parent: ViewGroup,
         viewType: Int
     ): ViewHolder {
-        val view= LayoutInflater.from(parent.context).inflate(R.layout.item_friends,
-            parent,false)
+        val view= LayoutInflater.from(parent.context)
+            .inflate(R.layout.item_view_expense_distribution,parent,false)
+
         return ViewHolder(view)
     }
 
@@ -24,27 +26,28 @@ class FriendsAdapter: ListAdapter<User, FriendsAdapter.ViewHolder>(DiffCallBack(
         holder: ViewHolder,
         position: Int
     ) {
-        val friend= getItem(position)
-        holder.friendName.text= friend.name
+        val item= getItem(position)
+        "${item.userName} owes ${item.amount}".also { holder.paidBy.text = it }
     }
 
     class ViewHolder(itemView: View): RecyclerView.ViewHolder(itemView){
-     val friendName=itemView.findViewById<TextView>(R.id.friendName)
-
+        val paidBy= itemView.findViewById<TextView>(R.id.paidBy)
     }
-    class DiffCallBack(): DiffUtil.ItemCallback<User>() {
+
+    class DiffCallBack(): DiffUtil.ItemCallback<Split>(){
         override fun areItemsTheSame(
-            oldItem: User,
-            newItem: User
+            oldItem: Split,
+            newItem: Split
         ): Boolean {
-            return oldItem.id==newItem.id
+            return oldItem.userId==newItem.userId
         }
 
         override fun areContentsTheSame(
-            oldItem: User,
-            newItem: User
+            oldItem: Split,
+            newItem: Split
         ): Boolean {
-           return oldItem==newItem
+            return oldItem==newItem
         }
+
     }
 }

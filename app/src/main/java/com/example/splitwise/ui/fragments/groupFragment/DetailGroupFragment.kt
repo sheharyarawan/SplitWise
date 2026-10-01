@@ -19,7 +19,7 @@ import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.splitwise.MainActivity
 import com.example.splitwise.R
-import com.example.splitwise.adapters.GroupExpensesAdapter
+import com.example.splitwise.ui.adapters.GroupExpensesAdapter
 import com.example.splitwise.databinding.FragmentDetailGroupBinding
 import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
 import com.example.splitwise.data.model.Expense

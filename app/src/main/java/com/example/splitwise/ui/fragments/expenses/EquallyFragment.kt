@@ -10,7 +10,7 @@ import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.splitwise.R
-import com.example.splitwise.adapters.EquallyAdapter
+import com.example.splitwise.ui.adapters.EquallyAdapter
 import com.example.splitwise.data.model.User
 import com.example.splitwise.databinding.FragmentEquallyBinding
 import com.example.splitwise.ui.viewModels.GroupViewModel

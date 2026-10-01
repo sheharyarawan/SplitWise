@@ -2,15 +2,12 @@ package com.example.splitwise.ui.fragments.groupFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.navigation.NavArgs
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.splitwise.R
-import com.example.splitwise.adapters.DetailGroupExpenseAdapter
+import com.example.splitwise.ui.adapters.DetailGroupExpenseAdapter
 import com.example.splitwise.databinding.FragmentDetailGroupExpenseBinding
 
 class DetailGroupExpenseFragment : Fragment(R.layout.fragment_detail_group_expense) {

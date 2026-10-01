@@ -1,4 +1,4 @@
-package com.example.splitwise.adapters
+package com.example.splitwise.ui.adapters
 
 import android.text.SpannableString
 import android.text.Spanned

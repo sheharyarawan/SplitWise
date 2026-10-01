@@ -1,4 +1,4 @@
-package com.example.splitwise.adapters
+package com.example.splitwise.ui.adapters
 
 import androidx.fragment.app.Fragment
 import androidx.viewpager2.adapter.FragmentStateAdapter
