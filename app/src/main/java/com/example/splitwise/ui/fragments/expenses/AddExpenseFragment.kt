@@ -13,7 +13,7 @@ import com.example.splitwise.databinding.FragmentAddExpenseBinding
 import com.example.splitwise.data.model.Expense
 import com.example.splitwise.data.model.User
 import com.example.splitwise.utils.SplitCalculator
-import com.example.splitwise.viewModels.ExpenseViewModel
+import com.example.splitwise.ui.viewModels.ExpenseViewModel
 import com.google.firebase.auth.FirebaseAuth
 
 class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {

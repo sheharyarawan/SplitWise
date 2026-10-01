@@ -8,7 +8,7 @@ import androidx.navigation.fragment.findNavController
 import com.example.splitwise.R
 import com.example.splitwise.adapters.SplitViewPager
 import com.example.splitwise.databinding.FragmentSplitBinding
-import com.example.splitwise.viewModels.SplitViewModel
+import com.example.splitwise.ui.viewModels.SplitViewModel
 import com.google.android.material.tabs.TabLayoutMediator
 
 class SplitFragment : Fragment(R.layout.fragment_split) {

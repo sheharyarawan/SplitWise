@@ -10,11 +10,10 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.viewpager2.widget.ViewPager2
 import com.example.splitwise.R
 import com.example.splitwise.adapters.PaidByAdapter
 import com.example.splitwise.databinding.FragmentPaidByBinding
-import com.example.splitwise.viewModels.GroupViewModel
+import com.example.splitwise.ui.viewModels.GroupViewModel
 import kotlinx.coroutines.launch
 
 class PaidByFragment : Fragment(R.layout.fragment_paid_by) {

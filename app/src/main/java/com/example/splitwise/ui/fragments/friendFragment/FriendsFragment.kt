@@ -2,9 +2,7 @@ package com.example.splitwise.ui.fragments.friendFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -16,7 +14,7 @@ import com.example.splitwise.R
 import com.example.splitwise.adapters.FriendsAdapter
 import com.example.splitwise.databinding.FragmentFriendsBinding
 import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
-import com.example.splitwise.viewModels.FriendViewModel
+import com.example.splitwise.ui.viewModels.FriendViewModel
 import kotlinx.coroutines.launch
 
 

@@ -25,8 +25,8 @@ import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
 import com.example.splitwise.data.model.Expense
 import com.example.splitwise.data.model.GroupBalance
 import com.example.splitwise.utils.GroupBalanceCalculator
-import com.example.splitwise.viewModels.ExpenseViewModel
-import com.example.splitwise.viewModels.GroupViewModel
+import com.example.splitwise.ui.viewModels.ExpenseViewModel
+import com.example.splitwise.ui.viewModels.GroupViewModel
 import com.google.firebase.auth.FirebaseAuth
 import kotlinx.coroutines.launch
 

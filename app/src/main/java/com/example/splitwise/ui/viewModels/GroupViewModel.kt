@@ -1,4 +1,4 @@
-package com.example.splitwise.viewModels
+package com.example.splitwise.ui.viewModels
 
 import android.util.Log
 import androidx.lifecycle.ViewModel

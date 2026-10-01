@@ -15,7 +15,7 @@ import com.example.splitwise.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.adapters.GroupMemberAdapter
 import com.example.splitwise.databinding.FragmentGroupSettingsBinding
-import com.example.splitwise.viewModels.GroupViewModel
+import com.example.splitwise.ui.viewModels.GroupViewModel
 import kotlinx.coroutines.launch
 
 class GroupSettingsFragment :

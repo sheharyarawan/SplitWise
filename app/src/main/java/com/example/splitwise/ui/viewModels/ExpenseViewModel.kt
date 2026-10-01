@@ -1,4 +1,4 @@
-package com.example.splitwise.viewModels
+package com.example.splitwise.ui.viewModels
 
 import androidx.lifecycle.ViewModel
 import com.example.splitwise.data.model.Expense

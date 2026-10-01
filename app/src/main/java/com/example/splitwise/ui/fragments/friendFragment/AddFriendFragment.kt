@@ -1,7 +1,6 @@
 package com.example.splitwise.ui.fragments.friendFragment
 
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.View
 import android.widget.Toast
@@ -10,7 +9,7 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentAddFriendBinding
-import com.example.splitwise.viewModels.FriendViewModel
+import com.example.splitwise.ui.viewModels.FriendViewModel
 
 
 class AddFriendFragment : Fragment(R.layout.fragment_add_friend) {

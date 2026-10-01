@@ -2,9 +2,7 @@ package com.example.splitwise.ui.fragments.groupFragment
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.activityViewModels
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
@@ -14,10 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.splitwise.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.adapters.GroupAdapter
-import com.example.splitwise.databinding.ActivityMainBinding
 import com.example.splitwise.databinding.FragmentGroupsBinding
 import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
-import com.example.splitwise.viewModels.GroupViewModel
+import com.example.splitwise.ui.viewModels.GroupViewModel
 import kotlinx.coroutines.launch
 
 class GroupsFragment : Fragment(R.layout.fragment_groups) {

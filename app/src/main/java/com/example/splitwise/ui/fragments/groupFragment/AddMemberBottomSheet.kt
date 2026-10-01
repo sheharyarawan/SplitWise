@@ -1,7 +1,5 @@
 package com.example.splitwise.ui.fragments.groupFragment
 
-import android.app.AlertDialog
-import android.graphics.Color
 import android.graphics.drawable.GradientDrawable
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -11,13 +9,12 @@ import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.activityViewModels
 import androidx.fragment.app.viewModels
 
 import com.example.splitwise.R
 import com.example.splitwise.databinding.CreateAGroupBottomSheetBinding
 
-import com.example.splitwise.viewModels.GroupViewModel
+import com.example.splitwise.ui.viewModels.GroupViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.datepicker.MaterialDatePicker
