@@ -7,7 +7,7 @@ import com.example.splitwise.data.model.GroupBalance
 import com.example.splitwise.data.model.GroupMemberBalance
 import com.example.splitwise.data.model.GroupWithBalance
 import com.example.splitwise.data.model.User
-import com.example.splitwise.repositories.GroupRepository
+import com.example.splitwise.data.repositories.GroupRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

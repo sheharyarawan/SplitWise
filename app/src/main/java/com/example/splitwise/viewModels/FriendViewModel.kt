@@ -2,7 +2,7 @@ package com.example.splitwise.viewModels
 
 import androidx.lifecycle.ViewModel
 import com.example.splitwise.data.model.User
-import com.example.splitwise.repositories.FriendRepository
+import com.example.splitwise.data.repositories.FriendRepository
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

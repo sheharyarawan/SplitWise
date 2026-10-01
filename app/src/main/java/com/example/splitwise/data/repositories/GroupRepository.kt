@@ -1,4 +1,4 @@
-package com.example.splitwise.repositories
+package com.example.splitwise.data.repositories
 
 import com.example.splitwise.data.model.Expense
 import com.example.splitwise.data.model.Group
@@ -10,6 +10,7 @@ import com.example.splitwise.utils.GroupBalanceCalculator
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.firestore.DocumentSnapshot
 import com.google.firebase.firestore.FirebaseFirestore
 import com.google.firebase.firestore.QuerySnapshot
 
@@ -205,7 +206,7 @@ class GroupRepository {
                     .get()
 
             Tasks
-                .whenAllSuccess<com.google.firebase.firestore.QuerySnapshot>(
+                .whenAllSuccess<QuerySnapshot>(
                     expensesTask,
                     settlementsTask
                 )
@@ -354,7 +355,7 @@ class GroupRepository {
                     }
 
                 Tasks
-                    .whenAllSuccess<com.google.firebase.firestore.DocumentSnapshot>(
+                    .whenAllSuccess<DocumentSnapshot>(
                         requests
                     )
                     .addOnSuccessListener { documents ->

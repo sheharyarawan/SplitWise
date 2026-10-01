@@ -1,4 +1,4 @@
-package com.example.splitwise.repositories
+package com.example.splitwise.data.repositories
 
 import com.example.splitwise.data.model.Expense
 import com.google.firebase.firestore.FirebaseFirestore
