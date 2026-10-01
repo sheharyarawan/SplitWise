@@ -23,8 +23,6 @@ import com.example.splitwise.ui.adapters.GroupExpensesAdapter
 import com.example.splitwise.databinding.FragmentDetailGroupBinding
 import com.example.splitwise.data.model.Expense
 import com.example.splitwise.data.model.GroupBalance
-import com.example.splitwise.fragments.groupFragment.DetailGroupFragmentArgs
-import com.example.splitwise.fragments.groupFragment.DetailGroupFragmentDirections
 import com.example.splitwise.ui.fragments.expenses.AddExpenseIGSheet
 import com.example.splitwise.utils.GroupBalanceCalculator
 import com.example.splitwise.ui.viewModels.ExpenseViewModel
