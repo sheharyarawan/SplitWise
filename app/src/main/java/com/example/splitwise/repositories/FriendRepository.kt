@@ -1,10 +1,9 @@
 package com.example.splitwise.repositories
 
-import com.example.splitwise.model.User
+import com.example.splitwise.data.model.User
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.DocumentReference
 import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 

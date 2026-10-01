@@ -1,4 +1,4 @@
-package com.example.splitwise.model
+package com.example.splitwise.data.model
 
 import android.os.Parcelable
 import com.google.firebase.Timestamp

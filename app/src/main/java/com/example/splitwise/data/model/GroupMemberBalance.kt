@@ -1,4 +1,4 @@
-package com.example.splitwise.model
+package com.example.splitwise.data.model
 
 data class GroupMemberBalance(
     val userId: String = "",

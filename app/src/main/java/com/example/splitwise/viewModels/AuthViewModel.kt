@@ -1,7 +1,7 @@
 package com.example.splitwise.viewModel
 
 import androidx.lifecycle.ViewModel
-import com.example.splitwise.model.User
+import com.example.splitwise.data.model.User
 import com.example.splitwise.repository.UserRepository
 import com.google.firebase.auth.FirebaseAuth
 

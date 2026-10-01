@@ -1,7 +1,6 @@
 package com.example.splitwise.repository
 
-import com.example.splitwise.model.User
-import com.google.firebase.Firebase
+import com.example.splitwise.data.model.User
 import com.google.firebase.firestore.FirebaseFirestore
 
 class UserRepository {

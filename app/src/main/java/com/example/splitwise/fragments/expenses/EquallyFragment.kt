@@ -11,6 +11,7 @@ import androidx.lifecycle.repeatOnLifecycle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.splitwise.R
 import com.example.splitwise.adapters.EquallyAdapter
+import com.example.splitwise.data.model.User
 import com.example.splitwise.databinding.FragmentEquallyBinding
 import com.example.splitwise.viewModels.GroupViewModel
 import com.example.splitwise.viewModels.SplitViewModel
@@ -94,7 +95,7 @@ class EquallyFragment : Fragment(R.layout.fragment_equally) {
         }
     }
 
-    private fun updateSelectedUsers(users: List<com.example.splitwise.model.User>) {
+    private fun updateSelectedUsers(users: List<User>) {
 
         binding.splitMoneyPercentageLeft.text =
             "(${users.size} people)"

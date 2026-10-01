@@ -1,11 +1,11 @@
 package com.example.splitwise.repositories
 
-import com.example.splitwise.model.Expense
-import com.example.splitwise.model.Group
-import com.example.splitwise.model.GroupBalance
-import com.example.splitwise.model.GroupWithBalance
-import com.example.splitwise.model.Settlement
-import com.example.splitwise.model.User
+import com.example.splitwise.data.model.Expense
+import com.example.splitwise.data.model.Group
+import com.example.splitwise.data.model.GroupBalance
+import com.example.splitwise.data.model.GroupWithBalance
+import com.example.splitwise.data.model.Settlement
+import com.example.splitwise.data.model.User
 import com.example.splitwise.utils.GroupBalanceCalculator
 import com.google.android.gms.tasks.Tasks
 import com.google.firebase.Timestamp

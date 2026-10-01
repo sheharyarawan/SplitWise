@@ -22,12 +22,12 @@ import com.example.splitwise.R
 import com.example.splitwise.adapters.GroupExpensesAdapter
 import com.example.splitwise.databinding.FragmentDetailGroupBinding
 import com.example.splitwise.fragments.expenses.AddExpenseIGSheet
-import com.example.splitwise.model.Expense
+import com.example.splitwise.data.model.Expense
+import com.example.splitwise.data.model.GroupBalance
 import com.example.splitwise.utils.GroupBalanceCalculator
 import com.example.splitwise.viewModels.ExpenseViewModel
 import com.example.splitwise.viewModels.GroupViewModel
 import com.google.firebase.auth.FirebaseAuth
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
 class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
@@ -244,7 +244,7 @@ class DetailGroupFragment : Fragment(R.layout.fragment_detail_group) {
     }
 
     private fun updateGroupTotal(
-        balances: List<com.example.splitwise.model.GroupBalance>
+        balances: List<GroupBalance>
     ) {
 
         val currentUserId =

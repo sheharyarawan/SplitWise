@@ -1,6 +1,6 @@
 package com.example.splitwise.repositories
 
-import com.example.splitwise.model.Expense
+import com.example.splitwise.data.model.Expense
 import com.google.firebase.firestore.FirebaseFirestore
 
 class ExpenseRepository {

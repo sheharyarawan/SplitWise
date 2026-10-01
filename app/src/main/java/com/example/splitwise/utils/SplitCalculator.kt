@@ -1,7 +1,7 @@
 package com.example.splitwise.utils
 
-import com.example.splitwise.model.Split
-import com.example.splitwise.model.User
+import com.example.splitwise.data.model.Split
+import com.example.splitwise.data.model.User
 
 object SplitCalculator {
 

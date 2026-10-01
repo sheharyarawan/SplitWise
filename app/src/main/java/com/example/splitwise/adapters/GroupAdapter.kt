@@ -12,9 +12,9 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.splitwise.R
-import com.example.splitwise.model.Group
-import com.example.splitwise.model.GroupBalance
-import com.example.splitwise.model.GroupWithBalance
+import com.example.splitwise.data.model.Group
+import com.example.splitwise.data.model.GroupBalance
+import com.example.splitwise.data.model.GroupWithBalance
 import com.google.firebase.auth.FirebaseAuth
 
 class GroupAdapter(

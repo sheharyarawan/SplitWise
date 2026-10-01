@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.splitwise.R
-import com.example.splitwise.model.User
+import com.example.splitwise.data.model.User
 
 class PaidByAdapter(val onItemSelected:(User)->Unit): ListAdapter<User, PaidByAdapter.PaidByViewHolder>(DiffCallBack()) {
     override fun onCreateViewHolder(

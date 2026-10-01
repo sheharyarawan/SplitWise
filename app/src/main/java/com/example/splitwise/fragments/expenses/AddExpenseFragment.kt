@@ -1,7 +1,6 @@
 package com.example.splitwise.fragments.expenses
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.os.BundleCompat
@@ -11,12 +10,11 @@ import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentAddExpenseBinding
-import com.example.splitwise.model.Expense
-import com.example.splitwise.model.User
+import com.example.splitwise.data.model.Expense
+import com.example.splitwise.data.model.User
 import com.example.splitwise.utils.SplitCalculator
 import com.example.splitwise.viewModels.ExpenseViewModel
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.firestore.FirebaseFirestore
 
 class AddExpenseFragment : Fragment(R.layout.fragment_add_expense) {
 

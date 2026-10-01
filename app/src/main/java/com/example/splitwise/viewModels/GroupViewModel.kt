@@ -2,13 +2,12 @@ package com.example.splitwise.viewModels
 
 import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.splitwise.model.Group
-import com.example.splitwise.model.GroupBalance
-import com.example.splitwise.model.GroupMemberBalance
-import com.example.splitwise.model.GroupWithBalance
-import com.example.splitwise.model.User
+import com.example.splitwise.data.model.Group
+import com.example.splitwise.data.model.GroupBalance
+import com.example.splitwise.data.model.GroupMemberBalance
+import com.example.splitwise.data.model.GroupWithBalance
+import com.example.splitwise.data.model.User
 import com.example.splitwise.repositories.GroupRepository
-import com.example.splitwise.utils.GroupBalanceCalculator
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow

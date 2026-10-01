@@ -1,7 +1,7 @@
 package com.example.splitwise.viewModels
 
 import androidx.lifecycle.ViewModel
-import com.example.splitwise.model.User
+import com.example.splitwise.data.model.User
 
 class SplitViewModel : ViewModel() {
 

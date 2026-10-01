@@ -152,7 +152,7 @@
         tools:layout="@layout/fragment_detail_group_expense" >
         <argument
             android:name="expense"
-            app:argType="com.example.splitwise.model.Expense">
+            app:argType="com.example.splitwise.data.model.Expense">
 
         </argument>
     </fragment>

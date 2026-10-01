@@ -1,6 +1,5 @@
 package com.example.splitwise.adapters
 
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.splitwise.R
-import com.example.splitwise.model.GroupMemberBalance
+import com.example.splitwise.data.model.GroupMemberBalance
 import kotlin.math.abs
 
 class GroupMemberAdapter :

@@ -1,8 +1,8 @@
 package com.example.splitwise.utils
 
-import com.example.splitwise.model.Expense
-import com.example.splitwise.model.GroupBalance
-import com.example.splitwise.model.Settlement
+import com.example.splitwise.data.model.Expense
+import com.example.splitwise.data.model.GroupBalance
+import com.example.splitwise.data.model.Settlement
 import kotlin.math.abs
 
 object GroupBalanceCalculator {
