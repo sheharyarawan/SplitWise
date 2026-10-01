@@ -1,6 +1,5 @@
 package com.example.splitwise.ui.viewModels
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
 import com.example.splitwise.data.model.Group
 import com.example.splitwise.data.model.GroupBalance
@@ -8,6 +7,7 @@ import com.example.splitwise.data.model.GroupMemberBalance
 import com.example.splitwise.data.model.GroupWithBalance
 import com.example.splitwise.data.model.User
 import com.example.splitwise.data.repositories.GroupRepository
+import com.example.splitwise.utils.UiState
 import dagger.hilt.android.lifecycle.HiltViewModel
 import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
@@ -17,260 +17,171 @@ import kotlinx.coroutines.flow.asStateFlow
 @HiltViewModel
 class GroupViewModel @Inject constructor(
     private val repository: GroupRepository
-) : ViewModel(){
+) : ViewModel() {
     private val _groups =
-        MutableStateFlow<List<Group>>(emptyList())
-
-    val groups: StateFlow<List<Group>> =
+        MutableStateFlow<UiState<List<Group>>>(UiState.Loading)
+    val groups: StateFlow<UiState<List<Group>>> =
         _groups.asStateFlow()
-
-
     private val _group =
-        MutableStateFlow<Group?>(null)
-
-    val group: StateFlow<Group?> =
+        MutableStateFlow<UiState<Group>>(UiState.Loading)
+    val group: StateFlow<UiState<Group>> =
         _group.asStateFlow()
-
-
     private val _groupMembers =
-        MutableStateFlow<List<User>>(emptyList())
-
-    val groupMembers: StateFlow<List<User>> =
+        MutableStateFlow<UiState<List<User>>>(UiState.Loading)
+    val groupMembers: StateFlow<UiState<List<User>>> =
         _groupMembers.asStateFlow()
-
-
-    /*
-     * These are the balances shown in GroupSettingsFragment.
-     *
-     * They are now generated from groupBalances,
-     * which already includes expenses + settlements.
-     */
     private val _memberBalances =
-        MutableStateFlow<List<GroupMemberBalance>>(emptyList())
-
-    val memberBalances: StateFlow<List<GroupMemberBalance>> =
+        MutableStateFlow<UiState<List<GroupMemberBalance>>>(
+            UiState.Loading
+        )
+    val memberBalances: StateFlow<UiState<List<GroupMemberBalance>>> =
         _memberBalances.asStateFlow()
-
-
-    /*
-     * Used by GroupsFragment.
-     *
-     * Contains:
-     * - group
-     * - you owe
-     * - you get back
-     * - all pair-wise balances
-     */
     private val _groupsWithBalances =
-        MutableStateFlow<List<GroupWithBalance>>(emptyList())
-
-    val groupsWithBalances: StateFlow<List<GroupWithBalance>> =
+        MutableStateFlow<UiState<List<GroupWithBalance>>>(
+            UiState.Loading
+        )
+    val groupsWithBalances: StateFlow<UiState<List<GroupWithBalance>>> =
         _groupsWithBalances.asStateFlow()
-
-
-    /*
-     * Contains the final pair-wise balances for one group.
-     *
-     * Example:
-     *
-     * You -> Ali -> Rs 300
-     * Ahmed -> You -> Rs 200
-     */
     private val _groupBalances =
-        MutableStateFlow<List<GroupBalance>>(emptyList())
-
-    val groupBalances: StateFlow<List<GroupBalance>> =
+        MutableStateFlow<UiState<List<GroupBalance>>>(
+            UiState.Loading
+        )
+    val groupBalances: StateFlow<UiState<List<GroupBalance>>> =
         _groupBalances.asStateFlow()
-
 
     init {
         getGroups()
         getGroupsWithBalances()
     }
-
-
     fun createGroup(
         name: String,
         type: String,
         onSuccess: (String) -> Unit,
         onFailure: (Exception) -> Unit
     ) {
-
         repository.createGroup(
             name = name,
             type = type,
-
             onSuccess = { groupId ->
                 onSuccess(groupId)
             },
-
             onFailure = { exception ->
                 onFailure(exception)
             }
         )
     }
-
-
     fun getGroups() {
-
+        _groups.value = UiState.Loading
         repository.getGroups(
-
             onSuccess = { groups ->
-                _groups.value = groups
+                _groups.value = UiState.Success(groups)
             },
-
             onFailure = { exception ->
-                Log.e(
-                    "GroupViewModel",
-                    "Failed to get groups",
-                    exception
+                _groups.value = UiState.Error(
+                    exception.message ?: "Failed to load groups"
                 )
             }
         )
     }
-
-
     fun getGroupById(id: String) {
-
+        _group.value = UiState.Loading
         repository.getGroupById(
-            id,
-
+            groupId = id,
             onSuccess = { group ->
-                _group.value = group
+                if (group != null) {
+                    _group.value = UiState.Success(group)
+                } else {
+                    _group.value = UiState.Error(
+                        "Group not found"
+                    )
+                }
             },
-
             onFailure = { exception ->
-                Log.e(
-                    "GroupViewModel",
-                    "Failed to get group",
-                    exception
+                _group.value = UiState.Error(
+                    exception.message ?: "Failed to load group"
                 )
             }
         )
     }
-
-
     fun getGroupMembers(
-        groupId: String,
-        onFailure: (Exception) -> Unit
+        groupId: String
     ) {
-
+        _groupMembers.value = UiState.Loading
         repository.getGroupMembers(
             groupId = groupId,
-
             onSuccess = { members ->
-                _groupMembers.value = members
+                _groupMembers.value = UiState.Success(members)
             },
-
             onFailure = { exception ->
-                onFailure(exception)
-            }
-        )
-    }
-
-
-    fun getGroupsWithBalances() {
-
-        repository.getGroupsWithBalances(
-
-            onSuccess = { groups ->
-                _groupsWithBalances.value = groups
-            },
-
-            onFailure = { exception ->
-
-                Log.e(
-                    "GroupViewModel",
-                    "Failed to get groups with balances",
-                    exception
+                _groupMembers.value = UiState.Error(
+                    exception.message ?: "Failed to load group members"
                 )
             }
         )
     }
-
-
-    /*
-     * Get all final balances for one group.
-     *
-     * Repository gets:
-     *
-     * expenses
-     * +
-     * settlements
-     *
-     * and GroupBalanceCalculator calculates
-     * who owes whom.
-     */
+    fun getGroupsWithBalances() {
+        _groupsWithBalances.value = UiState.Loading
+        repository.getGroupsWithBalances(
+            onSuccess = { groups ->
+                _groupsWithBalances.value =
+                    UiState.Success(groups)
+            },
+            onFailure = { exception ->
+                _groupsWithBalances.value =
+                    UiState.Error(
+                        exception.message
+                            ?: "Failed to load groups with balances"
+                    )
+            }
+        )
+    }
     fun getGroupBalances(
-        groupId: String,
-        onFailure: (Exception) -> Unit
+        groupId: String
     ) {
-
+        _groupBalances.value = UiState.Loading
+        _memberBalances.value = UiState.Loading
         repository.getGroupBalances(
             groupId = groupId,
-
             onSuccess = { balances ->
-
-                _groupBalances.value = balances
-
-                /*
-                 * Also update the member balances used
-                 * by GroupSettingsFragment.
-                 */
+                _groupBalances.value =
+                    UiState.Success(balances)
                 calculateMemberBalancesFromGroupBalances(
                     balances = balances,
-                    members = _groupMembers.value
+                    members = getCurrentMembers()
                 )
             },
-
             onFailure = { exception ->
-
-                Log.e(
-                    "GroupViewModel",
-                    "Failed to get group balances",
-                    exception
-                )
-
-                onFailure(exception)
+                val message =
+                    exception.message
+                        ?: "Failed to load group balances"
+                _groupBalances.value =
+                    UiState.Error(message)
+                _memberBalances.value =
+                    UiState.Error(message)
             }
         )
     }
-
-
-    /*
-     * Converts pair-wise GroupBalance data into
-     * GroupMemberBalance data for the existing
-     * GroupMemberAdapter.
-     *
-     * Example:
-     *
-     * You owe Ali Rs 300
-     * Ahmed owes you Rs 500
-     *
-     * Ali     -> -300
-     * Ahmed   -> +500
-     */
+    private fun getCurrentMembers(): List<User> {
+        return when (val state = _groupMembers.value) {
+            is UiState.Success -> state.data
+            else -> emptyList()
+        }
+    }
     private fun calculateMemberBalancesFromGroupBalances(
         balances: List<GroupBalance>,
         members: List<User>
     ) {
-
         val memberBalances = members.map { member ->
-
             val getBack = balances
                 .filter { balance ->
                     balance.toUserId == member.id
                 }
                 .sumOf { it.amount }
-
-
             val owe = balances
                 .filter { balance ->
                     balance.fromUserId == member.id
                 }
                 .sumOf { it.amount }
-
-
             GroupMemberBalance(
                 userId = member.id,
                 name = member.name,
@@ -278,7 +189,7 @@ class GroupViewModel @Inject constructor(
                 balance = getBack - owe
             )
         }
-
-        _memberBalances.value = memberBalances
+        _memberBalances.value =
+            UiState.Success(memberBalances)
     }
 }
