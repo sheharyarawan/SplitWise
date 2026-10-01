@@ -2,14 +2,19 @@ package com.example.splitwise.ui.viewModels
 
 import androidx.lifecycle.ViewModel
 import com.example.splitwise.data.model.User
+import com.example.splitwise.data.repositories.FriendRepository
 import com.example.splitwise.data.repositories.FriendRepositoryImpl
+import dagger.hilt.android.lifecycle.HiltViewModel
+import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class FriendViewModel : ViewModel() {
+@HiltViewModel
+class FriendViewModel @Inject constructor(
+    private val repository:FriendRepository
+):ViewModel() {
 
-    private val repository = FriendRepositoryImpl()
 
     // ---------------------------------------------------------
     // FRIENDS LIST

@@ -13,7 +13,7 @@ import androidx.lifecycle.lifecycleScope
 import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentAuthBinding
-import com.example.splitwise.viewModel.AuthViewModel
+import com.example.splitwise.ui.viewModels.AuthViewModel
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.android.libraries.identity.googleid.GoogleIdTokenParsingException

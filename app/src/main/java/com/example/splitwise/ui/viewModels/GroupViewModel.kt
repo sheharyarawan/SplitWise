@@ -7,15 +7,17 @@ import com.example.splitwise.data.model.GroupBalance
 import com.example.splitwise.data.model.GroupMemberBalance
 import com.example.splitwise.data.model.GroupWithBalance
 import com.example.splitwise.data.model.User
-import com.example.splitwise.data.repositories.GroupRepositoryImpl
+import com.example.splitwise.data.repositories.GroupRepository
+import dagger.hilt.android.lifecycle.HiltViewModel
+import jakarta.inject.Inject
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.asStateFlow
 
-class GroupViewModel : ViewModel() {
-
-    private val repository = GroupRepositoryImpl()
-
+@HiltViewModel
+class GroupViewModel @Inject constructor(
+    private val repository: GroupRepository
+) : ViewModel(){
     private val _groups =
         MutableStateFlow<List<Group>>(emptyList())
 
