@@ -67,4 +67,6 @@
     <string name="log_in">Log in</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="splitwise">Splitwise</string>
+    <string name="split_equally">Split equally</string>
+    <string name="select_which_people_owe_an_equal_share">Select which people owe an equal share.</string>
 </resources>
