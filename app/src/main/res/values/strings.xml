@@ -59,4 +59,12 @@
     <string name="and_split">and split</string>
     <string name="split_type">Split Type</string>
     <string name="paid_by_you_and_split_equally">Paid by you and split equally.</string>
+    <string name="name">Name</string>
+    <string name="phone_number_or_email_address">Phone number or email address</string>
+    <string name="next">Next</string>
+    <string name="splitwise_logo">splitwise_logo</string>
+    <string name="sign_up">Sign up</string>
+    <string name="log_in">Log in</string>
+    <string name="sign_in_with_google">Sign in with Google</string>
+    <string name="splitwise">Splitwise</string>
 </resources>
