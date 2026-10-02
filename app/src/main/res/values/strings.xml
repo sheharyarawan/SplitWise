@@ -6,4 +6,7 @@
     651911712682-3q7obpsn20dg9ev0cbvqpv3p2lfnqo5s.apps.googleusercontent.com
 </string>
     <string name="add_expense">Add expense</string>
+    <string name="non_group_expenses">Non-group expenses</string>
+    <string name="settled_up">settled up</string>
+    <string name="start_a_new_group">Start a new group</string>
 </resources>
