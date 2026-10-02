@@ -47,4 +47,16 @@
     <string name="current_password">Current password</string>
     <string name="new_password">New password</string>
     <string name="save_changes">Save changes</string>
+    <string name="recent_activity">Recent activity</string>
+    <string name="view_all_activity">View all activity</string>
+    <string name="with_you_and">With you and:</string>
+    <string name="expense_desc">expense_desc</string>
+    <string name="enter_a_description">Enter a description</string>
+    <string name="pkr">PKR</string>
+    <string name="_0_00">0.00</string>
+    <string name="paid_by">Paid by</string>
+    <string name="you">You</string>
+    <string name="and_split">and split</string>
+    <string name="split_type">Split Type</string>
+    <string name="paid_by_you_and_split_equally">Paid by you and split equally.</string>
 </resources>
