@@ -30,4 +30,7 @@
     <string name="start">Start</string>
     <string name="end">End</string>
     <string name="couple">Couple</string>
+    <string name="account">Account</string>
+    <string name="log_out">Log out</string>
+    <string name="edit">Edit</string>
 </resources>
