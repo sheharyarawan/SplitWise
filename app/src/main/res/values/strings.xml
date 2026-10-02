@@ -33,4 +33,18 @@
     <string name="account">Account</string>
     <string name="log_out">Log out</string>
     <string name="edit">Edit</string>
+    <string name="full_name">Full name</string>
+    <string name="edit_name">Edit</string>
+    <string name="email_address">Email address</string>
+    <string name="edit_mail">Edit</string>
+    <string name="add_new_email_address">Add new Email address</string>
+    <string name="your_current_password">Your current password</string>
+    <string name="phone_number">Phone number</string>
+    <string name="none">None</string>
+    <string name="edit_phone">Edit</string>
+    <string name="password">Password</string>
+    <string name="edit_password">Edit</string>
+    <string name="current_password">Current password</string>
+    <string name="new_password">New password</string>
+    <string name="save_changes">Save changes</string>
 </resources>
