@@ -35,7 +35,6 @@ class GroupsFragment : Fragment(R.layout.fragment_groups) {
                 openBottomSheetExpense()
             }
         }
-        groupViewModel.getGroupsWithBalances()
     }
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         binding= FragmentGroupsBinding.bind(view)
