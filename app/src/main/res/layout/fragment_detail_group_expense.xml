@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/gray"
     android:orientation="vertical"
-    tools:context=".fragments.groupFragment.DetailGroupExpenseFragment">
-
+    tools:context=".ui.fragments.groupFragment.DetailGroupExpenseFragment">
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/toolBarFragmentDetailExpense"
         android:layout_width="match_parent"
@@ -16,67 +15,59 @@
         app:navigationIcon="@drawable/ic_back"
         app:title="Detail Expense"
         app:titleMarginStart="10dp"
-        app:titleTextColor="@color/white">
-
-    </com.google.android.material.appbar.MaterialToolbar>
-
+        app:titleTextColor="@color/white" />
     <TextView
-
         android:id="@+id/expenseDescription"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Paid for chips"
-        android:textSize="24sp"
-        android:textColor="@color/white"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="10dp">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/expenseAmount"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="3000"
-        android:textSize="30sp"
-        android:textColor="@color/white"
-        android:layout_marginStart="40dp">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/expenseTimeDate"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="7dp"
-        android:text=""
-        android:textColor="#8D8D8D"
-        android:textSize="16sp">
-
-    </TextView>
-
-    <TextView
-        android:id="@+id/expensePaidBy"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="You paid 3000"
-        android:textSize="24sp"
-        android:textColor="@color/white"
-        android:layout_marginStart="40dp"
-        android:layout_marginTop="30dp">
-    </TextView>
-
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/expenseDistributionRv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="40dp"
-        android:layout_marginEnd="40dp"
         android:layout_marginTop="10dp"
-        tools:listitem="@layout/item_view_expense_distribution"
-        tools:itemCount="5">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
+        android:layout_marginEnd="40dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+    <TextView
+        android:id="@+id/expenseAmount"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="40dp"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+    <TextView
+        android:id="@+id/expenseTimeDate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="7dp"
+        android:layout_marginEnd="40dp"
+        android:text=""
+        android:textColor="#8D8D8D"
+        android:textSize="16sp" />
+    <TextView
+        android:id="@+id/expensePaidBy"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="40dp"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="24sp" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/expenseDistributionRv"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:layout_marginStart="40dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="40dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        tools:itemCount="5"
+        tools:listitem="@layout/item_view_expense_distribution" />
 </LinearLayout>

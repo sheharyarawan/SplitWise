@@ -41,7 +41,7 @@
             android:padding="5dp"
             android:src="@drawable/settings_24dp_e3e3e3_fill0_wght400_grad0_opsz24" />
         <LinearLayout
-            android:layout_width="0dp"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|start"
             android:layout_marginStart="10dp"
