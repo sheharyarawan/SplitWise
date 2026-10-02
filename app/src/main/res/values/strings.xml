@@ -18,4 +18,5 @@
     <string name="add_group_members">Add group members</string>
     <string name="no_expense_here_yet">No expense here yet.</string>
     <string name="add_an_expense_to_get_this_party_started">Add an expense to get this party started.</string>
+    <string name="expense_image">expense_Image</string>
 </resources>
