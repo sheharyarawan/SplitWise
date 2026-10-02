@@ -69,4 +69,6 @@
     <string name="splitwise">Splitwise</string>
     <string name="split_equally">Split equally</string>
     <string name="select_which_people_owe_an_equal_share">Select which people owe an equal share.</string>
+    <string name="_0_00_person">0.00/person</string>
+    <string name="all">All</string>
 </resources>
