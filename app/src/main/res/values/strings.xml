@@ -19,4 +19,15 @@
     <string name="no_expense_here_yet">No expense here yet.</string>
     <string name="add_an_expense_to_get_this_party_started">Add an expense to get this party started.</string>
     <string name="expense_image">expense_Image</string>
+    <string name="groupimage">groupImage</string>
+    <string name="group_name">Group name</string>
+    <string name="type">Type</string>
+    <string name="trip">Trip</string>
+    <string name="home">Home</string>
+    <string name="other">Other</string>
+    <string name="add_trip_dates">Add trip dates</string>
+    <string name="splitwise_will_remind_friends_to_join_add_expenses_and_settle_up">Splitwise will remind friends to join, add expenses, and settle up.</string>
+    <string name="start">Start</string>
+    <string name="end">End</string>
+    <string name="couple">Couple</string>
 </resources>
