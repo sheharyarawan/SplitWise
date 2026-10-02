@@ -5,4 +5,5 @@
     <string name="default_web_client_id">
     651911712682-3q7obpsn20dg9ev0cbvqpv3p2lfnqo5s.apps.googleusercontent.com
 </string>
+    <string name="add_expense">Add expense</string>
 </resources>
