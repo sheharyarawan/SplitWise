@@ -1,12 +1,12 @@
 package com.example.splitwise.data.repositories
 
-import com.example.splitwise.data.model.User
-
+import android.content.Context
+import com.google.firebase.auth.FirebaseUser
 interface UserRepository {
-    fun createUser(
-        uid: String,
-        user: User,
-        onSuccess: () -> Unit,
+    fun signInWithGoogle(
+        context: Context,
+        serverClientId: String,
+        onSuccess: (FirebaseUser) -> Unit,
         onFailure: (Exception) -> Unit
     )
 }
