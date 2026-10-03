@@ -1,5 +1,9 @@
 package com.example.splitwise.data.model
+import android.os.Parcelable
 import com.google.firebase.Timestamp
+import kotlinx.parcelize.Parcelize
+
+@Parcelize
 data class User(
     val id: String = "",
     val name: String = "",
@@ -7,4 +11,4 @@ data class User(
     val uid: String? = null,
     val isRegistered: Boolean = false,
     val createdAt: Timestamp? = null
-)
+): Parcelable

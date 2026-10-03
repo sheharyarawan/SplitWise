@@ -3,15 +3,19 @@ import android.content.Context
 import androidx.credentials.CredentialManager
 import androidx.credentials.CustomCredential
 import androidx.credentials.GetCredentialRequest
+import com.example.splitwise.data.model.User
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.FirebaseFirestore
 import jakarta.inject.Inject
 import kotlinx.coroutines.launch
+import com.google.firebase.Timestamp
 
 class UserRepositoryImpl @Inject constructor(
+    private val firestore: FirebaseFirestore,
     private val auth: FirebaseAuth
 ) : UserRepository {
     override fun signInWithGoogle(
@@ -65,5 +69,75 @@ class UserRepositoryImpl @Inject constructor(
                 onFailure(exception)
             }
         }
+    }
+    override fun getOrCreateUser(
+        firebaseUser: FirebaseUser,
+        onSuccess: (String) -> Unit,
+        onFailure: (Exception) -> Unit,
+    ) {
+        val peopleReference = firestore.collection("people")
+        peopleReference
+            .whereEqualTo("uid", firebaseUser.uid)
+            .limit(1)
+            .get()
+            .addOnSuccessListener { uidSnapshot ->
+                if (!uidSnapshot.isEmpty) {
+                    onSuccess(uidSnapshot.documents[0].id)
+                    return@addOnSuccessListener
+                }
+                val email = firebaseUser.email?.trim()?.lowercase()
+                if (email.isNullOrBlank()) {
+                    onFailure(Exception("Google account email not found"))
+                    return@addOnSuccessListener
+                }
+                peopleReference
+                    .whereEqualTo("email", email)
+                    .limit(1)
+                    .get()
+                    .addOnSuccessListener { emailSnapshot ->
+                        if (!emailSnapshot.isEmpty) {
+                            val userDocument = emailSnapshot.documents[0]
+                            val userId = userDocument.id
+                            peopleReference
+                                .document(userId)
+                                .update(
+                                    mapOf(
+                                        "uid" to firebaseUser.uid,
+                                        "isRegistered" to true
+                                    )
+                                )
+                                .addOnSuccessListener {
+                                    onSuccess(userId)
+                                }
+                                .addOnFailureListener { exception ->
+                                    onFailure(exception)
+                                }
+                        } else {
+                            val userReference = peopleReference.document()
+                            val user = User(
+                                id = userReference.id,
+                                name = firebaseUser.displayName ?: "",
+                                email = email,
+                                uid = firebaseUser.uid,
+                                isRegistered = true,
+                                createdAt = Timestamp.now()
+                            )
+                            userReference
+                                .set(user)
+                                .addOnSuccessListener {
+                                    onSuccess(userReference.id)
+                                }
+                                .addOnFailureListener { exception ->
+                                    onFailure(exception)
+                                }
+                        }
+                    }
+                    .addOnFailureListener { exception ->
+                        onFailure(exception)
+                    }
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
     }
 }

@@ -9,4 +9,9 @@ interface UserRepository {
         onSuccess: (FirebaseUser) -> Unit,
         onFailure: (Exception) -> Unit
     )
+    fun getOrCreateUser(
+        firebaseUser: FirebaseUser,
+        onSuccess: (String) -> Unit,
+        onFailure: (Exception) -> Unit
+    )
 }
