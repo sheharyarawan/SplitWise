@@ -103,4 +103,7 @@
     <string name="settle_up_inner_balance">Settle up</string>
     <string name="reminder_inner_balance">Reminder</string>
     <string name="no_expense">no expense</string>
+    <string name="rs">Rs</string>
+    <string name="_0_00_2">0.00</string>
+    <string name="percentage">%</string>
 </resources>
