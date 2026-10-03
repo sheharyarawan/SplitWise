@@ -121,4 +121,8 @@
     <string name="forgot_your_password">Forgot your password?</string>
     <string name="password_3">Password</string>
     <string name="email_3">Email</string>
+    <string name="reset_you_password">Reset you password</string>
+    <string name="enter_you_email_address_and_we_ll_send_you_a_link_to_reset_you_password">Enter you email address and we\'ll send you a link to reset you password</string>
+    <string name="your_email_address">Your email address</string>
+    <string name="reset_password">Reset Password</string>
 </resources>
