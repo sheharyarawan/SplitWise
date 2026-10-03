@@ -15,6 +15,7 @@ import jakarta.inject.Inject
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import com.google.firebase.firestore.ListenerRegistration
 class UserRepositoryImpl @Inject constructor(
     private val firestore: FirebaseFirestore,
     private val auth: FirebaseAuth
@@ -198,5 +199,46 @@ class UserRepositoryImpl @Inject constructor(
             .addOnFailureListener { exception ->
                 onFailure(exception)
             }
+    }
+    override fun getCurrentUser(
+        onSuccess: (User) -> Unit,
+        onFailure: (Exception) -> Unit
+    ): ListenerRegistration? {
+        val firebaseUser = auth.currentUser
+        if (firebaseUser == null) {
+            onFailure(Exception("User is not logged in"))
+            return null
+        }
+        return firestore.collection("people")
+            .whereEqualTo("uid", firebaseUser.uid)
+            .limit(1)
+            .addSnapshotListener { snapshot, exception ->
+                if (exception != null) {
+                    onFailure(exception)
+                    return@addSnapshotListener
+                }
+                if (snapshot == null || snapshot.isEmpty) {
+                    onFailure(Exception("User profile not found"))
+                    return@addSnapshotListener
+                }
+                val document = snapshot.documents[0]
+                val user = document.toObject(User::class.java)
+                if (user != null) {
+                    onSuccess(user.copy(id = document.id))
+                } else {
+                    onFailure(Exception("Failed to load user profile"))
+                }
+            }
+    }
+    override fun signOut(
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        try {
+            auth.signOut()
+            onSuccess()
+        } catch (exception: Exception) {
+            onFailure(exception)
+        }
     }
 }

@@ -137,4 +137,15 @@ class AuthViewModel @Inject constructor(
             }
         )
     }
+    fun signOut(
+        onSuccess: () -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        userRepository.signOut(
+            onSuccess = onSuccess,
+            onFailure = { exception ->
+                onFailure(exception.message ?: "Failed to sign out")
+            }
+        )
+    }
 }

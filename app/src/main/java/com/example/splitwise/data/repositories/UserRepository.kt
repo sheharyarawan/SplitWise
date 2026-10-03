@@ -1,7 +1,10 @@
 package com.example.splitwise.data.repositories
 
 import android.content.Context
+import com.example.splitwise.data.model.User
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.firestore.ListenerRegistration
+
 interface UserRepository {
     fun signInWithGoogle(
         context: Context,
@@ -29,6 +32,14 @@ interface UserRepository {
     )
     fun sendPasswordResetEmail(
         email: String,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    )
+    fun getCurrentUser(
+        onSuccess: (User) -> Unit,
+        onFailure: (Exception) -> Unit
+    ): ListenerRegistration?
+    fun signOut(
         onSuccess: () -> Unit,
         onFailure: (Exception) -> Unit
     )

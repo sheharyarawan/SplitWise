@@ -192,4 +192,5 @@ class GroupViewModel @Inject constructor(
         _memberBalances.value =
             UiState.Success(memberBalances)
     }
+
 }

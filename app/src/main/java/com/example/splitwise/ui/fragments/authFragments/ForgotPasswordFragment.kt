@@ -10,7 +10,6 @@ import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentForgotPasswordBinding
 import com.example.splitwise.ui.viewModels.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
-
 @AndroidEntryPoint
 class ForgotPasswordFragment : Fragment(R.layout.fragment_forgot_password) {
    lateinit var binding: FragmentForgotPasswordBinding
