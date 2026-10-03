@@ -84,4 +84,12 @@
     <string name="remove_this_user_from_your_friends_list">Remove this user from your friends list.</string>
     <string name="block_user">Block user</string>
     <string name="remove_this_user_from_your_friends_list_hide_any_groups_you_share_and_suppress_future_expenses_notifications_from_them">Remove this user from your friends list, hide any groups you share, and suppress future expenses/notifications from them.</string>
+    <string name="add_more_friends">Add more friends</string>
+    <string name="group_setting_img">group_setting_img</string>
+    <string name="edit_group">edit_group</string>
+    <string name="group_members">Group members</string>
+    <string name="add_people_to_group">Add people to group</string>
+    <string name="advanced_settings">Advanced settings</string>
+    <string name="leave_group">Leave group</string>
+    <string name="delete_group">Delete group</string>
 </resources>
