@@ -15,6 +15,12 @@ interface UserRepository {
         onSuccess: (FirebaseUser) -> Unit,
         onFailure: (Exception) -> Unit
     )
+    fun signInWithEmail(
+        email: String,
+        password: String,
+        onSuccess: (FirebaseUser) -> Unit,
+        onFailure: (Exception) -> Unit
+    )
     fun getOrCreateUser(
         firebaseUser: FirebaseUser,
         name: String?= null,

@@ -93,6 +93,28 @@ class UserRepositoryImpl @Inject constructor(
                 onFailure(exception)
             }
     }
+    override fun signInWithEmail(
+        email: String,
+        password: String,
+        onSuccess: (FirebaseUser) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        auth.signInWithEmailAndPassword(
+            email,
+            password
+        )
+            .addOnSuccessListener { authResult ->
+                val firebaseUser = authResult.user
+                if (firebaseUser != null) {
+                    onSuccess(firebaseUser)
+                } else {
+                    onFailure(Exception("Firebase user not found"))
+                }
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
+    }
     override fun getOrCreateUser(
         firebaseUser: FirebaseUser,
         name: String?,

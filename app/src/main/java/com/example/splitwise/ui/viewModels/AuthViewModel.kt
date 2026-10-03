@@ -87,4 +87,36 @@ class AuthViewModel @Inject constructor(
             }
         )
     }
+    fun signInWithEmail(
+        email: String,
+        password: String,
+        onSuccess: (String) -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        val cleanEmail = email.trim().lowercase()
+        if (!Patterns.EMAIL_ADDRESS.matcher(cleanEmail).matches()) {
+            onFailure("Please enter a valid email address")
+            return
+        }
+        if (password.isBlank()) {
+            onFailure("Please enter your password")
+            return
+        }
+        userRepository.signInWithEmail(
+            email = cleanEmail,
+            password = password,
+            onSuccess = { firebaseUser ->
+                userRepository.getOrCreateUser(
+                    firebaseUser = firebaseUser,
+                    onSuccess = onSuccess,
+                    onFailure = { exception ->
+                        onFailure(exception.message ?: "Failed to load user")
+                    }
+                )
+            },
+            onFailure = { exception ->
+                onFailure(exception.message ?: "Login failed")
+            }
+        )
+    }
 }

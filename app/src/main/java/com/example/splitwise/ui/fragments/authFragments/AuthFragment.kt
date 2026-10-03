@@ -23,13 +23,18 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
         handleButtonClicks()
     }
     private fun handleButtonClicks() {
-        binding.signInGoogleButton.setOnClickListener {
-            signInWithGoogle()
-        }
-        binding.signUpButton.setOnClickListener {
-            findNavController().navigate(
-                R.id.action_authFragment_to_signUpFragment
-            )
+        binding.apply {
+            signInGoogleButton.setOnClickListener {
+                signInWithGoogle()
+            }
+            signUpButton.setOnClickListener {
+                findNavController().navigate(
+                    R.id.action_authFragment_to_signUpFragment
+                )
+            }
+            loginButton.setOnClickListener {
+                findNavController().navigate(R.id.action_authFragment_to_loginFragment)
+            }
         }
     }
     private fun signInWithGoogle() {
