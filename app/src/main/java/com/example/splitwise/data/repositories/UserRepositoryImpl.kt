@@ -6,14 +6,15 @@ import androidx.credentials.GetCredentialRequest
 import com.example.splitwise.data.model.User
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
+import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
-import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.auth.FirebaseUser
+import com.google.firebase.auth.GoogleAuthProvider
 import com.google.firebase.firestore.FirebaseFirestore
 import jakarta.inject.Inject
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-import com.google.firebase.Timestamp
-
 class UserRepositoryImpl @Inject constructor(
     private val firestore: FirebaseFirestore,
     private val auth: FirebaseAuth
@@ -32,7 +33,7 @@ class UserRepositoryImpl @Inject constructor(
         val request = GetCredentialRequest.Builder()
             .addCredentialOption(googleIdOption)
             .build()
-        kotlinx.coroutines.CoroutineScope(kotlinx.coroutines.Dispatchers.Main).launch {
+        CoroutineScope(Dispatchers.Main).launch {
             try {
                 val result = credentialManager.getCredential(
                     context,
@@ -70,10 +71,33 @@ class UserRepositoryImpl @Inject constructor(
             }
         }
     }
+    override fun signUpWithEmail(
+        email: String,
+        password: String,
+        onSuccess: (FirebaseUser) -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        auth.createUserWithEmailAndPassword(
+            email,
+            password
+        )
+            .addOnSuccessListener { authResult ->
+                val firebaseUser = authResult.user
+                if (firebaseUser != null) {
+                    onSuccess(firebaseUser)
+                } else {
+                    onFailure(Exception("Firebase user not found"))
+                }
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
+    }
     override fun getOrCreateUser(
         firebaseUser: FirebaseUser,
+        name: String?,
         onSuccess: (String) -> Unit,
-        onFailure: (Exception) -> Unit,
+        onFailure: (Exception) -> Unit
     ) {
         val peopleReference = firestore.collection("people")
         peopleReference
@@ -87,7 +111,7 @@ class UserRepositoryImpl @Inject constructor(
                 }
                 val email = firebaseUser.email?.trim()?.lowercase()
                 if (email.isNullOrBlank()) {
-                    onFailure(Exception("Google account email not found"))
+                    onFailure(Exception("Account email not found"))
                     return@addOnSuccessListener
                 }
                 peopleReference
@@ -116,7 +140,7 @@ class UserRepositoryImpl @Inject constructor(
                             val userReference = peopleReference.document()
                             val user = User(
                                 id = userReference.id,
-                                name = firebaseUser.displayName ?: "",
+                                name = name ?: firebaseUser.displayName ?: "",
                                 email = email,
                                 uid = firebaseUser.uid,
                                 isRegistered = true,

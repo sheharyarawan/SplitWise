@@ -10,5 +10,6 @@ data class User(
     val email: String = "",
     val uid: String? = null,
     val isRegistered: Boolean = false,
+    val friends: List<String> = emptyList(),
     val createdAt: Timestamp? = null
 ): Parcelable

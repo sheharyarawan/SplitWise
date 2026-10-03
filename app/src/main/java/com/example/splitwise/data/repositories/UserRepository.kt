@@ -9,8 +9,15 @@ interface UserRepository {
         onSuccess: (FirebaseUser) -> Unit,
         onFailure: (Exception) -> Unit
     )
+    fun signUpWithEmail(
+        email: String,
+        password: String,
+        onSuccess: (FirebaseUser) -> Unit,
+        onFailure: (Exception) -> Unit
+    )
     fun getOrCreateUser(
         firebaseUser: FirebaseUser,
+        name: String?= null,
         onSuccess: (String) -> Unit,
         onFailure: (Exception) -> Unit
     )
