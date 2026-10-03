@@ -96,4 +96,6 @@
     <string name="split_by_percentage">Split by percentage</string>
     <string name="enter_the_percentage_split_that_s_fair_for_your_situation">Enter the percentage split that\'s fair for your situation.</string>
     <string name="next_record_payment">Next</string>
+    <string name="settle_all_balances">Settle all balances</string>
+    <string name="or_settle_a_specific_group_balance">Or, settle a specific group balance</string>
 </resources>

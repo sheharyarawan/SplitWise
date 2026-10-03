@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.expenses.SplitFragment"
+    tools:context=".ui.fragments.expenses.SplitFragment"
     android:background="@color/gray">
 
     <com.google.android.material.appbar.MaterialToolbar
@@ -29,14 +29,15 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@color/gray"
-        app:tabTextColor="#DFDFDF"
-        app:tabSelectedTextColor="@color/white"
-        app:tabGravity="start"
-        app:tabTextAppearance="@style/SplitTabTextAppearance"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/splitToolbar"
-        app:tabMode="scrollable">
+        app:tabGravity="start"
+        app:tabMode="scrollable"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextAppearance="@style/SplitTabTextAppearance"
+        app:tabTextColor="#DFDFDF"
+        tools:ignore="SpeakableTextPresentCheck">
 
     </com.google.android.material.tabs.TabLayout>
 
