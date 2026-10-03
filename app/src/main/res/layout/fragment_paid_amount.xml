@@ -4,8 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.expenses.PaidAmountFragment"
-    android:background="@color/gray">
+    tools:context=".ui.fragments.expenses.PaidAmountFragment"
+    android:background="@color/gray"
+    tools:ignore="VisualLintSystemUi">
 
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/paidAmountToolbar"
@@ -18,11 +19,8 @@
         app:menu="@menu/add_friend_toolbar"
         app:navigationIcon="@drawable/ic_back"
         app:title="Enter paid amounts"
-        app:titleTextColor="@color/white"
-        >
-
+        app:titleTextColor="@color/white">
     </com.google.android.material.appbar.MaterialToolbar>
-
     <androidx.core.widget.NestedScrollView
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -32,11 +30,9 @@
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/paidAmountToolbar">
-
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent">
-
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recyclerView"
                 android:layout_width="0dp"
@@ -48,19 +44,14 @@
                 app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/item_paid_amount"
                 tools:itemCount="4">
-
             </androidx.recyclerview.widget.RecyclerView>
-
-
         </androidx.constraintlayout.widget.ConstraintLayout>
-
     </androidx.core.widget.NestedScrollView>
-
     <TextView
         android:id="@+id/amountPaidTv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3000 of 3000"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="21sp"
         android:layout_marginTop="10dp"
@@ -68,22 +59,17 @@
         app:layout_constraintBottom_toTopOf="@+id/amountOver"
         app:layout_constraintEnd_toEndOf="@+id/amountOver"
         app:layout_constraintStart_toStartOf="@+id/amountOver">
-
     </TextView>
-
     <TextView
         android:id="@+id/amountOver"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="3000 over"
+        android:text=""
         android:textColor="@color/red"
         android:textSize="20sp"
         android:layout_marginBottom="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
-
     </TextView>
-
-
 </androidx.constraintlayout.widget.ConstraintLayout>

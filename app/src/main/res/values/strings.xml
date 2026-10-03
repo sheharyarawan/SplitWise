@@ -92,4 +92,5 @@
     <string name="advanced_settings">Advanced settings</string>
     <string name="leave_group">Leave group</string>
     <string name="delete_group">Delete group</string>
+    <string name="multiple_people">Multiple people</string>
 </resources>

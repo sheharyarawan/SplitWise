@@ -44,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_margin="16dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Multiple people"
+                android:text="@string/multiple_people"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintStart_toStartOf="parent"
