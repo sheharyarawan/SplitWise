@@ -102,4 +102,5 @@
     <string name="specify_exactly_how_much_each_person_owes">Specify exactly how much each person owes.</string>
     <string name="settle_up_inner_balance">Settle up</string>
     <string name="reminder_inner_balance">Reminder</string>
+    <string name="no_expense">no expense</string>
 </resources>
