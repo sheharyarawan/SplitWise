@@ -108,4 +108,5 @@
     <string name="percentage">%</string>
     <string name="rs_3">Rs</string>
     <string name="_0_00_3">0.00</string>
+    <string name="selected">Selected</string>
 </resources>
