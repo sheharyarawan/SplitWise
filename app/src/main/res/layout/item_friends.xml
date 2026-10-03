@@ -5,49 +5,50 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/gray">
-
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:background="@drawable/circle_white"
+        android:contentDescription="@null"
         android:padding="10dp"
+        android:layout_marginStart="8dp"
         android:src="@drawable/ic_mail"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:tint="#737373">
-
-    </ImageView>
-
+        app:tint="#737373" />
     <TextView
         android:id="@+id/friendName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="18dp"
-        android:text="Sheharyar"
+        android:layout_marginEnd="10dp"
+        android:ellipsize="end"
         android:fontFamily="@font/poppins_medium"
+        android:maxLines="1"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView3"
-        app:layout_constraintStart_toEndOf="@+id/imageView3"
-        app:layout_constraintTop_toTopOf="@+id/imageView3">
-
-    </TextView>
-
+        app:layout_constraintBottom_toBottomOf="@id/imageView3"
+        app:layout_constraintEnd_toStartOf="@id/friendExpense"
+        app:layout_constraintStart_toEndOf="@id/imageView3"
+        app:layout_constraintTop_toTopOf="@id/imageView3"
+        tools:ignore="VisualLintSystemUi" />
     <TextView
         android:id="@+id/friendExpense"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="no expense"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text="@string/no_expense"
         android:fontFamily="@font/poppins_medium"
         android:textColor="@color/white"
         android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="@+id/friendName"
+        app:layout_constraintBottom_toBottomOf="@id/friendName"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/friendName">
-
-    </TextView>
-
+        app:layout_constraintTop_toTopOf="@id/friendName"
+        tools:ignore="VisualLintSystemUi" />
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/friendCl"
         android:layout_width="0dp"
@@ -55,8 +56,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView3">
-
+        app:layout_constraintTop_toBottomOf="@+id/imageView3"
+        android:visibility="gone">
         <View
             android:id="@+id/view"
             android:layout_width="2dp"
@@ -65,9 +66,7 @@
             android:background="#E3E3E3"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
-
         </View>
-
         <View
             android:id="@+id/view2"
             android:layout_width="40dp"
@@ -76,9 +75,7 @@
             android:layout_marginTop="20dp"
             app:layout_constraintStart_toEndOf="@+id/view"
             app:layout_constraintTop_toTopOf="parent">
-
         </View>
-
         <View
             android:id="@+id/view3"
             android:layout_width="40dp"
@@ -87,9 +84,7 @@
             android:layout_marginTop="40dp"
             app:layout_constraintStart_toEndOf="@+id/view"
             app:layout_constraintTop_toBottomOf="@+id/view2">
-
         </View>
-
         <TextView
             android:id="@+id/friendChild1"
             android:layout_width="0dp"
@@ -98,15 +93,13 @@
             android:ellipsize="end"
             android:fontFamily="@font/poppins_medium"
             android:maxLines="1"
-            android:text="sheharyar owes you 1000 for trip to murree"
+            android:text=""
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/view2"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/view2"
             app:layout_constraintTop_toTopOf="@+id/view2">
-
         </TextView>
-
         <TextView
             android:id="@+id/friendChild2"
             android:layout_width="0dp"
@@ -115,16 +108,12 @@
             android:ellipsize="end"
             android:fontFamily="@font/poppins_medium"
             android:maxLines="1"
-            android:text="sheharyar owes you 1000 "
+            android:text=""
             android:textColor="@color/white"
             app:layout_constraintBottom_toBottomOf="@+id/view3"
-
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@+id/view3"
             app:layout_constraintTop_toBottomOf="@+id/view3">
-
         </TextView>
-
-
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,80 +1,80 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="horizontal"
     android:background="@color/gray"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
-    android:paddingTop="16dp">
+    android:paddingTop="16dp"
+    android:gravity="center_vertical">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/groupshomeimage"
+        android:contentDescription="@null"
         android:scaleType="centerCrop"
+        android:src="@drawable/groupshomeimage"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
-        android:layout_weight="1"
-        >
-    </com.google.android.material.imageview.ShapeableImageView>
+        tools:ignore="ImageContrastCheck" />
 
     <LinearLayout
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:layout_weight="6">
+        android:layout_weight="1"
+        android:orientation="vertical">
+
         <TextView
             android:id="@+id/itemPercentageName"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Sheharyar Awan"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:text=""
             android:textColor="@color/white"
             android:textSize="20sp"
             android:fontFamily="@font/poppins_medium"
-            android:layout_marginStart="10dp"
-            android:layout_marginEnd="10dp"
-            >
-        </TextView>
+            android:maxLines="2"
+            android:ellipsize="end"
+            tools:ignore="VisualLintSystemUi" />
 
         <TextView
             android:id="@+id/itemPercentageMoneyShare"
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="0.00"
+            android:layout_marginStart="10dp"
+            android:text=""
             android:textSize="16sp"
             android:textColor="#C6C6C6"
-            android:layout_marginStart="10dp"
-            >
-
-        </TextView>
+            android:maxLines="1"
+            android:ellipsize="end" />
 
     </LinearLayout>
 
-
     <EditText
         android:id="@+id/itemPercentageEditText"
-        android:layout_width="wrap_content"
+        android:layout_width="70dp"
         android:layout_height="wrap_content"
-        android:hint="0.00"
-        android:textSize="18sp"
+        android:layout_marginStart="4dp"
+        android:layout_marginEnd="4dp"
+        android:gravity="end"
+        android:hint="@string/_0_00_2"
+        android:inputType="numberDecimal"
+        android:maxLines="1"
+        android:minHeight="48dp"
+        android:singleLine="true"
         android:textColor="@color/white"
-        android:layout_weight="2"
-        android:layout_gravity="center"
-        >
-
-    </EditText>
+        android:textSize="18sp"
+        tools:ignore="Autofill,TextContrastCheck,VisualLintSystemUi" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="%"
+        android:text="@string/percentage"
         android:textColor="@color/white"
         android:textSize="21sp"
-        android:layout_gravity="center"
-        android:layout_weight="1"
-        >
-
-    </TextView>
+        android:gravity="center" />
 
 </LinearLayout>

@@ -1,17 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources xmlns:tools="http://schemas.android.com/tools">
-
     <style name="Base.Theme.SplitWise" parent="Theme.Material3.DayNight.NoActionBar">
     </style>
-
     <style name="ToolbarMenuText" parent="TextAppearance.Material3.LabelLarge">
         <item name="android:textColor">@color/white</item>
     </style>
-
     <style name="CreateGroupToolbarTheme" parent="ThemeOverlay.Material3.ActionBar">
         <item name="actionMenuTextAppearance">@style/ToolbarMenuText</item>
     </style>
-
     <style name="DatePickerTheme" parent="ThemeOverlay.Material3.MaterialCalendar">
         <item name="colorPrimary">@color/green</item>
         <item name="colorOnPrimary">@color/white</item>
@@ -20,32 +16,24 @@
     <style name="SplitTabTextAppearance" parent="TextAppearance.Material3.BodyLarge">
         <item name="android:textSize">22sp</item>
     </style>
-
     <style name="Theme.SplitWise" parent="Base.Theme.SplitWise">
     </style>
-
-
-    <style name="CustomAlertDialog"
-        parent="ThemeOverlay.Material3.MaterialAlertDialog">
-
+    <style name="Theme.SplitWise.Starting" parent="Theme.SplashScreen">
+        <item name="windowSplashScreenBackground">@color/gray</item>
+        <item name="windowSplashScreenAnimatedIcon">@drawable/splitwise</item>
+        <item name="postSplashScreenTheme">@style/Theme.SplitWise</item>
+    </style>
+    <style name="CustomAlertDialog" parent="ThemeOverlay.Material3.MaterialAlertDialog">
         <item name="colorPrimary">@color/green</item>
         <item name="colorOnPrimary">@color/white</item>
-
         <item name="colorSurface">#858585</item>
         <item name="colorSurfaceContainer">@color/gray</item>
         <item name="colorSurfaceContainerHigh">@color/gray</item>
-
         <item name="colorOnSurface">@color/white</item>
         <item name="colorOnSurfaceVariant">#BDBDBD</item>
-
         <item name="shapeAppearanceMediumComponent">@style/DialogShape</item>
-
     </style>
-    <style name="DialogShape"
-        parent="ShapeAppearance.Material3.Corner.Medium">
-
+    <style name="DialogShape" parent="ShapeAppearance.Material3.Corner.Medium">
         <item name="cornerSize">0dp</item>
-
     </style>
-
 </resources>

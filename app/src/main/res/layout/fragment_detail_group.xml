@@ -17,7 +17,9 @@
         <ImageView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:background="#131A49" />
+            android:background="#131A49"
+            android:contentDescription="@string/background"
+            android:scaleType="centerCrop" />
         <ImageView
             android:id="@+id/groupDetailBackBtn"
             android:layout_width="wrap_content"
@@ -25,6 +27,7 @@
             android:layout_gravity="start"
             android:layout_margin="15dp"
             android:background="@drawable/detail_group_bg"
+            android:contentDescription="@string/back_button"
             android:padding="5dp"
             android:src="@drawable/ic_back" />
         <ImageView
@@ -34,21 +37,25 @@
             android:layout_gravity="end"
             android:layout_margin="15dp"
             android:background="@drawable/detail_group_bg"
+            android:contentDescription="@string/settings"
             android:padding="5dp"
             android:src="@drawable/settings_24dp_e3e3e3_fill0_wght400_grad0_opsz24" />
         <LinearLayout
-            android:layout_width="wrap_content"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom|start"
             android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
             android:layout_marginBottom="10dp"
             android:orientation="vertical">
             <TextView
                 android:id="@+id/detailGroupName"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:ellipsize="end"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Group Name"
+                android:maxLines="2"
+                android:text=""
                 android:textColor="@color/white"
                 android:textSize="30sp" />
             <com.google.android.material.chip.Chip
@@ -58,7 +65,7 @@
                 android:layout_marginTop="4dp"
                 android:backgroundTint="@color/gray"
                 android:fontFamily="@font/poppins_medium"
-                android:text="5 people"
+                android:text=""
                 android:textColor="@color/white"
                 android:visibility="gone"
                 app:chipCornerRadius="20dp"
@@ -92,10 +99,10 @@
                 android:padding="10dp">
                 <TextView
                     android:id="@+id/detailGroupExpenseTotalTv"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="You are owed 10000 overall"
+                    android:text=""
                     android:textColor="@color/white"
                     android:textSize="19sp" />
             </LinearLayout>
@@ -111,7 +118,7 @@
                     android:backgroundTint="@color/gray"
                     android:fontFamily="@font/poppins_medium"
                     android:padding="10dp"
-                    android:text="Settle up"
+                    android:text="@string/settle_up"
                     android:textColor="@color/white"
                     android:textSize="21sp"
                     app:chipCornerRadius="30dp"
@@ -126,7 +133,7 @@
                     android:backgroundTint="@color/gray"
                     android:fontFamily="@font/poppins_medium"
                     android:padding="10dp"
-                    android:text="Balances"
+                    android:text="@string/balances"
                     android:textColor="@color/white"
                     android:textSize="21sp"
                     app:chipCornerRadius="30dp"
@@ -149,11 +156,11 @@
                     android:orientation="vertical"
                     android:padding="20dp">
                     <TextView
-                        android:layout_width="wrap_content"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_gravity="center_horizontal"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="You're the only one here!"
+                        android:gravity="center"
+                        android:text="@string/you_re_the_only_one_here"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
                     <com.google.android.material.button.MaterialButton
@@ -165,7 +172,7 @@
                         android:backgroundTint="@color/green"
                         android:paddingStart="30dp"
                         android:paddingEnd="30dp"
-                        android:text="Add group members"
+                        android:text="@string/add_group_members"
                         android:textSize="20sp"
                         app:icon="@drawable/ic_friend"
                         app:iconSize="25dp" />
@@ -179,21 +186,21 @@
                 android:orientation="vertical"
                 android:visibility="gone">
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center_horizontal"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="No expense here yet."
+                    android:gravity="center"
+                    android:text="@string/no_expense_here_yet"
                     android:textColor="@color/white"
                     android:textSize="22sp" />
                 <TextView
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="40dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="40dp"
                     android:fontFamily="@font/poppins_medium"
-                    android:text="Add an expense to get this party started."
+                    android:text="@string/add_an_expense_to_get_this_party_started"
                     android:textAlignment="center"
                     android:textColor="@color/white"
                     android:textSize="22sp" />
@@ -212,6 +219,7 @@
         android:id="@+id/detailGroupProgressBar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:elevation="8dp"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

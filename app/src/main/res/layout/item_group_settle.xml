@@ -1,49 +1,47 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@color/gray"
     android:paddingStart="16dp"
     android:paddingEnd="16dp"
-    android:paddingTop="16dp">
+    android:paddingTop="16dp"
+    android:gravity="center_vertical">
 
     <com.google.android.material.imageview.ShapeableImageView
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="56dp"
+        android:layout_height="56dp"
         android:src="@drawable/ic_mail"
         android:background="@color/white"
         android:tint="@color/black"
-        android:layout_weight="1"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full">
-
-    </com.google.android.material.imageview.ShapeableImageView>
-
+        android:contentDescription="@null"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full" />
     <TextView
         android:id="@+id/groupSettleName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Sheharyar"
-        android:layout_weight="6"
+        android:layout_weight="1"
+        android:layout_marginStart="10dp"
+        android:layout_marginEnd="10dp"
+        android:text=""
         android:textSize="20sp"
         android:textColor="@color/white"
         android:fontFamily="@font/poppins_medium"
-        android:layout_gravity="center"
-        android:layout_marginStart="10dp"
-        >
-
-    </TextView>
+        android:maxLines="2"
+        android:ellipsize="end" />
 
     <TextView
         android:id="@+id/moneyOwed"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="You are owed\n 2000.00"
+        android:text=""
         android:textColor="@color/green"
         android:textSize="18sp"
         android:fontFamily="@font/poppins_medium"
         android:gravity="end"
-        android:layout_weight="3">
+        android:textAlignment="viewEnd"
+        android:maxLines="2"
+        android:ellipsize="end" />
 
-    </TextView>
 </LinearLayout>

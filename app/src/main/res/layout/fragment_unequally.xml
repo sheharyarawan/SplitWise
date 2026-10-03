@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.expenses.UnequallyFragment"
+    tools:context=".ui.fragments.expenses.UnequallyFragment"
     android:background="@color/gray">
 
     <androidx.core.widget.NestedScrollView
@@ -28,12 +28,13 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="20dp"
                 android:fontFamily="@font/poppins_medium"
-                android:text="Split by exact amounts"
+                android:text="@string/split_by_exact_amounts"
                 android:textColor="@color/white"
                 android:textSize="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
+                app:layout_constraintTop_toTopOf="parent"
+                tools:ignore="VisualLintSystemUi">
 
             </TextView>
 
@@ -43,7 +44,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginEnd="20dp"
-                android:text="Specify exactly how much each person owes."
+                android:text="@string/specify_exactly_how_much_each_person_owes"
                 android:textAlignment="center"
                 android:textColor="#A9A8A8"
                 android:textSize="21sp"
@@ -74,7 +75,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:fontFamily="@font/poppins_medium"
-        android:text="0.00 of 0.00"
+        android:text=""
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"
@@ -90,7 +91,7 @@
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="0 left"
+        android:text=""
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="20sp"

@@ -4,115 +4,102 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.friendFragment.SettleUpFriendFragment"
-    android:background="@color/gray">
-
+    android:background="@color/gray"
+    tools:context=".ui.fragments.friendFragment.SettleUpFriendFragment"
+    tools:ignore="VisualLintSystemUi">
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/friendSettleToolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_cancel"
         app:title="Select a balance to settle"
-        app:titleTextColor="@color/white">
-
-    </com.google.android.material.appbar.MaterialToolbar>
-
+        app:titleTextColor="@color/white" />
     <TextView
         android:id="@+id/friendSettleWith"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="with Ahmed"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text=""
         android:textColor="@color/white"
-        android:layout_marginStart="60dp"
         android:textSize="21sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/friendSettleToolbar">
-
-    </TextView>
-
+        app:layout_constraintTop_toBottomOf="@id/friendSettleToolbar" />
     <LinearLayout
         android:id="@+id/settleAllBalanceLL"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="16dp"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="16dp"
+        android:paddingEnd="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/friendSettleWith">
-
-
+        app:layout_constraintTop_toBottomOf="@id/friendSettleWith">
         <ImageView
             android:id="@+id/settleALlBalance"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-
-            android:layout_marginStart="16dp"
+            android:layout_width="56dp"
+            android:layout_height="56dp"
             android:background="@drawable/circle_white"
-            android:padding="20dp"
+            android:contentDescription="@null"
+            android:padding="16dp"
             android:src="@drawable/ic_mail"
-            app:tint="@color/black">
-
-        </ImageView>
-
+            app:tint="@color/black" />
         <TextView
             android:id="@+id/textView25"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
             android:layout_marginStart="10dp"
-            android:layout_weight="6"
-            android:text="Settle all balances"
+            android:layout_weight="1"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="@string/settle_all_balances"
             android:textColor="@color/white"
-            android:textSize="22sp">
-
-        </TextView>
-
+            android:textSize="22sp" />
         <TextView
             android:id="@+id/settleAllBalancesAmountOwed"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="4"
-            android:text="You are owed\n 2000"
-            android:layout_gravity="center_vertical|end"
+            android:layout_marginStart="12dp"
+            android:gravity="end"
+            android:maxLines="2"
+            android:text=""
             android:textAlignment="textEnd"
             android:textColor="@color/green"
-            android:textSize="20sp">
-
-        </TextView>
-
+            android:textSize="20sp" />
     </LinearLayout>
-
     <TextView
         android:id="@+id/textView26"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_margin="16dp"
-        android:text="Or, settle a specific group balance"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
+        android:text="@string/or_settle_a_specific_group_balance"
         android:textColor="@color/white"
         android:textSize="18sp"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/settleAllBalanceLL">
-
-    </TextView>
-
+        app:layout_constraintTop_toBottomOf="@id/settleAllBalanceLL" />
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/friendSettleRv"
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
         android:layout_marginTop="10dp"
+        android:clipToPadding="false"
+        android:paddingBottom="16dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView26"
-        tools:listitem="@layout/item_friend_settle"
-        tools:itemCount="4">
-
-    </androidx.recyclerview.widget.RecyclerView>
-
-
+        app:layout_constraintTop_toBottomOf="@id/textView26"
+        tools:itemCount="4"
+        tools:listitem="@layout/item_friend_settle" />
 </androidx.constraintlayout.widget.ConstraintLayout>

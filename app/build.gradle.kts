@@ -63,6 +63,8 @@ dependencies {
 
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-play-services:1.10.2")
 
+    implementation(libs.androidx.core.splashscreen)
+
     // Material
     implementation(libs.material)
     implementation("com.google.android.material:material:1.13.0")
