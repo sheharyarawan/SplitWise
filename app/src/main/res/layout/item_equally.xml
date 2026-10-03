@@ -1,46 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:orientation="horizontal"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:background="@color/gray"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
     android:paddingStart="16dp"
-    android:paddingEnd="16dp"
-    android:paddingTop="16dp">
+    android:paddingTop="16dp"
+    android:paddingEnd="16dp">
 
     <com.google.android.material.imageview.ShapeableImageView
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:src="@drawable/groupshomeimage"
+        android:contentDescription="@null"
         android:scaleType="centerCrop"
+        android:src="@drawable/groupshomeimage"
         app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
-        android:layout_weight="1"
-        >
-    </com.google.android.material.imageview.ShapeableImageView>
-
+        tools:ignore="ImageContrastCheck" />
     <TextView
         android:id="@+id/itemEqualName"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:text="Sheharyar Awan"
-        android:textColor="@color/white"
-        android:textSize="20sp"
-        android:fontFamily="@font/poppins_medium"
-        android:layout_weight="23"
-        android:layout_gravity="center"
         android:layout_marginStart="10dp"
         android:layout_marginEnd="10dp"
-        >
-    </TextView>
-
+        android:layout_weight="1"
+        android:ellipsize="end"
+        android:fontFamily="@font/poppins_medium"
+        android:maxLines="2"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="20sp" />
     <CheckBox
         android:id="@+id/itemEqualCheck"
-        android:backgroundTint="@color/green"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="center"
-        android:layout_weight="1">
-
-    </CheckBox>
+        android:layout_gravity="center_vertical"
+        android:backgroundTint="@color/green"
+        tools:ignore="VisualLintSystemUi" />
 </LinearLayout>

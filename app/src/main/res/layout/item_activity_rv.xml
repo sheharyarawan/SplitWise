@@ -6,85 +6,75 @@
     android:layout_height="wrap_content"
     android:background="@color/gray"
     android:paddingStart="16dp"
-    android:paddingEnd="16dp"
-    android:paddingTop="16dp">
-
+    android:paddingTop="16dp"
+    android:paddingEnd="16dp">
     <ImageView
         android:id="@+id/imageView6"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="48dp"
+        android:layout_height="48dp"
         android:background="@color/white"
-        android:padding="15dp"
+        android:contentDescription="@null"
+        android:padding="12dp"
         android:src="@drawable/ic_recipt"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
-
-    </ImageView>
+        app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/shapeableImageView2"
-        android:layout_width="38dp"
-        android:layout_height="37dp"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
         android:scaleType="centerCrop"
         android:src="@drawable/groupshomeimage"
-        app:layout_constraintBottom_toBottomOf="@+id/imageView6"
-        app:layout_constraintEnd_toEndOf="@+id/imageView6"
-        app:layout_constraintStart_toEndOf="@+id/imageView6"
-
-        app:layout_constraintTop_toBottomOf="@+id/imageView6"
-        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full">
-
-    </com.google.android.material.imageview.ShapeableImageView>
-
-    <TextView
-        android:id="@+id/activityDate"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:text="6 days ago, 5:54 pm"
-        android:textColor="@color/white"
-        android:textSize="14sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/shapeableImageView2"
-        app:layout_constraintTop_toBottomOf="@+id/activityDesc">
-
-    </TextView>
-
+        app:layout_constraintBottom_toBottomOf="@id/imageView6"
+        app:layout_constraintEnd_toEndOf="@id/imageView6"
+        app:layout_constraintStart_toEndOf="@id/imageView6"
+        app:layout_constraintTop_toBottomOf="@id/imageView6"
+        app:shapeAppearanceOverlay="@style/ShapeAppearance.Material3.Corner.Full"
+        tools:ignore="ImageContrastCheck" />
     <TextView
         android:id="@+id/activityTitle"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="You added Sheharyar to the group"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text=""
         android:textColor="@color/white"
         android:textSize="16sp"
-        app:layout_constraintBottom_toTopOf="@+id/activityDesc"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/shapeableImageView2"
+        app:layout_constraintStart_toEndOf="@id/imageView6"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_chainStyle="packed">
-
-    </TextView>
-
+        tools:ignore="VisualLintSystemUi" />
     <TextView
         android:id="@+id/activityDesc"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
         android:fontFamily="@font/poppins_medium"
-        android:text="You get back 200"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:text=""
         android:textColor="@color/green"
         android:textSize="15sp"
-        app:layout_constraintBottom_toTopOf="@+id/activityDate"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/shapeableImageView2"
-        app:layout_constraintTop_toBottomOf="@+id/activityTitle">
-
-    </TextView>
-
-
+        app:layout_constraintStart_toEndOf="@id/imageView6"
+        app:layout_constraintTop_toBottomOf="@id/activityTitle" />
+    <TextView
+        android:id="@+id/activityDate"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="16dp"
+        android:maxLines="1"
+        android:ellipsize="end"
+        android:text=""
+        android:textColor="@color/white"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/imageView6"
+        app:layout_constraintTop_toBottomOf="@id/activityDesc" />
 </androidx.constraintlayout.widget.ConstraintLayout>
