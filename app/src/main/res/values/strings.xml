@@ -116,4 +116,9 @@
     <string name="password_signup">Password</string>
     <string name="done">Done</string>
     <string name="i_use_pkr_as_my_currency">I use PKR as my currency</string>
+    <string name="log_in_2">Log in</string>
+    <string name="log_in_3">Log In</string>
+    <string name="forgot_your_password">Forgot your password?</string>
+    <string name="password_3">Password</string>
+    <string name="email_3">Email</string>
 </resources>
