@@ -125,4 +125,5 @@
     <string name="enter_you_email_address_and_we_ll_send_you_a_link_to_reset_you_password">Enter you email address and we\'ll send you a link to reset you password</string>
     <string name="your_email_address">Your email address</string>
     <string name="reset_password">Reset Password</string>
+    <string name="email_4">Email</string>
 </resources>
