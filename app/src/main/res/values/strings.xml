@@ -98,4 +98,8 @@
     <string name="next_record_payment">Next</string>
     <string name="settle_all_balances">Settle all balances</string>
     <string name="or_settle_a_specific_group_balance">Or, settle a specific group balance</string>
+    <string name="split_by_exact_amounts">Split by exact amounts</string>
+    <string name="specify_exactly_how_much_each_person_owes">Specify exactly how much each person owes.</string>
+    <string name="settle_up_inner_balance">Settle up</string>
+    <string name="reminder_inner_balance">Reminder</string>
 </resources>
