@@ -109,4 +109,11 @@
     <string name="rs_3">Rs</string>
     <string name="_0_00_3">0.00</string>
     <string name="selected">Selected</string>
+    <string name="welcome_to_splitwise">Welcome to Splitwise!</string>
+    <string name="let_s_create_your_account">Let\'s create your account</string>
+    <string name="full_name_signup">Full name</string>
+    <string name="email_address_singup">Email address</string>
+    <string name="password_signup">Password</string>
+    <string name="done">Done</string>
+    <string name="i_use_pkr_as_my_currency">I use PKR as my currency</string>
 </resources>

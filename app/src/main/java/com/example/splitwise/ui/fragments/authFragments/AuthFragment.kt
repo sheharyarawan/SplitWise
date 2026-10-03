@@ -10,6 +10,7 @@ import androidx.credentials.GetCredentialRequest
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
+import androidx.navigation.fragment.findNavController
 import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.R
 import com.example.splitwise.databinding.FragmentAuthBinding
@@ -53,6 +54,9 @@ class AuthFragment : Fragment(R.layout.fragment_auth) {
 
         binding.signInGoogleButton.setOnClickListener {
             signInWithGoogle()
+        }
+        binding.signUpButton.setOnClickListener {
+            findNavController().navigate(R.id.action_authFragment_to_signUpFragment)
         }
     }
 
