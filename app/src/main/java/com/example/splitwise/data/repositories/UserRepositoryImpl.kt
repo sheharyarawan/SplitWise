@@ -186,4 +186,17 @@ class UserRepositoryImpl @Inject constructor(
                 onFailure(exception)
             }
     }
+    override fun sendPasswordResetEmail(
+        email: String,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        auth.sendPasswordResetEmail(email)
+            .addOnSuccessListener {
+                onSuccess()
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
+    }
 }

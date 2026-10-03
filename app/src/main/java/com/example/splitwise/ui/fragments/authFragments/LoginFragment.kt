@@ -2,9 +2,7 @@ package com.example.splitwise.ui.fragments.authFragments
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.fragment.app.viewModels
 import androidx.navigation.fragment.findNavController
 import com.example.splitwise.R
@@ -12,7 +10,6 @@ import com.example.splitwise.databinding.FragmentLoginBinding
 import com.example.splitwise.ui.MainActivity
 import com.example.splitwise.ui.viewModels.AuthViewModel
 import dagger.hilt.android.AndroidEntryPoint
-
 @AndroidEntryPoint
 class LoginFragment : Fragment(R.layout.fragment_login) {
     lateinit var binding: FragmentLoginBinding
@@ -24,6 +21,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     fun setUpClicks(){
         binding.apply {
             forgotPasswordText.setOnClickListener {
+                findNavController().navigate(R.id.action_loginFragment_to_forgotPasswordFragment)
             }
             loginButton.setOnClickListener {
                 login()

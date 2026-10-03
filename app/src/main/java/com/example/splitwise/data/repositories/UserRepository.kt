@@ -27,4 +27,9 @@ interface UserRepository {
         onSuccess: (String) -> Unit,
         onFailure: (Exception) -> Unit
     )
+    fun sendPasswordResetEmail(
+        email: String,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    )
 }

@@ -119,4 +119,22 @@ class AuthViewModel @Inject constructor(
             }
         )
     }
+    fun sendPasswordResetEmail(
+        email: String,
+        onSuccess: () -> Unit,
+        onFailure: (String) -> Unit
+    ) {
+        val cleanEmail = email.trim().lowercase()
+        if (!Patterns.EMAIL_ADDRESS.matcher(cleanEmail).matches()) {
+            onFailure("Please enter a valid email address")
+            return
+        }
+        userRepository.sendPasswordResetEmail(
+            email = cleanEmail,
+            onSuccess = onSuccess,
+            onFailure = { exception ->
+                onFailure(exception.message ?: "Failed to send password reset email")
+            }
+        )
+    }
 }
