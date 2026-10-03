@@ -1,6 +1,7 @@
 package com.example.splitwise.ui.fragments.accountFragment
 import android.os.Bundle
 import android.view.View
+import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.Lifecycle
@@ -36,12 +37,18 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
                 viewModel.user.collect { state ->
                     when (state) {
                         is UiState.Loading -> {
+                            binding.accountLoadingOverlay.isVisible = true
                         }
                         is UiState.Success -> {
-                            binding.accountName.text = state.data.name
-                            binding.accountMail.text = state.data.email
+                            binding.accountLoadingOverlay.isVisible = false
+                            binding.apply {
+                                accountName.text = state.data.name
+                                accountMail.text = state.data.email
+                            }
                         }
                         is UiState.Error -> {
+                            binding.accountLoadingOverlay.isVisible = false
+                            binding.accountLogout.error = state.message
                         }
                     }
                 }
@@ -49,21 +56,23 @@ class AccountFragment : Fragment(R.layout.fragment_account) {
         }
     }
     private fun setUpClicks() {
-        binding.accountEdit.setOnClickListener {
-            findNavController().navigate(R.id.action_accountFragment_to_accountSettingsFragment)
-        }
-        binding.accountLogout.setOnClickListener {
-            authViewModel.signOut(
-                onSuccess = {
-                    val activity = requireActivity() as MainActivity
-                    activity.hideBottomNav()
-                    activity.hideAddExpenseButton()
-                    findNavController().setGraph(R.navigation.auth_nav_graph)
-                },
-                onFailure = { message ->
-                    binding.accountLogout.error = message
-                }
-            )
+        binding.apply {
+            accountEdit.setOnClickListener {
+                findNavController().navigate(R.id.action_accountFragment_to_accountSettingsFragment)
+            }
+            accountLogout.setOnClickListener {
+                authViewModel.signOut(
+                    onSuccess = {
+                        val activity = requireActivity() as MainActivity
+                        activity.hideBottomNav()
+                        activity.hideAddExpenseButton()
+                        findNavController().setGraph(R.navigation.auth_nav_graph)
+                    },
+                    onFailure = { message ->
+                        binding.accountLogout.error = message
+                    }
+                )
+            }
         }
     }
 }

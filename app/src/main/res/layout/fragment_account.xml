@@ -25,7 +25,6 @@
         android:textSize="26sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/accountToolbar" />
-
     <com.google.android.material.imageview.ShapeableImageView
         android:id="@+id/accountImage"
         android:layout_width="70dp"
@@ -67,7 +66,6 @@
         app:layout_constraintEnd_toStartOf="@+id/accountEdit"
         app:layout_constraintStart_toStartOf="@+id/accountName"
         app:layout_constraintTop_toBottomOf="@+id/accountName" />
-
     <TextView
         android:id="@+id/accountEdit"
         android:layout_width="wrap_content"
@@ -93,7 +91,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/accountImage" />
-
     <TextView
         android:id="@+id/accountLogout"
         android:layout_width="0dp"
@@ -103,15 +100,34 @@
         android:drawablePadding="20dp"
         android:focusable="true"
         android:fontFamily="@font/poppins_medium"
+        android:gravity="center_vertical"
         android:minHeight="48dp"
         android:text="@string/log_out"
         android:textColor="#4ED099"
         android:textSize="20sp"
-        android:gravity="center_vertical"
         android:textStyle="bold"
         app:drawableStartCompat="@drawable/ic_leave_group"
         app:drawableTint="#4ED099"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/view4" />
+    <FrameLayout
+        android:id="@+id/accountLoadingOverlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/gray"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="10dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
