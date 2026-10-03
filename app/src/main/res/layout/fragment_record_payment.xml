@@ -4,112 +4,98 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.groupFragment.RecordPaymentFragment"
     android:background="@color/gray"
-    >
-
+    tools:context=".ui.fragments.groupFragment.RecordPaymentFragment">
     <com.google.android.material.appbar.MaterialToolbar
         android:id="@+id/recordPaymentToolbar"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:navigationIcon="@drawable/ic_back"
         app:title="Record a payment"
-        app:titleTextColor="@color/white"
-        >
-
-    </com.google.android.material.appbar.MaterialToolbar>
-
+        app:titleTextColor="@color/white" />
     <TextView
         android:id="@+id/paymentPaidName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="40dp"
         android:layout_marginEnd="16dp"
-        android:text="Sheharyar paid you"
+        android:ellipsize="end"
+        android:maxLines="2"
+        android:text=""
         android:textAlignment="center"
         android:textColor="@color/white"
         android:textSize="22sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/recordPaymentToolbar">
-
-    </TextView>
-
+        app:layout_constraintTop_toBottomOf="@id/recordPaymentToolbar" />
     <TextView
         android:id="@+id/paymentPaidNumber"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:text="03107367318"
-        android:textColor="#D8D8D8"
-        android:textSize="18sp"
-        app:layout_constraintEnd_toEndOf="@+id/paymentPaidName"
-        app:layout_constraintStart_toStartOf="@+id/paymentPaidName"
-        app:layout_constraintTop_toBottomOf="@+id/paymentPaidName">
-
-    </TextView>
-
-    <LinearLayout
-        android:id="@+id/recordPaymentLL"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        android:layout_marginTop="20dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginEnd="16dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="#D8D8D8"
+        android:textSize="18sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/paymentPaidNumber"
-        android:gravity="center">
-
+        app:layout_constraintTop_toBottomOf="@id/paymentPaidName" />
+    <LinearLayout
+        android:id="@+id/recordPaymentLL"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:gravity="center"
+        android:orientation="horizontal"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/paymentPaidNumber">
         <com.google.android.material.textfield.TextInputLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/paymentPaidNumber"
             app:boxBackgroundMode="none">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:textSize="40sp"
-                android:text="1000"
+                android:id="@+id/recordPayment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/poppins_medium"
+                android:inputType="numberDecimal"
+                android:maxLines="1"
+                android:singleLine="true"
+                android:text=""
                 android:textColor="@color/white"
-                android:fontFamily="@font/poppins_medium">
-
-            </com.google.android.material.textfield.TextInputEditText>
-
+                android:textSize="40sp"
+                tools:ignore="SpeakableTextPresentCheck" />
         </com.google.android.material.textfield.TextInputLayout>
-
         <ImageView
             android:id="@+id/recordPaymemtEditIcon"
             android:layout_width="40dp"
             android:layout_height="40dp"
-            android:src="@drawable/ic_edit"
             android:layout_marginStart="20dp"
-            >
-
-        </ImageView>
-
+            android:contentDescription="Edit payment amount"
+            android:src="@drawable/ic_edit"
+            tools:ignore="HardcodedText" />
     </LinearLayout>
-
     <com.google.android.material.button.MaterialButton
         android:id="@+id/nextButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
+        android:layout_margin="16dp"
         android:backgroundTint="@color/green"
-        android:text="Next"
+        android:text="@string/next_record_payment"
         android:textColor="@color/white"
         android:textSize="20sp"
-        android:layout_margin="16dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
-
-    </com.google.android.material.button.MaterialButton>
-
-
+        app:layout_constraintStart_toStartOf="parent"
+        tools:ignore="VisualLintButtonSize" />
 </androidx.constraintlayout.widget.ConstraintLayout>
