@@ -32,7 +32,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="20dp">
+            android:paddingBottom="24dp">
             <TextView
                 android:id="@+id/textView13"
                 android:layout_width="wrap_content"
@@ -68,11 +68,11 @@
                     app:layout_constraintEnd_toStartOf="@id/accountSettingNameEdit"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/accountSettingNameEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:text="@string/edit_name"
@@ -82,7 +82,8 @@
                     app:drawableTint="@color/green"
                     app:layout_constraintBottom_toBottomOf="@id/accountSettingName"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/accountSettingName" />
+                    app:layout_constraintTop_toTopOf="@id/accountSettingName"
+                    tools:ignore="DuplicateSpeakableTextCheck,TouchTargetSizeCheck" />
                 <EditText
                     android:id="@+id/accountSettingNameEt"
                     android:layout_width="0dp"
@@ -132,11 +133,11 @@
                     app:layout_constraintEnd_toStartOf="@id/accountSettingEmailEdit"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/accountSettingEmailEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:text="@string/edit_mail"
@@ -146,90 +147,60 @@
                     app:drawableTint="@color/green"
                     app:layout_constraintBottom_toBottomOf="@id/accountSettingEmail"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/accountSettingEmail" />
-                <LinearLayout
+                    app:layout_constraintTop_toTopOf="@id/accountSettingEmail"
+                    tools:ignore="TouchTargetSizeCheck" />
+                <FrameLayout
                     android:id="@+id/accountSettingEmailLL"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
-                    <EditText
-                        android:id="@+id/accountSettingNewEmailAddress"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/edit_text_bg"
-                        android:hint="@string/add_new_email_address"
-                        android:padding="16dp"
-                        android:textColor="@color/white"
-                        android:textColorHint="#60FFFFFF"
-                        android:textSize="18sp" />
-                    <EditText
-                        android:id="@+id/accountSettingNewPassword"
+                        android:orientation="vertical">
+                        <EditText
+                            android:id="@+id/accountSettingNewEmailAddress"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edit_text_bg"
+                            android:hint="@string/add_new_email_address"
+                            android:inputType="textEmailAddress"
+                            android:padding="16dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="#60FFFFFF"
+                            android:textSize="18sp" />
+                        <EditText
+                            android:id="@+id/accountSettingEmailCurrentPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:background="@drawable/edit_text_bg"
+                            android:hint="@string/your_current_password"
+                            android:inputType="textPassword"
+                            android:padding="16dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="#60FFFFFF"
+                            android:textSize="18sp"
+                            tools:ignore="Autofill" />
+                    </LinearLayout>
+                    <FrameLayout
+                        android:id="@+id/accountSettingEmailLoadingOverlay"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/edit_text_bg"
-                        android:hint="@string/your_current_password"
-                        android:padding="16dp"
-                        android:textColor="@color/white"
-                        android:textColorHint="#60FFFFFF"
-                        android:textSize="18sp" />
-                </LinearLayout>
-            </androidx.constraintlayout.widget.ConstraintLayout>
-            <TextView
-                android:id="@+id/tv111"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="20dp"
-                android:text="@string/phone_number"
-                android:textColor="@color/white"
-                android:textSize="18sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/emailSection" />
-            <androidx.constraintlayout.widget.ConstraintLayout
-                android:id="@+id/phoneSection"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tv111">
-                <TextView
-                    android:id="@+id/accountSettingsPhone"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:ellipsize="end"
-                    android:fontFamily="@font/poppins_medium"
-                    android:maxLines="2"
-                    android:text="@string/none"
-                    android:textColor="@color/white"
-                    android:textSize="20sp"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toStartOf="@id/accountSettingPhoneNumberEdit"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
-                <TextView
-                    android:id="@+id/accountSettingPhoneNumberEdit"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
-                    android:clickable="true"
-                    android:focusable="true"
-                    android:text="@string/edit_phone"
-                    android:textColor="@color/white"
-                    android:textSize="18sp"
-                    app:drawableStartCompat="@drawable/ic_edit"
-                    app:drawableTint="@color/green"
-                    app:layout_constraintBottom_toBottomOf="@id/accountSettingsPhone"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/accountSettingsPhone" />
+                        android:layout_height="match_parent"
+                        android:background="#CC424242"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:visibility="gone">
+                        <ProgressBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:indeterminate="true" />
+                    </FrameLayout>
+                </FrameLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
             <TextView
                 android:id="@+id/textView15"
@@ -241,7 +212,7 @@
                 android:textColor="@color/white"
                 android:textSize="18sp"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/phoneSection" />
+                app:layout_constraintTop_toBottomOf="@id/emailSection" />
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:id="@+id/passwordSection"
                 android:layout_width="0dp"
@@ -266,11 +237,11 @@
                     app:layout_constraintEnd_toStartOf="@id/accountSettingPasswordEdit"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
+
                 <TextView
                     android:id="@+id/accountSettingPasswordEdit"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="12dp"
                     android:clickable="true"
                     android:focusable="true"
                     android:text="@string/edit_password"
@@ -280,38 +251,60 @@
                     app:drawableTint="@color/green"
                     app:layout_constraintBottom_toBottomOf="@id/accountSettingPassword"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="@id/accountSettingPassword" />
-                <LinearLayout
+                    app:layout_constraintTop_toTopOf="@id/accountSettingPassword"
+                    tools:ignore="TouchTargetSizeCheck" />
+                <FrameLayout
                     android:id="@+id/accountSettingPasswordLL"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
                     android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
-                    <EditText
-                        android:id="@+id/accountSettingCurrentPassword"
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/edit_text_bg"
-                        android:hint="@string/current_password"
-                        android:padding="16dp"
-                        android:textColor="@color/white"
-                        android:textColorHint="#60FFFFFF"
-                        android:textSize="18sp" />
-                    <EditText
-                        android:id="@+id/accountSettingsNewPassword"
+                        android:orientation="vertical">
+                        <EditText
+                            android:id="@+id/accountSettingCurrentPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:background="@drawable/edit_text_bg"
+                            android:hint="@string/current_password"
+                            android:inputType="textPassword"
+                            android:padding="16dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="#60FFFFFF"
+                            android:textSize="18sp"
+                            tools:ignore="Autofill" />
+                        <EditText
+                            android:id="@+id/accountSettingsNewPassword"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="16dp"
+                            android:background="@drawable/edit_text_bg"
+                            android:hint="@string/new_password"
+                            android:inputType="textPassword"
+                            android:padding="16dp"
+                            android:textColor="@color/white"
+                            android:textColorHint="#60FFFFFF"
+                            android:textSize="18sp" />
+                    </LinearLayout>
+                    <FrameLayout
+                        android:id="@+id/accountSettingPasswordLoadingOverlay"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="20dp"
-                        android:background="@drawable/edit_text_bg"
-                        android:hint="@string/new_password"
-                        android:padding="16dp"
-                        android:textColor="@color/white"
-                        android:textColorHint="#60FFFFFF"
-                        android:textSize="18sp" />
-                </LinearLayout>
+                        android:layout_height="match_parent"
+                        android:background="#CC424242"
+                        android:clickable="true"
+                        android:focusable="true"
+                        android:visibility="gone">
+                        <ProgressBar
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:indeterminate="true" />
+                    </FrameLayout>
+                </FrameLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.core.widget.NestedScrollView>
@@ -327,4 +320,23 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
+    <FrameLayout
+        android:id="@+id/accountSettingsLoadingOverlay"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="#CC424242"
+        android:clickable="true"
+        android:focusable="true"
+        android:elevation="20dp"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+        <ProgressBar
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:indeterminate="true" />
+    </FrameLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

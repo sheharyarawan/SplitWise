@@ -7,6 +7,7 @@ import com.example.splitwise.data.model.User
 import com.google.android.libraries.identity.googleid.GetGoogleIdOption
 import com.google.android.libraries.identity.googleid.GoogleIdTokenCredential
 import com.google.firebase.Timestamp
+import com.google.firebase.auth.EmailAuthProvider
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.GoogleAuthProvider
@@ -240,5 +241,128 @@ class UserRepositoryImpl @Inject constructor(
         } catch (exception: Exception) {
             onFailure(exception)
         }
+    }
+    override fun updateName(
+        name: String,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        val firebaseUser = auth.currentUser
+        if (firebaseUser == null) {
+            onFailure(Exception("User is not logged in"))
+            return
+        }
+        firestore.collection("people")
+            .whereEqualTo("uid", firebaseUser.uid)
+            .limit(1)
+            .get()
+            .addOnSuccessListener { snapshot ->
+                if (snapshot.isEmpty) {
+                    onFailure(Exception("User profile not found"))
+                    return@addOnSuccessListener
+                }
+                snapshot.documents[0].reference
+                    .update("name", name.trim())
+                    .addOnSuccessListener {
+                        onSuccess()
+                    }
+                    .addOnFailureListener { exception ->
+                        onFailure(exception)
+                    }
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
+    }
+    override fun updateEmail(
+        newEmail: String,
+        currentPassword: String,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        val firebaseUser = auth.currentUser
+        if (firebaseUser == null) {
+            onFailure(Exception("User is not logged in"))
+            return
+        }
+        val currentEmail = firebaseUser.email
+        if (currentEmail.isNullOrBlank()) {
+            onFailure(Exception("Current email not found"))
+            return
+        }
+        val credential = EmailAuthProvider.getCredential(
+            currentEmail,
+            currentPassword
+        )
+        firebaseUser.reauthenticate(credential)
+            .addOnSuccessListener {
+                firebaseUser.verifyBeforeUpdateEmail(newEmail.trim().lowercase())
+                    .addOnSuccessListener {
+                        firestore.collection("people")
+                            .whereEqualTo("uid", firebaseUser.uid)
+                            .limit(1)
+                            .get()
+                            .addOnSuccessListener { snapshot ->
+                                if (snapshot.isEmpty) {
+                                    onFailure(Exception("User profile not found"))
+                                    return@addOnSuccessListener
+                                }
+                                snapshot.documents[0].reference
+                                    .update(
+                                        "email",
+                                        newEmail.trim().lowercase()
+                                    )
+                                    .addOnSuccessListener {
+                                        onSuccess()
+                                    }
+                                    .addOnFailureListener { exception ->
+                                        onFailure(exception)
+                                    }
+                            }
+                            .addOnFailureListener { exception ->
+                                onFailure(exception)
+                            }
+                    }
+                    .addOnFailureListener { exception ->
+                        onFailure(exception)
+                    }
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
+    }
+    override fun updatePassword(
+        currentPassword: String,
+        newPassword: String,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    ) {
+        val firebaseUser = auth.currentUser
+        if (firebaseUser == null) {
+            onFailure(Exception("User is not logged in"))
+            return
+        }
+        val currentEmail = firebaseUser.email
+        if (currentEmail.isNullOrBlank()) {
+            onFailure(Exception("Current email not found"))
+            return
+        }
+        val credential = EmailAuthProvider.getCredential(
+            currentEmail,
+            currentPassword
+        )
+        firebaseUser.reauthenticate(credential)
+            .addOnSuccessListener {
+                firebaseUser.updatePassword(newPassword)
+                    .addOnSuccessListener {
+                        onSuccess()
+                    }
+                    .addOnFailureListener { exception ->
+                        onFailure(exception)
+                    }
+            }
+            .addOnFailureListener { exception ->
+                onFailure(exception)
+            }
     }
 }

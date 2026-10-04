@@ -43,4 +43,21 @@ interface UserRepository {
         onSuccess: () -> Unit,
         onFailure: (Exception) -> Unit
     )
+    fun updateName(
+        name: String,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    )
+    fun updateEmail(
+        newEmail: String,
+        currentPassword: String,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    )
+    fun updatePassword(
+        currentPassword: String,
+        newPassword: String,
+        onSuccess: () -> Unit,
+        onFailure: (Exception) -> Unit
+    )
 }
